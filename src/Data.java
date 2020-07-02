@@ -25,13 +25,10 @@ public class Data {
         Pattern p8 = Pattern.compile(ISourceIControl);
         String ISourceVControl = "(G.+? ) *(\\d*) *(\\d*) *(\\d*) *(\\d*) *(.*)";
         Pattern p9 = Pattern.compile(ISourceVControl);
-        String VDCSourceRegex = "";
-        String IDCSourceRegex = "";
-        int i=0;
         File inputCircuit = new File("test.txt");
         String line = "";
         try (Scanner sc = new Scanner(inputCircuit, StandardCharsets.UTF_8.name())){
-            for(i=0;line!="END";i++)
+            for(int i=0;line!="END";i++)
             line=sc.nextLine();
             Matcher m1 = p1.matcher(line);
             Matcher m2 = p2.matcher(line);
@@ -179,7 +176,11 @@ public class Data {
                 float ACDomain=Float.parseFloat(VACDomain);
                 float ACFrequency=Float.parseFloat(VACFrequency);
                 float ACPhase=Float.parseFloat(VACPhase);
-                new VoltageSourceAC(0, 0, 0, N1 , N2 , VACName , ACFirstState,ACDomain,ACFrequency,ACPhase);
+                if(ACDomain==0&&ACFrequency==0&&ACPhase==0){
+                    new VoltageSourceAC(0, 0, 0, N1 , N2 , VACName , ACFirstState,ACDomain,ACFrequency,ACPhase);
+                }
+                else
+                    new VoltageSourceDC(0,0,0,N1,N2,VACName);
             }
             if(m5.find()){
                 String IACName=m5.group(1).trim();
@@ -192,7 +193,11 @@ public class Data {
                 float ACDomain=Float.parseFloat(IACDomain);
                 float ACFrequency=Float.parseFloat(IACFrequency);
                 float ACPhase=Float.parseFloat(IACPhase);
-                new CurrentSourceAC(0, 0, 0, N1 , N2 , IACName , ACFirstState,ACDomain,ACFrequency,ACPhase);
+                if(ACDomain==0&&ACFrequency==0&&ACPhase==0){
+                    new VoltageSourceAC(0, 0, 0, N1 , N2 , IACName , ACFirstState,ACDomain,ACFrequency,ACPhase);
+                }
+                else
+                    new CurrentSourceDC(0,0,0,N1,N2,IACName);
             }
             if(m6.find()){
                 String VSCCName=m6.group(1).trim();
@@ -224,7 +229,7 @@ public class Data {
                 int N1Control=Integer.parseInt(m9.group(4)) , N2Control=Integer.parseInt(m9.group(5));
                 String gainStr = m9.group(5);
                 float gain = Float.parseFloat(gainStr);
-                new VoltageControlVoltageSource(0, 0, 0, N1 , N2 ,CSVCName , N1Control , N2Control,gain);
+                new VoltageControlCurrentSource(0, 0, 0, N1 , N2 ,CSVCName , N1Control , N2Control,gain);
             }
         }
     }
