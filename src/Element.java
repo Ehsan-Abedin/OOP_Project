@@ -55,7 +55,7 @@ public class Element {
         this.node2 = node2;
     }
 
-    public void setName(String nmae) {
+    public void setName(String name) {
         this.name = name;
     }
 
