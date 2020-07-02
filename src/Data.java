@@ -124,12 +124,92 @@ public class Data {
                     CQuantity=CQuantity.replace("p","");
                     C=Float.parseFloat(CQuantity)/(10^12);
                 }
-                new Resistance(0,0,0,N1,N2,CName,C);
+                new Capacitor(0,0,0,N1,N2,CName,C);
             }
             if(m3.find()){
+                String LName=m3.group(1).trim();
+                int N1=Integer.parseInt(m3.group(2)) , N2 = Integer.parseInt(m3.group(3));
+                String LQuantity = m3.group(4);
+                float L=0;
+                if(LQuantity.indexOf(LQuantity.length()-1)=='k')
+                {
+                    LQuantity=LQuantity.replace("k","");
+                    L=Float.parseFloat(LQuantity)*1000;
+                }
+                else if(LQuantity.indexOf(LQuantity.length()-1)=='G')
+                {
+                    LQuantity=LQuantity.replace("G","");
+                    L=Float.parseFloat(LQuantity)*1000000000;
+                }
+                else if(LQuantity.indexOf(LQuantity.length()-1)=='M')
+                {
+                    LQuantity=LQuantity.replace("M","");
+                    L=Float.parseFloat(LQuantity)*1000000;
+                }
+                else if(LQuantity.indexOf(LQuantity.length()-1)=='m')
+                {
+                    LQuantity=LQuantity.replace("m","");
+                    L=Float.parseFloat(LQuantity)/1000;
+                }
+                else if(LQuantity.indexOf(LQuantity.length()-1)=='n')
+                {
+                    LQuantity=LQuantity.replace("n","");
+                    L=Float.parseFloat(LQuantity)/1000000000;
+                }
+                else if(LQuantity.indexOf(LQuantity.length()-1)=='u')
+                {
+                    LQuantity=LQuantity.replace("u","");
+                    L=Float.parseFloat(LQuantity)/1000000;
+                }
+                else if(LQuantity.indexOf(LQuantity.length()-1)=='p')
+                {
+                    LQuantity=LQuantity.replace("p","");
+                    L=Float.parseFloat(LQuantity)/(10^12);
+                }
+                new Inductance(0,0,0,N1,N2,LName,L);
 
             }
             if(m4.find()){
+                String VACName=m4.group(1).trim();
+                int N1=Integer.parseInt(m4.group(2)) , N2 = Integer.parseInt(m4.group(3));
+                String CQuantity = m4.group(4);
+                float C=0;
+                if(CQuantity.indexOf(CQuantity.length()-1)=='k')
+                {
+                    CQuantity=CQuantity.replace("k","");
+                    C=Float.parseFloat(CQuantity)*1000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='G')
+                {
+                    CQuantity=CQuantity.replace("G","");
+                    C=Float.parseFloat(CQuantity)*1000000000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='M')
+                {
+                    CQuantity=CQuantity.replace("M","");
+                    C=Float.parseFloat(CQuantity)*1000000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='m')
+                {
+                    CQuantity=CQuantity.replace("m","");
+                    C=Float.parseFloat(CQuantity)/1000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='n')
+                {
+                    CQuantity=CQuantity.replace("n","");
+                    C=Float.parseFloat(CQuantity)/1000000000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='u')
+                {
+                    CQuantity=CQuantity.replace("u","");
+                    C=Float.parseFloat(CQuantity)/1000000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='p')
+                {
+                    CQuantity=CQuantity.replace("p","");
+                    C=Float.parseFloat(CQuantity)/(10^12);
+                }
+                new Capacitor(0,0,0,N1,N2,CName,C);
 
             }
             if(m5.find()){
