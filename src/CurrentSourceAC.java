@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class CurrentSourceAC extends Element{
     private float currentDC, amplitude, frequency, phase;
     private static ArrayList<CurrentSourceAC> allCurrentSourceACs = new ArrayList<>();
-
     public CurrentSourceAC(float current, float voltage, float power, String node1, String node2, String name, float currentDC, float amplitude, float frequency, float phase) {
         super(current, voltage, power, node1, node2, name);
         this.currentDC = currentDC;
