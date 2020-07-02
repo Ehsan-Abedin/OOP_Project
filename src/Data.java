@@ -3,7 +3,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 public class Data {
     public static void main(String args[]){
         File inputCircuit = new File("test.txt");
