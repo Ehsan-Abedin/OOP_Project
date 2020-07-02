@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Data {
     public static void main(String args[]) throws FileNotFoundException {
-        String resistorRegex = "(R.+? ) *(\\d*) *(\\d) *(\\d*)(.)";
+        String resistorRegex = "(R.+? ) *(\\d*) *(\\d) *(\\d.+?\\D)";
         Pattern p1 = Pattern.compile(resistorRegex);
         String capacitorRegex = "(C.+? ) *(\\d*) *(\\d) *(\\d*)(.)";
         Pattern p2 = Pattern.compile(capacitorRegex);
@@ -45,7 +45,14 @@ public class Data {
             if(m1.find()){
                 String RName=m1.group(1).trim();
                 int N1=Integer.parseInt(m1.group(2)) , N2 = Integer.parseInt(m1.group(3));
-                new Resistance(0,0,0,N1,N2,RName);
+                String RQuantity = m1.group(4);
+                float R=0;
+                if(RQuantity.indexOf(RQuantity.length()-1)=='k')
+                {
+                    RQuantity=RQuantity.replace("k","");
+                    R=Float.parseFloat(RQuantity)*1000;
+                }
+                new Resistance(0,0,0,N1,N2,RName,R);
             }
             if(m2.find()){
 
