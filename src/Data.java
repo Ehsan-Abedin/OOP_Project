@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
+import java.time.chrono.IsoChronology;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,21 +10,21 @@ public class Data {
         String resistorRegex = "(R.+? ) *(\\d*) *(\\d) *(\\d*)(.)";
         Pattern p1 = Pattern.compile(resistorRegex);
         String capacitorRegex = "(C.+? ) *(\\d*) *(\\d) *(\\d*)(.)";
-        Pattern p2 = Pattern.compile(resistorRegex);
+        Pattern p2 = Pattern.compile(capacitorRegex);
         String inductanceRegex = "(L.+? ) *(\\d*) *(\\d) *(\\d*)(.)";
-        Pattern p3 = Pattern.compile(resistorRegex);
+        Pattern p3 = Pattern.compile(inductanceRegex);
         String VACSourceRegex = "(I.+? ) *(\\d*) *(\\d) *(\\d*) *(\\d*) *(\\d*) *(\\d*)";
-        Pattern p4 = Pattern.compile(resistorRegex);
+        Pattern p4 = Pattern.compile(VACSourceRegex);
         String IACSourceRegex = "(I.+? ) *(\\d*) *(\\d) *(\\d*) *(\\d*) *(\\d*) *(\\d*)";
-        Pattern p5 = Pattern.compile(resistorRegex);
+        Pattern p5 = Pattern.compile(IACSourceRegex);
         String VSourceIControl = "(H.+? ) *(\\d*) *(\\d*) *(.+? ) *(\\d*)";
-        Pattern p6 = Pattern.compile(resistorRegex);
+        Pattern p6 = Pattern.compile(VSourceIControl);
         String VSourceVControl = "(E.+? ) *(\\d*) *(\\d*) *(\\d*) *(\\d*) *(\\d*)";
-        Pattern p7 = Pattern.compile(resistorRegex);
+        Pattern p7 = Pattern.compile(VSourceVControl);
         String ISourceIControl = "(F.+? ) *(\\d*) *(\\d*) *(.+? ) *(\\d*)";
-        Pattern p8 = Pattern.compile(resistorRegex);
+        Pattern p8 = Pattern.compile(ISourceIControl);
         String ISourceVControl = "(G.+? ) *(\\d*) *(\\d*) *(\\d*) *(\\d*) *(\\d*)";
-        Pattern p9 = Pattern.compile(resistorRegex);
+        Pattern p9 = Pattern.compile(ISourceVControl);
         String VDCSourceRegex = "";
         String IDCSourceRegex = "";
         int i=0;
@@ -44,10 +45,7 @@ public class Data {
             if(m1.find()){
                 String RName=m1.group(1).trim();
                 int N1=Integer.parseInt(m1.group(2)) , N2 = Integer.parseInt(m1.group(3));
-                Resistance r = new Resistance(0,0,0,N1,N2,RName);
-
-
-
+                new Resistance(0,0,0,N1,N2,RName);
             }
             if(m2.find()){
 
