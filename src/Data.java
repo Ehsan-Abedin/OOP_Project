@@ -195,10 +195,20 @@ public class Data {
                 new VoltageSourceAC(0, 0, 0, N1 , N2 , IACName , ACFirstState,ACDomain,ACFrequency,ACPhase);
             }
             if(m6.find()){
-
+                String VSCCName=m6.group(1).trim();
+                int N1=Integer.parseInt(m6.group(2)) , N2 = Integer.parseInt(m6.group(3));
+                String ControlElement=m6.group(4).trim();
+                String gainStr = m6.group(5);
+                float gain = Float.parseFloat(gainStr);
+                new CurrentControlVoltageSource(0, 0, 0, N1 , N2 ,VSCCName , ControlElement);
             }
             if(m7.find()){
-
+                String VSCCName=m6.group(1).trim();
+                int N1=Integer.parseInt(m6.group(2)) , N2 = Integer.parseInt(m6.group(3));
+                String ControlElement=m6.group(4).trim();
+                String gainStr = m6.group(5);
+                float gain = Float.parseFloat(gainStr);
+                new CurrentControlVoltageSource(0, 0, 0, N1 , N2 ,VSCCName , ControlElement);
             }
             if(m8.find()){
 
