@@ -13,9 +13,9 @@ public class Data {
         Pattern p2 = Pattern.compile(capacitorRegex);
         String inductanceRegex = "(L.+? ) *(\\d*) *(\\d) *(\\d*)(.)";
         Pattern p3 = Pattern.compile(inductanceRegex);
-        String VACSourceRegex = "(I.+? ) *(\\d*) *(\\d) *(\\d*) *(\\d*) *(\\d*) *(\\d*)";
+        String VACSourceRegex = "(V.+? ) *(\\d*) *(\\d) *(.+? ) *(.+? ) *(.+? ) *(.+? ) *(.*)";
         Pattern p4 = Pattern.compile(VACSourceRegex);
-        String IACSourceRegex = "(I.+? ) *(\\d*) *(\\d) *(\\d*) *(\\d*) *(\\d*) *(\\d*)";
+        String IACSourceRegex = "(I.+? ) *(\\d*) *(\\d) *(.+? ) *(.+? ) *(.+? ) *(.+? ) *(.*)";
         Pattern p5 = Pattern.compile(IACSourceRegex);
         String VSourceIControl = "(H.+? ) *(\\d*) *(\\d*) *(.+? ) *(\\d*)";
         Pattern p6 = Pattern.compile(VSourceIControl);
@@ -172,44 +172,15 @@ public class Data {
             if(m4.find()){
                 String VACName=m4.group(1).trim();
                 int N1=Integer.parseInt(m4.group(2)) , N2 = Integer.parseInt(m4.group(3));
-                String CQuantity = m4.group(4);
-                float C=0;
-                if(CQuantity.indexOf(CQuantity.length()-1)=='k')
-                {
-                    CQuantity=CQuantity.replace("k","");
-                    C=Float.parseFloat(CQuantity)*1000;
-                }
-                else if(CQuantity.indexOf(CQuantity.length()-1)=='G')
-                {
-                    CQuantity=CQuantity.replace("G","");
-                    C=Float.parseFloat(CQuantity)*1000000000;
-                }
-                else if(CQuantity.indexOf(CQuantity.length()-1)=='M')
-                {
-                    CQuantity=CQuantity.replace("M","");
-                    C=Float.parseFloat(CQuantity)*1000000;
-                }
-                else if(CQuantity.indexOf(CQuantity.length()-1)=='m')
-                {
-                    CQuantity=CQuantity.replace("m","");
-                    C=Float.parseFloat(CQuantity)/1000;
-                }
-                else if(CQuantity.indexOf(CQuantity.length()-1)=='n')
-                {
-                    CQuantity=CQuantity.replace("n","");
-                    C=Float.parseFloat(CQuantity)/1000000000;
-                }
-                else if(CQuantity.indexOf(CQuantity.length()-1)=='u')
-                {
-                    CQuantity=CQuantity.replace("u","");
-                    C=Float.parseFloat(CQuantity)/1000000;
-                }
-                else if(CQuantity.indexOf(CQuantity.length()-1)=='p')
-                {
-                    CQuantity=CQuantity.replace("p","");
-                    C=Float.parseFloat(CQuantity)/(10^12);
-                }
-                new Capacitor(0,0,0,N1,N2,CName,C);
+                String VACFirstState = m4.group(5);
+                String VACDomain = m4.group(6);
+                String VACFrequency = m4.group(7);
+                String VACPhase = m4.group(8);
+                float ACFirstState=Float.parseFloat(VACFirstState);
+                float ACDomain=Float.parseFloat(VACDomain);
+                float ACFrequency=Float.parseFloat(VACFrequency);
+                float ACPhase=Float.parseFloat(VACPhase);
+                new Capacitor(0,0,0,N1,N2,VACName,ACFirstState,ACDomain,ACFrequency,ACPhase);
 
             }
             if(m5.find()){
