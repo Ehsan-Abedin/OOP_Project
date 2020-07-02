@@ -85,7 +85,46 @@ public class Data {
                 new Resistance(0,0,0,N1,N2,RName,R);
             }
             if(m2.find()){
-
+                String CName=m2.group(1).trim();
+                int N1=Integer.parseInt(m2.group(2)) , N2 = Integer.parseInt(m2.group(3));
+                String CQuantity = m2.group(4);
+                float C=0;
+                if(CQuantity.indexOf(CQuantity.length()-1)=='k')
+                {
+                    CQuantity=CQuantity.replace("k","");
+                    C=Float.parseFloat(CQuantity)*1000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='G')
+                {
+                    CQuantity=CQuantity.replace("G","");
+                    C=Float.parseFloat(CQuantity)*1000000000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='M')
+                {
+                    CQuantity=CQuantity.replace("M","");
+                    C=Float.parseFloat(CQuantity)*1000000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='m')
+                {
+                    CQuantity=CQuantity.replace("m","");
+                    C=Float.parseFloat(CQuantity)/1000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='n')
+                {
+                    CQuantity=CQuantity.replace("n","");
+                    C=Float.parseFloat(CQuantity)/1000000000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='u')
+                {
+                    CQuantity=CQuantity.replace("u","");
+                    C=Float.parseFloat(CQuantity)/1000000;
+                }
+                else if(CQuantity.indexOf(CQuantity.length()-1)=='p')
+                {
+                    CQuantity=CQuantity.replace("p","");
+                    C=Float.parseFloat(CQuantity)/(10^12);
+                }
+                new Resistance(0,0,0,N1,N2,CName,C);
             }
             if(m3.find()){
 
