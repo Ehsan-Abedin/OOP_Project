@@ -47,6 +47,7 @@ public class Data {
                 Resistance r = new Resistance(0,0,0,N1,N2,RName);
 
 
+
             }
             if(m2.find()){
 
