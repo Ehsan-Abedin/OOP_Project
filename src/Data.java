@@ -52,6 +52,36 @@ public class Data {
                     RQuantity=RQuantity.replace("k","");
                     R=Float.parseFloat(RQuantity)*1000;
                 }
+                else if(RQuantity.indexOf(RQuantity.length()-1)=='G')
+                {
+                    RQuantity=RQuantity.replace("G","");
+                    R=Float.parseFloat(RQuantity)*1000000000;
+                }
+                else if(RQuantity.indexOf(RQuantity.length()-1)=='M')
+                {
+                    RQuantity=RQuantity.replace("M","");
+                    R=Float.parseFloat(RQuantity)*1000000;
+                }
+                else if(RQuantity.indexOf(RQuantity.length()-1)=='m')
+                {
+                    RQuantity=RQuantity.replace("m","");
+                    R=Float.parseFloat(RQuantity)/1000;
+                }
+                else if(RQuantity.indexOf(RQuantity.length()-1)=='n')
+                {
+                    RQuantity=RQuantity.replace("n","");
+                    R=Float.parseFloat(RQuantity)/1000000000;
+                }
+                else if(RQuantity.indexOf(RQuantity.length()-1)=='u')
+                {
+                    RQuantity=RQuantity.replace("u","");
+                    R=Float.parseFloat(RQuantity)/1000000;
+                }
+                else if(RQuantity.indexOf(RQuantity.length()-1)=='p')
+                {
+                    RQuantity=RQuantity.replace("p","");
+                    R=Float.parseFloat(RQuantity)/(10^12);
+                }
                 new Resistance(0,0,0,N1,N2,RName,R);
             }
             if(m2.find()){
