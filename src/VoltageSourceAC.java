@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class VoltageSourceAC extends Element {
     private float voltageDC, amplitude, frequency, phase;
     private static ArrayList<VoltageSourceAC> allVoltageSourceACs = new ArrayList<>();
-    public VoltageSourceAC(float current, float voltage, float power, String node1, String node2, String name, float voltageDC, float amplitude, float frequency, float phase) {
+    public VoltageSourceAC(float current, float voltage, float power, int node1, int node2, String name, float voltageDC, float amplitude, float frequency, float phase) {
         super(current, voltage, power, node1, node2, name);
         this.voltageDC = voltageDC;
         this.amplitude = amplitude;

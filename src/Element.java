@@ -1,8 +1,9 @@
 public class Element {
     private float current, voltage, power;
-    private String node1, node2, name;
+    private int node1, node2;
+    String name;
 
-    public Element(float current, float voltage, float power, String node1, String node2, String name) {
+    public Element(float current, float voltage, float power, int node1, int node2, String name) {
         this.current = current;
         this.voltage = voltage;
         this.power = power;
@@ -23,11 +24,11 @@ public class Element {
         return power;
     }
 
-    public String getNode1() {
+    public int getNode1() {
         return node1;
     }
 
-    public String getNode2() {
+    public int getNode2() {
         return node2;
     }
 
@@ -47,11 +48,11 @@ public class Element {
         this.power = power;
     }
 
-    public void setNode1(String node1) {
+    public void setNode1(int node1) {
         this.node1 = node1;
     }
 
-    public void setNode2(String node2) {
+    public void setNode2(int node2) {
         this.node2 = node2;
     }
 

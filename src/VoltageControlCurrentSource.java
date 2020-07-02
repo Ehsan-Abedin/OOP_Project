@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 public class VoltageControlCurrentSource extends Element {
-    private String controlNode1, controlNode2;
+    private int controlNode1, controlNode2;
     private float gain;
     private static ArrayList<VoltageControlCurrentSource> allVoltageControlCurrentSources = new ArrayList<>();
 
-    public VoltageControlCurrentSource(float current, float voltage, float power, String node1, String node2, String name, String controlNode1, String controlNode2, float gain) {
+    public VoltageControlCurrentSource(float current, float voltage, float power, int node1, int node2, String name, int controlNode1, int controlNode2, float gain) {
         super(current, voltage, power, node1, node2, name);
         this.controlNode1 = controlNode1;
         this.controlNode2 = controlNode2;
@@ -13,11 +13,11 @@ public class VoltageControlCurrentSource extends Element {
         allVoltageControlCurrentSources.add(this);
     }
 
-    public String getControlNode1() {
+    public int getControlNode1() {
         return controlNode1;
     }
 
-    public String getControlNode2() {
+    public int getControlNode2() {
         return controlNode2;
     }
 
@@ -29,11 +29,11 @@ public class VoltageControlCurrentSource extends Element {
         return allVoltageControlCurrentSources;
     }
 
-    public void setControlNode1(String controlNode1) {
+    public void setControlNode1(int controlNode1) {
         this.controlNode1 = controlNode1;
     }
 
-    public void setControlNode2(String controlNode2) {
+    public void setControlNode2(int controlNode2) {
         this.controlNode2 = controlNode2;
     }
 
