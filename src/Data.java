@@ -19,11 +19,11 @@ public class Data {
         Pattern p5 = Pattern.compile(IACSourceRegex);
         String VSourceIControl = "(H.+? ) *(\\d*) *(\\d*) *(.+? ) *(\\d*)";
         Pattern p6 = Pattern.compile(VSourceIControl);
-        String VSourceVControl = "(E.+? ) *(\\d*) *(\\d*) *(\\d*) *(\\d*) *(\\d*)";
+        String VSourceVControl = "(E.+? ) *(\\d*) *(\\d*) *(\\d*) *(\\d*) *(.*)";
         Pattern p7 = Pattern.compile(VSourceVControl);
-        String ISourceIControl = "(F.+? ) *(\\d*) *(\\d*) *(.+? ) *(\\d*)";
+        String ISourceIControl = "(F.+? ) *(\\d*) *(\\d*) *(.+? ) *(.*)";
         Pattern p8 = Pattern.compile(ISourceIControl);
-        String ISourceVControl = "(G.+? ) *(\\d*) *(\\d*) *(\\d*) *(\\d*) *(\\d*)";
+        String ISourceVControl = "(G.+? ) *(\\d*) *(\\d*) *(\\d*) *(\\d*) *(.*)";
         Pattern p9 = Pattern.compile(ISourceVControl);
         String VDCSourceRegex = "";
         String IDCSourceRegex = "";
@@ -192,7 +192,7 @@ public class Data {
                 float ACDomain=Float.parseFloat(IACDomain);
                 float ACFrequency=Float.parseFloat(IACFrequency);
                 float ACPhase=Float.parseFloat(IACPhase);
-                new VoltageSourceAC(0, 0, 0, N1 , N2 , IACName , ACFirstState,ACDomain,ACFrequency,ACPhase);
+                new CurrentSourceAC(0, 0, 0, N1 , N2 , IACName , ACFirstState,ACDomain,ACFrequency,ACPhase);
             }
             if(m6.find()){
                 String VSCCName=m6.group(1).trim();
@@ -200,21 +200,31 @@ public class Data {
                 String ControlElement=m6.group(4).trim();
                 String gainStr = m6.group(5);
                 float gain = Float.parseFloat(gainStr);
-                new CurrentControlVoltageSource(0, 0, 0, N1 , N2 ,VSCCName , ControlElement);
+                new CurrentControlVoltageSource(0, 0, 0, N1 , N2 ,VSCCName , ControlElement,gain);
             }
             if(m7.find()){
-                String VSCCName=m6.group(1).trim();
-                int N1=Integer.parseInt(m6.group(2)) , N2 = Integer.parseInt(m6.group(3));
-                String ControlElement=m6.group(4).trim();
-                String gainStr = m6.group(5);
+                String VSVCName=m7.group(1).trim();
+                int N1=Integer.parseInt(m7.group(2)) , N2 = Integer.parseInt(m7.group(3));
+                int N1Control=Integer.parseInt(m7.group(4)) , N2Control=Integer.parseInt(m7.group(5));
+                String gainStr = m7.group(5);
                 float gain = Float.parseFloat(gainStr);
-                new CurrentControlVoltageSource(0, 0, 0, N1 , N2 ,VSCCName , ControlElement);
+                new VoltageControlVoltageSource(0, 0, 0, N1 , N2 ,VSVCName , N1Control , N2Control,gain);
             }
             if(m8.find()){
-
+                String CSCCName=m8.group(1).trim();
+                int N1=Integer.parseInt(m8.group(2)) , N2 = Integer.parseInt(m8.group(3));
+                String ControlElement=m8.group(4).trim();
+                String gainStr = m8.group(5);
+                float gain = Float.parseFloat(gainStr);
+                new CurrentControlCurrentSource(0, 0, 0, N1 , N2 ,CSCCName , ControlElement,gain);
             }
             if(m9.find()){
-
+                String CSVCName=m9.group(1).trim();
+                int N1=Integer.parseInt(m9.group(2)) , N2 = Integer.parseInt(m9.group(3));
+                int N1Control=Integer.parseInt(m9.group(4)) , N2Control=Integer.parseInt(m9.group(5));
+                String gainStr = m9.group(5);
+                float gain = Float.parseFloat(gainStr);
+                new VoltageControlVoltageSource(0, 0, 0, N1 , N2 ,CSVCName , N1Control , N2Control,gain);
             }
         }
     }
