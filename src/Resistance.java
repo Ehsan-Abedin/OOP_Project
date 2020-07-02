@@ -1,8 +1,8 @@
 public class Resistance extends Element {
     float resistance;
 
-    public Resistance(float current, float voltage, float power, String node1, String node2, float resistance) {
-        super(current, voltage, power, node1, node2);
+    public Resistance(float current, float voltage, float power, String node1, String node2,String name, float resistance) {
+        super(current, voltage, power, node1, node2, name);
         this.resistance = resistance;
     }
 

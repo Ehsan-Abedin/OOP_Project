@@ -1,9 +1,12 @@
-public class VoltageControlCurrentSource {
+public class VoltageControlCurrentSource extends Element {
     String controlNode1, controlNode2;
+    float gain;
 
-    public VoltageControlCurrentSource(String controlNode1, String controlNode2) {
+    public VoltageControlCurrentSource(float current, float voltage, float power, String node1, String node2, String name, String controlNode1, String controlNode2, float gain) {
+        super(current, voltage, power, node1, node2, name);
         this.controlNode1 = controlNode1;
         this.controlNode2 = controlNode2;
+        this.gain = gain;
     }
 
     public String getControlNode1() {

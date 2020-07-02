@@ -1,8 +1,8 @@
 public class Capacitor extends Element {
     float capacitor;
 
-    public Capacitor(float current, float voltage, float power, String node1, String node2, float capacitor) {
-        super(current, voltage, power, node1, node2);
+    public Capacitor(float current, float voltage, float power, String node1, String node2, String name, float capacitor) {
+        super(current, voltage, power, node1, node2, name);
         this.capacitor = capacitor;
     }
 

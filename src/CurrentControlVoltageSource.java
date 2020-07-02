@@ -1,24 +1,18 @@
-public class CurrentControlVoltageSource {
-    String controlNode1, ControlNode2;
+public class CurrentControlVoltageSource extends Element {
+    String controlElement;
+    float gain;
 
-    public CurrentControlVoltageSource(String controlNode1, String controlNode2) {
-        this.controlNode1 = controlNode1;
-        ControlNode2 = controlNode2;
+    public CurrentControlVoltageSource(float current, float voltage, float power, String node1, String node2, String name, String controlElement, float gain) {
+        super(current, voltage, power, node1, node2, name);
+        this.controlElement = controlElement;
+        this.gain = gain;
     }
 
-    public String getControlNode1() {
-        return controlNode1;
+    public String getControlElement() {
+        return controlElement;
     }
 
-    public String getControlNode2() {
-        return ControlNode2;
-    }
-
-    public void setControlNode1(String controlNode1) {
-        this.controlNode1 = controlNode1;
-    }
-
-    public void setControlNode2(String controlNode2) {
-        ControlNode2 = controlNode2;
+    public void setControlElement(String controlElement) {
+        this.controlElement = controlElement;
     }
 }
