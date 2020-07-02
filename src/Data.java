@@ -167,24 +167,32 @@ public class Data {
                     L=Float.parseFloat(LQuantity)/(10^12);
                 }
                 new Inductance(0,0,0,N1,N2,LName,L);
-
             }
             if(m4.find()){
                 String VACName=m4.group(1).trim();
                 int N1=Integer.parseInt(m4.group(2)) , N2 = Integer.parseInt(m4.group(3));
-                String VACFirstState = m4.group(5);
-                String VACDomain = m4.group(6);
-                String VACFrequency = m4.group(7);
-                String VACPhase = m4.group(8);
+                String VACFirstState = m4.group(5).trim();
+                String VACDomain = m4.group(6).trim();
+                String VACFrequency = m4.group(7).trim();
+                String VACPhase = m4.group(8).trim();
                 float ACFirstState=Float.parseFloat(VACFirstState);
                 float ACDomain=Float.parseFloat(VACDomain);
                 float ACFrequency=Float.parseFloat(VACFrequency);
                 float ACPhase=Float.parseFloat(VACPhase);
-                new Capacitor(0,0,0,N1,N2,VACName,ACFirstState,ACDomain,ACFrequency,ACPhase);
-
+                new VoltageSourceAC(0, 0, 0, N1 , N2 , VACName , ACFirstState,ACDomain,ACFrequency,ACPhase);
             }
             if(m5.find()){
-
+                String IACName=m5.group(1).trim();
+                int N1=Integer.parseInt(m5.group(2)) , N2 = Integer.parseInt(m5.group(3));
+                String IACFirstState = m5.group(5).trim();
+                String IACDomain = m5.group(6).trim();
+                String IACFrequency = m5.group(7).trim();
+                String IACPhase = m5.group(8).trim();
+                float ACFirstState=Float.parseFloat(IACFirstState);
+                float ACDomain=Float.parseFloat(IACDomain);
+                float ACFrequency=Float.parseFloat(IACFrequency);
+                float ACPhase=Float.parseFloat(IACPhase);
+                new VoltageSourceAC(0, 0, 0, N1 , N2 , IACName , ACFirstState,ACDomain,ACFrequency,ACPhase);
             }
             if(m6.find()){
 
