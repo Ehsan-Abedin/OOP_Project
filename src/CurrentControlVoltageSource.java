@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 
 public class CurrentControlVoltageSource extends Element {
-    private int controlElement;
+    private String controlElement;
     private float gain;
     private static ArrayList<CurrentControlVoltageSource> allCurrentControlVoltageSources = new ArrayList<>();
 
-    public CurrentControlVoltageSource(float current, float voltage, float power, int node1, int node2, String name, int controlElement, float gain) {
+    public CurrentControlVoltageSource(float current, float voltage, float power, int node1, int node2, String name, String controlElement, float gain) {
         super(current, voltage, power, node1, node2, name);
         this.controlElement = controlElement;
         this.gain = gain;
         allCurrentControlVoltageSources.add(this);
     }
 
-    public int getControlElement() {
+    public String getControlElement() {
         return controlElement;
     }
 
@@ -24,7 +24,7 @@ public class CurrentControlVoltageSource extends Element {
         return allCurrentControlVoltageSources;
     }
 
-    public void setControlElement(int controlElement) {
+    public void setControlElement(String controlElement) {
         this.controlElement = controlElement;
     }
 
