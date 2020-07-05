@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+
 public class Element {
     private float current, voltage, power;
     private int node1, node2;
-    String name;
+    private String name;
+    private static ArrayList<Element> allElements = new ArrayList<>();
 
     public Element(float current, float voltage, float power, int node1, int node2, String name) {
         this.current = current;
@@ -11,6 +14,23 @@ public class Element {
         this.node2 = node2;
         this.name = name;
     }
+
+    public static ArrayList<Element> getAllElements() {
+        allElements.addAll(Resistance.getAllResistances());
+        allElements.addAll(Capacitor.getAllCapacitors());
+        allElements.addAll(Inductance.getAllInductances());
+        allElements.addAll(VoltageSourceDC.getAllVoltageSourceDCs());
+        allElements.addAll(CurrentSourceDC.getAllCurrentSourceDCs());
+        allElements.addAll(VoltageSourceAC.getAllVoltageSourceACs());
+        allElements.addAll(CurrentSourceAC.getAllCurrentSourceACs());
+        allElements.addAll(VoltageControlCurrentSource.getAllVoltageControlCurrentSources());
+        allElements.addAll(VoltageControlVoltageSource.getAllVoltageControlVoltageSources());
+        allElements.addAll(CurrentControlCurrentSource.getAllCurrentControlCurrentSources());
+        allElements.addAll(CurrentControlVoltageSource.getAllCurrentControlVoltageSources());
+        return allElements;
+    }
+
+
 
     public float getCurrent() {
         return current;
