@@ -80,6 +80,8 @@ public class Data {
                     R=Float.parseFloat(RQuantity)/(10^12);
                 }
                 new Resistance(0,0,0,N1,N2,RName,R);
+                new Node(N1, 0);
+                new Node(N2, 0);
             }
             if(m2.find()){
                 String CName=m2.group(1).trim();
@@ -122,6 +124,8 @@ public class Data {
                     C=Float.parseFloat(CQuantity)/(10^12);
                 }
                 new Capacitor(0,0,0,N1,N2,CName,C);
+                new Node(N1, 0);
+                new Node(N2, 0);
             }
             if(m3.find()){
                 String LName=m3.group(1).trim();
@@ -164,6 +168,8 @@ public class Data {
                     L=Float.parseFloat(LQuantity)/(10^12);
                 }
                 new Inductance(0,0,0,N1,N2,LName,L);
+                new Node(N1, 0);
+                new Node(N2, 0);
             }
             if(m4.find()){
                 String VACName=m4.group(1).trim();
@@ -181,6 +187,8 @@ public class Data {
                 }
                 else
                     new VoltageSourceDC(0,0,0,N1,N2,VACName);
+                new Node(N1, 0);
+                new Node(N2, 0);
             }
             if(m5.find()){
                 String IACName=m5.group(1).trim();
@@ -198,6 +206,8 @@ public class Data {
                 }
                 else
                     new CurrentSourceDC(0,0,0,N1,N2,IACName);
+                new Node(N1, 0);
+                new Node(N2, 0);
             }
             if(m6.find()){
                 String VSCCName=m6.group(1).trim();
@@ -206,6 +216,8 @@ public class Data {
                 String gainStr = m6.group(5);
                 float gain = Float.parseFloat(gainStr);
                 new CurrentControlVoltageSource(0, 0, 0, N1 , N2 ,VSCCName , ControlElement,gain);
+                new Node(N1, 0);
+                new Node(N2, 0);
             }
             if(m7.find()){
                 String VSVCName=m7.group(1).trim();
@@ -214,6 +226,8 @@ public class Data {
                 String gainStr = m7.group(5);
                 float gain = Float.parseFloat(gainStr);
                 new VoltageControlVoltageSource(0, 0, 0, N1 , N2 ,VSVCName , N1Control , N2Control,gain);
+                new Node(N1, 0);
+                new Node(N2, 0);
             }
             if(m8.find()){
                 String CSCCName=m8.group(1).trim();
@@ -222,6 +236,8 @@ public class Data {
                 String gainStr = m8.group(5);
                 float gain = Float.parseFloat(gainStr);
                 new CurrentControlCurrentSource(0, 0, 0, N1 , N2 ,CSCCName , ControlElement,gain);
+                new Node(N1, 0);
+                new Node(N2, 0);
             }
             if(m9.find()){
                 String CSVCName=m9.group(1).trim();
@@ -230,6 +246,8 @@ public class Data {
                 String gainStr = m9.group(5);
                 float gain = Float.parseFloat(gainStr);
                 new VoltageControlCurrentSource(0, 0, 0, N1 , N2 ,CSVCName , N1Control , N2Control,gain);
+                new Node(N1, 0);
+                new Node(N2, 0);
             }
         }
     }
