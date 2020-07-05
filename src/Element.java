@@ -30,7 +30,13 @@ public class Element {
         return allElements;
     }
 
-
+    public static Element getElementByNode(Node node1, Node node2) {
+        for (Element allElement : allElements) {
+            if (((allElement.node1 == node1.getNode()) && (allElement.node2 == node2.getNode())) || ((allElement.node1 == node2.getNode()) && (allElement.node2 == node1.getNode())))
+                return allElement;
+        }
+        return null;
+    }
 
     public float getCurrent() {
         return current;

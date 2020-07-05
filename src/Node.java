@@ -18,4 +18,24 @@ public class Node {
             allNodes.add(this);
         }
     }
+
+    public int getNode() {
+        return node;
+    }
+
+    public float getNodeVoltage() {
+        return nodeVoltage;
+    }
+
+    public static ArrayList<Node> getAllNodes() {
+        return allNodes;
+    }
+
+    public void setNode(int node) {
+        this.node = node;
+    }
+
+    public void setNodeVoltage(float nodeVoltage) {
+        this.nodeVoltage = nodeVoltage;
+    }
 }
