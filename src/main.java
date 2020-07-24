@@ -42,15 +42,51 @@ public class main {
             for (int i = 1; i < n + 1; i++) {
                 for (int j = 1; j < m + 1; j++) {
                     for (VoltageSourceDC allVoltageSourceDc : VoltageSourceDC.getAllVoltageSourceDCs()) {
-                        if (allVoltageSourceDc.getNode1() == i) {
-                            b[i][j] = 1;
-                            c[j][i] = 1;
-                        } else if (allVoltageSourceDc.getNode2() == i) {
-                            b[i][j] = -1;
-                            c[j][i] = -1;
-                        } else {
-                            b[i][j] = 0;
-                            c[j][i] = 0;
+                        if (CurrentControlCurrentSource.getAllCurrentControlCurrentSources() != null) {
+                            for (CurrentControlCurrentSource allCurrentControlCurrentSource : CurrentControlCurrentSource.getAllCurrentControlCurrentSources()) {
+                                if (allVoltageSourceDc.getNode1() == i) {
+                                    if (allCurrentControlCurrentSource.getNode1() == i) {
+                                        b[i][j] = 1 + allCurrentControlCurrentSource.getGain();
+                                        c[j][i] = 1;
+                                    }
+                                    else if (allCurrentControlCurrentSource.getNode2() == i) {
+                                        b[i][j] = 1 - allCurrentControlCurrentSource.getGain();
+                                        c[j][i] = 1;
+                                    }
+                                    else {
+                                        b[i][j] = 1;
+                                        c[j][i] = 1;
+                                    }
+                                }
+                                else if (allVoltageSourceDc.getNode2() == i) {
+                                    if (allCurrentControlCurrentSource.getNode1() == i) {
+                                        b[i][j] = -1 + allCurrentControlCurrentSource.getGain();
+                                        c[j][i] = -1;
+                                    }
+                                    else if (allCurrentControlCurrentSource.getNode2() == i) {
+                                        b[i][j] = -1 - allCurrentControlCurrentSource.getGain();
+                                        c[j][i] = -1;
+                                    }
+                                    else {
+                                        b[i][j] = -1;
+                                        c[j][i] = -1;
+                                    }
+                                }
+                                else {
+                                    if (allCurrentControlCurrentSource.getNode1() == i) {
+                                        b[i][j] =  allCurrentControlCurrentSource.getGain();
+                                        c[j][i] = 0;
+                                    }
+                                    else if (allCurrentControlCurrentSource.getNode2() == i) {
+                                        b[i][j] = - allCurrentControlCurrentSource.getGain();
+                                        c[j][i] = 0;
+                                    }
+                                    else {
+                                        b[i][j] = 0;
+                                        c[j][i] = 0;
+                                    }
+                                }
+                            }
                         }
                     }
                     for (VoltageControlVoltageSource allVoltageControlVoltageSource : VoltageControlVoltageSource.getAllVoltageControlVoltageSources()) {
@@ -97,6 +133,7 @@ public class main {
                     }
                 }
             }
+
         }
     }
 }
