@@ -2,7 +2,7 @@ public class main {
     public static void main(String[] args) {
         if ((Capacitor.getAllCapacitors() == null) && (Inductance.getAllInductances() == null)) {
             int n = Node.getAllNodes().size();
-            int m = VoltageSourceDC.getAllVoltageSourceDCs().size();
+            int m = VoltageSourceDC.getAllVoltageSourceDCs().size() + VoltageControlVoltageSource.getAllVoltageControlVoltageSources().size() + CurrentControlVoltageSource.getAllCurrentControlVoltageSources().size();
             double a[][] = new double[m+n+1][m+n+1];
             double g[][] = new double[n+1][n+1];
             double b[][] = new double[n+1][m+1];
@@ -24,18 +24,48 @@ public class main {
             }
             for (int i = 1; i < n+1; i++){
                 for (int j = 1; j < m+1; j++){
-                    for (Resistance allResistance : Resistance.getAllResistances()) {
-                        if (allResistance.getNode1() == i) {
+                    for (VoltageSourceDC allVoltageSourceDc : VoltageSourceDC.getAllVoltageSourceDCs()) {
+                        if (allVoltageSourceDc.getNode1() == i) {
                             b[i][j] = 1;
                             c[j][i] = 1;
                         }
-                        else if (allResistance.getNode2() == i) {
+                        else if (allVoltageSourceDc.getNode2() == i) {
                             b[i][j] = -1;
                             c[j][i] = -1;
                         }
                         else {
                             b[i][j] = 0;
                             c[j][i] = 0;
+                        }
+                    }
+                    for (VoltageControlVoltageSource allVoltageControlVoltageSource : VoltageControlVoltageSource.getAllVoltageControlVoltageSources()) {
+                        if (allVoltageControlVoltageSource.getNode1() == i) {
+                            b[i][j] = 1;
+                            if (allVoltageControlVoltageSource.getControlNode1() == i)
+                                c[j][i] = -allVoltageControlVoltageSource.getGain() + 1;
+                            else if (allVoltageControlVoltageSource.getControlNode2() == i)
+                                c[j][i] = allVoltageControlVoltageSource.getGain() + 1;
+                            else
+                                c[j][i] = 1;
+
+                        }
+                        else if (allVoltageControlVoltageSource.getNode2() == i) {
+                            b[i][j] = -1;
+                            if (allVoltageControlVoltageSource.getControlNode1() == i)
+                                c[j][i] = -allVoltageControlVoltageSource.getGain() - 1;
+                            else if (allVoltageControlVoltageSource.getControlNode2() == i)
+                                c[j][i] = allVoltageControlVoltageSource.getGain() - 1;
+                            else
+                                c[j][i] = -1;
+                        }
+                        else {
+                            b[i][j] = 0;
+                            if (allVoltageControlVoltageSource.getControlNode1() == i)
+                                c[j][i] = -allVoltageControlVoltageSource.getGain();
+                            else if (allVoltageControlVoltageSource.getControlNode2() == i)
+                                c[j][i] = allVoltageControlVoltageSource.getGain();
+                            else
+                                c[j][i] = 0;
                         }
                     }
                 }
