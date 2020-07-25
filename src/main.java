@@ -133,7 +133,9 @@ public class main {
                     }
                 }
             }
+            if (CurrentControlVoltageSource.getAllCurrentControlVoltageSources() != null) {
 
+            }
         }
     }
 }
