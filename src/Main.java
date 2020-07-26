@@ -166,9 +166,12 @@ public class Main {
                 b[p][1] = i[p][1];
             for (int p = 1; p < m+1; p++)
                 b[n+p][1] = e[p][1];
-
+            double invert_a[][] = Functions.invert(a);
+            for (int p = 1; p < m+n+1; p++)
+                for (int q = 1; q < 2; q++)
+                    for (int r = 1; r < m+n+1; r++)
+                        x[p][q] += invert_a[p][r] * z[r][q];
         }
     }
-
 }
 
