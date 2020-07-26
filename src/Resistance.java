@@ -4,10 +4,9 @@ public class Resistance extends Element {
     private float resistance;
     private static ArrayList<Resistance> allResistances = new ArrayList<>();
 
-    public Resistance(float current, float voltage, float power, int node1, int node2,String name, float resistance) {
-        super(current, voltage, power, node1, node2, name);
+    public Resistance(float current, float voltage, float power, int node1, int node2, float node1Voltage, float node2Voltage, String name, float resistance) {
+        super(current, voltage, power, node1, node2, node1Voltage, node2Voltage, name);
         this.resistance = resistance;
-        allResistances.add(this);
     }
 
     public float getResistance() {
@@ -20,5 +19,10 @@ public class Resistance extends Element {
 
     public void setResistance(float resistance) {
         this.resistance = resistance;
+    }
+
+    public float voltage (float node1Voltage, float node2Voltage) {
+        voltage = node1Voltage - node2Voltage;
+        return voltage;
     }
 }

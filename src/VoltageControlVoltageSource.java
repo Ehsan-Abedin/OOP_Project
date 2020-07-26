@@ -13,6 +13,13 @@ public class VoltageControlVoltageSource extends Element {
         allVoltageControlVoltageSources.add(this);
     }
 
+    public VoltageControlVoltageSource(float current, float voltage, float power, int node1, int node2, float node1Voltage, float node2Voltage, String name, int controlNode1, int controlNode2, float gain) {
+        super(current, voltage, power, node1, node2, node1Voltage, node2Voltage, name);
+        this.controlNode1 = controlNode1;
+        this.controlNode2 = controlNode2;
+        this.gain = gain;
+    }
+
     public int getControlNode1() {
         return controlNode1;
     }

@@ -1,10 +1,22 @@
 import java.util.ArrayList;
 
 public class Element {
-    private float current, voltage, power;
+    protected float current, voltage, power;
     private int node1, node2;
+    private float node1Voltage, node2Voltage;
     private String name;
     private static ArrayList<Element> allElements = new ArrayList<>();
+
+    public Element(float current, float voltage, float power, int node1, int node2, float node1Voltage, float node2Voltage, String name) {
+        this.current = current;
+        this.voltage = voltage;
+        this.power = power;
+        this.node1 = node1;
+        this.node2 = node2;
+        this.node1Voltage = node1Voltage;
+        this.node2Voltage = node2Voltage;
+        this.name = name;
+    }
 
     public Element(float current, float voltage, float power, int node1, int node2, String name) {
         this.current = current;
@@ -62,6 +74,14 @@ public class Element {
         return name;
     }
 
+    public float getNode1Voltage() {
+        return node1Voltage;
+    }
+
+    public float getNode2Voltage() {
+        return node2Voltage;
+    }
+
     public void setCurrent(float current) {
         this.current = current;
     }
@@ -84,6 +104,14 @@ public class Element {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setNode1Voltage(float node1Voltage) {
+        this.node1Voltage = node1Voltage;
+    }
+
+    public void setNode2Voltage(float node2Voltage) {
+        this.node2Voltage = node2Voltage;
     }
 
     public float power (float current, float voltage){

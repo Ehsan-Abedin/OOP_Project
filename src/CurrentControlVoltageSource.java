@@ -12,6 +12,12 @@ public class CurrentControlVoltageSource extends Element {
         allCurrentControlVoltageSources.add(this);
     }
 
+    public CurrentControlVoltageSource(float current, float voltage, float power, int node1, int node2, float node1Voltage, float node2Voltage, String name, String controlElement, float gain) {
+        super(current, voltage, power, node1, node2, node1Voltage, node2Voltage, name);
+        this.controlElement = controlElement;
+        this.gain = gain;
+    }
+
     public String getControlElement() {
         return controlElement;
     }

@@ -79,7 +79,7 @@ public class Data {
                     RQuantity=RQuantity.replace("p","");
                     R=Float.parseFloat(RQuantity)/(10^12);
                 }
-                new Resistance(0,0,0,N1,N2,RName,R);
+                new Resistance(0,0,0, N1, N2, 0, 0, RName, R);
                 new Node(N1, 0);
                 new Node(N2, 0);
             }
@@ -123,7 +123,7 @@ public class Data {
                     CQuantity=CQuantity.replace("p","");
                     C=Float.parseFloat(CQuantity)/(10^12);
                 }
-                new Capacitor(0,0,0,N1,N2,CName,C);
+                new Capacitor(0,0,0, N1, N2, 0, 0 , CName, C);
                 new Node(N1, 0);
                 new Node(N2, 0);
             }
@@ -167,7 +167,7 @@ public class Data {
                     LQuantity=LQuantity.replace("p","");
                     L=Float.parseFloat(LQuantity)/(10^12);
                 }
-                new Inductance(0,0,0,N1,N2,LName,L);
+                new Inductance(0,0,0, N1, N2, 0, 0, LName, L);
                 new Node(N1, 0);
                 new Node(N2, 0);
             }
@@ -183,10 +183,10 @@ public class Data {
                 float ACFrequency=Float.parseFloat(VACFrequency);
                 float ACPhase=Float.parseFloat(VACPhase);
                 if(ACDomain==0&&ACFrequency==0&&ACPhase==0){
-                    new VoltageSourceAC(0, 0, 0, N1 , N2 , VACName , ACFirstState,ACDomain,ACFrequency,ACPhase);
+                    new VoltageSourceAC(0, 0, 0, N1, N2, 0, 0, VACName, ACFirstState, ACDomain, ACFrequency, ACPhase);
                 }
                 else
-                    new VoltageSourceDC(0,0,0,N1,N2,VACName);
+                    new VoltageSourceDC(0,0,0, N1, N2, 0, 0, VACName);
                 new Node(N1, 0);
                 new Node(N2, 0);
             }
@@ -202,7 +202,7 @@ public class Data {
                 float ACFrequency=Float.parseFloat(IACFrequency);
                 float ACPhase=Float.parseFloat(IACPhase);
                 if(ACDomain==0&&ACFrequency==0&&ACPhase==0){
-                    new VoltageSourceAC(0, 0, 0, N1 , N2 , IACName , ACFirstState,ACDomain,ACFrequency,ACPhase);
+                    new VoltageSourceAC(0, 0, 0,N1 ,N2 , 0, 0, IACName, ACFirstState, ACDomain, ACFrequency, ACPhase);
                 }
                 else
                     new CurrentSourceDC(0,0,0,N1,N2,IACName);
@@ -215,7 +215,7 @@ public class Data {
                 String ControlElement=m6.group(4).trim();
                 String gainStr = m6.group(5);
                 float gain = Float.parseFloat(gainStr);
-                new CurrentControlVoltageSource(0, 0, 0, N1 , N2 ,VSCCName , ControlElement,gain);
+                new CurrentControlVoltageSource(0, 0, 0, N1, N2, 0, 0, VSCCName ,ControlElement, gain);
                 new Node(N1, 0);
                 new Node(N2, 0);
             }
@@ -225,7 +225,7 @@ public class Data {
                 int N1Control=Integer.parseInt(m7.group(4)) , N2Control=Integer.parseInt(m7.group(5));
                 String gainStr = m7.group(5);
                 float gain = Float.parseFloat(gainStr);
-                new VoltageControlVoltageSource(0, 0, 0, N1 , N2 ,VSVCName , N1Control , N2Control,gain);
+                new VoltageControlVoltageSource(0, 0, 0, N1, N2, 0, 0, VSVCName, N1Control, N2Control, gain);
                 new Node(N1, 0);
                 new Node(N2, 0);
             }
@@ -235,7 +235,7 @@ public class Data {
                 String ControlElement=m8.group(4).trim();
                 String gainStr = m8.group(5);
                 float gain = Float.parseFloat(gainStr);
-                new CurrentControlCurrentSource(0, 0, 0, N1 , N2 ,CSCCName , ControlElement,gain);
+                new CurrentControlCurrentSource(0, 0, 0, N1, N2, 0, 0, CSCCName, ControlElement, gain);
                 new Node(N1, 0);
                 new Node(N2, 0);
             }
@@ -245,7 +245,7 @@ public class Data {
                 int N1Control=Integer.parseInt(m9.group(4)) , N2Control=Integer.parseInt(m9.group(5));
                 String gainStr = m9.group(5);
                 float gain = Float.parseFloat(gainStr);
-                new VoltageControlCurrentSource(0, 0, 0, N1 , N2 ,CSVCName , N1Control , N2Control,gain);
+                new VoltageControlCurrentSource(0, 0, 0, N1, N2, 0, 0, CSVCName, N1Control, N2Control, gain);
                 new Node(N1, 0);
                 new Node(N2, 0);
             }

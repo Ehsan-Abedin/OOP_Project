@@ -3,20 +3,18 @@ public class Main {
         if ((Capacitor.getAllCapacitors() == null) && (Inductance.getAllInductances() == null)) {
             int n = Node.getAllNodes().size();
             int m = VoltageSourceDC.getAllVoltageSourceDCs().size() + VoltageControlVoltageSource.getAllVoltageControlVoltageSources().size() + CurrentControlVoltageSource.getAllCurrentControlVoltageSources().size();
-            double a[][] = new double[m + n + 1][m + n + 1];
-            double g[][] = new double[n + 1][n + 1];
-            double b[][] = new double[n + 1][m + 1];
-            double c[][] = new double[m + 1][n + 1];
-            double d[][] = new double[m + 1][m + 1];
-            double x[][] = new double[m + n + 1][2];
-            double v[][] = new double[n + 1][2];
-            double j[][] = new double[m + 1][2];
-            double z[][] = new double[m + n + 1][2];
-            double i[][] = new double[n + 1][2];
-            double e[][] = new double[m + 1][2];
+            float a[][] = new float[m + n + 1][m + n + 1];
+            float g[][] = new float[n + 1][n + 1];
+            float b[][] = new float[n + 1][m + 1];
+            float c[][] = new float[m + 1][n + 1];
+            float d[][] = new float[m + 1][m + 1];
+            float x[][] = new float[m + n + 1][2];
+            float z[][] = new float[m + n + 1][2];
+            float i[][] = new float[n + 1][2];
+            float e[][] = new float[m + 1][2];
             for (int p = 1; p < n + 1; p++) {
                 for (int q = 1; q < n + 1; q++) {
-                    double sum = 0;
+                    float sum = 0;
                     for (Resistance allResistance : Resistance.getAllResistances()) {
                         if (p == q)
                             if ((allResistance.getNode1() == p) || (allResistance.getNode2() == p))
@@ -166,11 +164,32 @@ public class Main {
                 b[p][1] = i[p][1];
             for (int p = 1; p < m+1; p++)
                 b[n+p][1] = e[p][1];
-            double invert_a[][] = Functions.invert(a);
+            float invert_a[][] = Functions.invert(a);
             for (int p = 1; p < m+n+1; p++)
                 for (int q = 1; q < 2; q++)
                     for (int r = 1; r < m+n+1; r++)
                         x[p][q] += invert_a[p][r] * z[r][q];
+            for (Node allNode : Node.getAllNodes())
+                for (int p = 1; p < n+1; p++)
+                    if (allNode.getNode() == p)
+                        allNode.setNodeVoltage(x[p][1]);
+            for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs())
+                for (int p = n+1; p < m+n+1; p++)
+                    if (Integer.parseInt(allVoltageSourceDC.getName().substring(1)) == p)
+                        allVoltageSourceDC.setCurrent(x[p][1]);
+            for (VoltageControlVoltageSource allVoltageControlVoltageSource : VoltageControlVoltageSource.getAllVoltageControlVoltageSources())
+                allVoltageControlVoltageSource.setCurrent(x[m+n+1][1]);
+            for (CurrentControlVoltageSource allCurrentControlVoltageSource : CurrentControlVoltageSource.getAllCurrentControlVoltageSources())
+                allCurrentControlVoltageSource.setCurrent(x[m+n+1][1]);
+            for (Resistance allResistance : Resistance.getAllResistances()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allResistance.getNode1() == allNode.getNode())
+                        allResistance.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allResistance.getNode2() == allNode.getNode())
+                        allResistance.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allResistance.voltage(allResistance.getNode1Voltage(), allResistance.getNode2Voltage());
+            }
         }
     }
 }

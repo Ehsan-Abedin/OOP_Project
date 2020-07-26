@@ -4,6 +4,11 @@ public class Inductance extends Element {
     private float inductance;
     private static ArrayList<Inductance> allInductances = new ArrayList<>();
 
+    public Inductance(float current, float voltage, float power, int node1, int node2, float node1Voltage, float node2Voltage, String name, float inductance) {
+        super(current, voltage, power, node1, node2, node1Voltage, node2Voltage, name);
+        this.inductance = inductance;
+    }
+
     public Inductance(float current, float voltage, float power, int node1, int node2, String name, float inductance) {
         super(current, voltage, power, node1, node2, name);
         this.inductance = inductance;

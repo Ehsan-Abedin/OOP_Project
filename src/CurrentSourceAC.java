@@ -12,6 +12,14 @@ public class CurrentSourceAC extends Element{
         allCurrentSourceACs.add(this);
     }
 
+    public CurrentSourceAC(float current, float voltage, float power, int node1, int node2, float node1Voltage, float node2Voltage, String name, float currentDC, float amplitude, float frequency, float phase) {
+        super(current, voltage, power, node1, node2, node1Voltage, node2Voltage, name);
+        this.currentDC = currentDC;
+        this.amplitude = amplitude;
+        this.frequency = frequency;
+        this.phase = phase;
+    }
+
     public float getCurrentDC() {
         return currentDC;
     }
