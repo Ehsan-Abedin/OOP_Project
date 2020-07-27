@@ -4,5 +4,5 @@ R2	3	2	1G
 Vin	2	1	5
 Cali	2	3	4u
 Lehsan	1	3	1m
-
+.tran     15m
 

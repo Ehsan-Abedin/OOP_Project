@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.chrono.IsoChronology;
 import java.util.Scanner;
@@ -25,6 +27,8 @@ public class Data {
         Pattern p8 = Pattern.compile(ISourceIControl);
         String ISourceVControl = "(G.+? ) *(\\d*) *(\\d*) *(\\d*) *(\\d*) *(.*)";
         Pattern p9 = Pattern.compile(ISourceVControl);
+        String Step= "(\\.tran.*) (\\d*)(\\w)";
+        Pattern p10 = Pattern.compile(Step);
         File inputCircuit = new File("test.txt");
         String line = "";
         try (Scanner sc = new Scanner(inputCircuit, StandardCharsets.UTF_8.name())){
@@ -39,6 +43,7 @@ public class Data {
             Matcher m7 = p7.matcher(line);
             Matcher m8 = p8.matcher(line);
             Matcher m9 = p9.matcher(line);
+            Matcher m10= p10.matcher(line);
             if(m1.find()){
                 String RName=m1.group(1).trim();
                 int N1=Integer.parseInt(m1.group(2)) , N2 = Integer.parseInt(m1.group(3));
@@ -249,6 +254,34 @@ public class Data {
                 new Node(N1, 0);
                 new Node(N2, 0);
             }
+            if(m10.find()){
+                String StepTimeQuantity = m10.group(2);
+                String StepTimePower = m10.group(3);
+                if()
+
+
+
+            }
+        }
+        try {
+            File Output = new File("Output.txt");
+            if (Output.createNewFile()) {
+                System.out.println("File created: " + Output.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        try {
+            FileWriter OutputWriter = new FileWriter("Output.txt");
+            OutputWriter.write("Files in Java might be tricky, but it is fun enough!");
+            OutputWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
     }
 }
