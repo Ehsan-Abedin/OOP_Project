@@ -307,7 +307,7 @@ public class Data {
                 String lineStr = Integer.toString(j);
                 String VoltageStr = Float.toString(Element.getAllElements().get(j).voltage);
                 String CurrentStr = Float.toString(Element.getAllElements().get(j).current);
-                String PowerStr = Float.toString(Element.getAllElements().get(j).power)
+                String PowerStr = Float.toString(Element.getAllElements().get(j).power);
                 String lineWriter = VoltageStr + CurrentStr + PowerStr;
                 OutputWriter.write(lineWriter);
             }
