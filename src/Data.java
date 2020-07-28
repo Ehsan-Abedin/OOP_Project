@@ -304,11 +304,11 @@ public class Data {
                 OutputWriter.write(lineWriter);
             }
             for(int j=0 ; j<= Element.getAllElements().size() ; j++){
-                String lineStr = Integer.toString(j);
+                String ElementName = Element.getAllElements().get(j).getName();
                 String VoltageStr = Float.toString(Element.getAllElements().get(j).voltage);
                 String CurrentStr = Float.toString(Element.getAllElements().get(j).current);
                 String PowerStr = Float.toString(Element.getAllElements().get(j).power);
-                String lineWriter = VoltageStr + CurrentStr + PowerStr;
+                String lineWriter = ElementName + VoltageStr + CurrentStr + PowerStr;
                 OutputWriter.write(lineWriter);
             }
             OutputWriter.close();
