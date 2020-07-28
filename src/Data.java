@@ -255,12 +255,34 @@ public class Data {
                 new Node(N2, 0);
             }
             if(m10.find()){
-                String StepTimeQuantity = m10.group(2);
-                String StepTimePower = m10.group(3);
-                if()
-
-
-
+                String SimulationTimeQuantity = m10.group(2);
+                String SimulationTimePower = m10.group(3);
+                int SimulationTime = Integer.parseInt(SimulationTimeQuantity);
+                if(SimulationTimePower.charAt(0)=='m'){
+                    SimulationTime/=1000;
+                }
+                else if(SimulationTimePower.charAt(0)=='u'){
+                    SimulationTime/=1000000;
+                }
+                else if(SimulationTimePower.charAt(0)=='m'){
+                    SimulationTime/=1000;
+                }
+                else if(SimulationTimePower.charAt(0)=='p'){
+                    SimulationTime/=1000000;
+                    SimulationTime/=1000000;
+                }
+                else if(SimulationTimePower.charAt(0)=='n'){
+                    SimulationTime/=1000000000;
+                }
+                else if(SimulationTimePower.charAt(0)=='k'){
+                    SimulationTime*=1000;
+                }
+                else if(SimulationTimePower.charAt(0)=='M'){
+                    SimulationTime*=1000000;
+                }
+                else if(SimulationTimePower.charAt(0)=='G'){
+                    SimulationTime*=1000000000;
+                }
             }
         }
         try {
