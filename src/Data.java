@@ -298,7 +298,11 @@ public class Data {
         }
         try {
             FileWriter OutputWriter = new FileWriter("Output.txt");
-            OutputWriter.write("Files in Java might be tricky, but it is fun enough!");
+            for(int i=1 ; i<=Node.getAllNodes().size() ; i++){
+                String lineStr = Integer.toString(i);
+                String lineWriter = "Node " + lineStr + Node.getAllNodes().get(i).getNodeVoltage() ;
+                OutputWriter.write(lineWriter);
+            }
             OutputWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
