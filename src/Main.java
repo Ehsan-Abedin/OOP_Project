@@ -191,5 +191,6 @@ public class Main {
                 allResistance.voltage(allResistance.getNode1Voltage(), allResistance.getNode2Voltage());
             }
         }
+        else if ()
     }
 }
