@@ -1,4 +1,16 @@
 public class Main {
+    private final float deltaV;
+    private final float deltaI;
+    private final float deltaT;
+    private final float simulationTime;
+
+    public Main(float deltaV, float deltaI, float deltaT, float simulationTime) {
+        this.deltaV = deltaV;
+        this.deltaI = deltaI;
+        this.deltaT = deltaT;
+        this.simulationTime = simulationTime;
+    }
+
     public static void main(String[] args) {
         if ((Capacitor.getAllCapacitors() == null) && (Inductance.getAllInductances() == null)) {
             int n = Node.getAllNodes().size();
