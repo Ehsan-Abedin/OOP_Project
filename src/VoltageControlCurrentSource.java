@@ -39,4 +39,9 @@ public class VoltageControlCurrentSource extends Element {
     public void setGain(float gain) {
         this.gain = gain;
     }
+
+    public ComplexNumber voltage (ComplexNumber node1Voltage, ComplexNumber node2Voltage) {
+        voltage = node1Voltage.subtract(node2Voltage);
+        return voltage;
+    }
 }

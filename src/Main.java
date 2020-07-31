@@ -189,7 +189,9 @@ public class Main {
                     if (allResistance.getNode2() == allNode.getNode())
                         allResistance.setNode2Voltage(allNode.getNodeVoltage());
                 }
-                allResistance.voltage(allResistance.getNode1Voltage(), allResistance.getNode2Voltage());
+                allResistance.setVoltage(allResistance.voltage(allResistance.getNode1Voltage(), allResistance.getNode2Voltage()));
+                allResistance.setCurrent(allResistance.current(allResistance.voltage));
+                allResistance.setPower(allResistance.power(allResistance.voltage, allResistance.current));
             }
         } else if (VoltageSourceAC.getAllVoltageSourceACs() != null) {
             int n = Node.getAllNodes().size();
@@ -387,6 +389,39 @@ public class Main {
                 for (int p = 1; p < n + 1; p++)
                     if (allNode.getNode() == p)
                         allNode.setNodeVoltage(x[p][1]);
+            for (VoltageControlVoltageSource allVoltageControlVoltageSource : VoltageControlVoltageSource.getAllVoltageControlVoltageSources())
+                allVoltageControlVoltageSource.setCurrent(x[m + n + 1][1]);
+            for (CurrentControlVoltageSource allCurrentControlVoltageSource : CurrentControlVoltageSource.getAllCurrentControlVoltageSources())
+                allCurrentControlVoltageSource.setCurrent(x[m + n + 1][1]);
+            for (Resistance allResistance : Resistance.getAllResistances()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allResistance.getNode1() == allNode.getNode())
+                        allResistance.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allResistance.getNode2() == allNode.getNode())
+                        allResistance.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allResistance.setVoltage(allResistance.voltage(allResistance.getNode1Voltage(), allResistance.getNode2Voltage()));
+                allResistance.setCurrent(allResistance.current(allResistance.voltage));
+                allResistance.setPower(allResistance.power(allResistance.voltage, allResistance.current));
+            }
+            for (Capacitor allCapacitor : Capacitor.getAllCapacitors()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allCapacitor.getNode1() == allNode.getNode())
+                        allCapacitor.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allCapacitor.getNode2() == allNode.getNode())
+                        allCapacitor.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allCapacitor.setVoltage(allCapacitor.voltage(allCapacitor.getNode1Voltage(), allCapacitor.getNode2Voltage()));
+            }
+            for (Inductance allInductance : Inductance.getAllInductances()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allInductance.getNode1() == allNode.getNode())
+                        allInductance.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allInductance.getNode2() == allNode.getNode())
+                        allInductance.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allInductance.setVoltage(allInductance.voltage(allInductance.getNode1Voltage(), allInductance.getNode2Voltage()));
+            }
         }
     }
 }
