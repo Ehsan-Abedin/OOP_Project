@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class Element {
-    protected float current, voltage, power;
+    protected ComplexNumber current, voltage, power;
     private int node1, node2;
-    private float node1Voltage, node2Voltage;
+    private ComplexNumber node1Voltage, node2Voltage;
     private String name;
     private static ArrayList<Element> allElements = new ArrayList<>();
 
-    public Element(float current, float voltage, float power, int node1, int node2, float node1Voltage, float node2Voltage, String name) {
+    public Element(ComplexNumber current, ComplexNumber voltage, ComplexNumber power, int node1, int node2, ComplexNumber node1Voltage, ComplexNumber node2Voltage, String name) {
         this.current = current;
         this.voltage = voltage;
         this.power = power;
@@ -18,7 +18,7 @@ public class Element {
         this.name = name;
     }
 
-    public Element(float current, float voltage, float power, int node1, int node2, String name) {
+    public Element(ComplexNumber current, ComplexNumber voltage, ComplexNumber power, int node1, int node2, String name) {
         this.current = current;
         this.voltage = voltage;
         this.power = power;
@@ -50,15 +50,15 @@ public class Element {
         return null;
     }
 
-    public float getCurrent() {
+    public ComplexNumber getCurrent() {
         return current;
     }
 
-    public float getVoltage() {
+    public ComplexNumber getVoltage() {
         return voltage;
     }
 
-    public float getPower() {
+    public ComplexNumber getPower() {
         return power;
     }
 
@@ -74,23 +74,23 @@ public class Element {
         return name;
     }
 
-    public float getNode1Voltage() {
+    public ComplexNumber getNode1Voltage() {
         return node1Voltage;
     }
 
-    public float getNode2Voltage() {
+    public ComplexNumber getNode2Voltage() {
         return node2Voltage;
     }
 
-    public void setCurrent(float current) {
+    public void setCurrent(ComplexNumber current) {
         this.current = current;
     }
 
-    public void setVoltage(float voltage) {
+    public void setVoltage(ComplexNumber voltage) {
         this.voltage = voltage;
     }
 
-    public void setPower(float power) {
+    public void setPower(ComplexNumber power) {
         this.power = power;
     }
 
@@ -106,16 +106,16 @@ public class Element {
         this.name = name;
     }
 
-    public void setNode1Voltage(float node1Voltage) {
+    public void setNode1Voltage(ComplexNumber node1Voltage) {
         this.node1Voltage = node1Voltage;
     }
 
-    public void setNode2Voltage(float node2Voltage) {
+    public void setNode2Voltage(ComplexNumber node2Voltage) {
         this.node2Voltage = node2Voltage;
     }
 
-    public float power (float current, float voltage){
-        power = voltage*current;
+    public ComplexNumber power (ComplexNumber current, ComplexNumber voltage){
+        power = voltage.multiply(current);
         return power;
     }
 }

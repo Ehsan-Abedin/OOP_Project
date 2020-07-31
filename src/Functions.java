@@ -59,4 +59,26 @@ public class Functions {
             }
         }
     }
+
+    public static float[][] multiply(float a[][], float b[][]) {
+        int n = a.length;
+        float x[][] = new float[n+1][n+1];
+        for (int i = 1; i < n+1; i++) {
+            for (int j = 1; j < n+1; j++) {
+                x[i][j] = 0;
+                for (int k = 0; k < n+1; k++)
+                    x[i][j] = a[i][k] * b[k][j];
+            }
+        }
+        return x;
+    }
+
+    public static float[][] add(float a[][], float b[][]) {
+        int n = a.length;
+        float x[][] = new float[n+1][n+1];
+        for (int i = 1; i < n+1; i++)
+            for (int j = 1; j < n+1; j++)
+                x[i][j] = a[i][j] + b[i][j];
+        return x;
+    }
 }

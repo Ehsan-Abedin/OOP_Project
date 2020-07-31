@@ -5,15 +5,7 @@ public class VoltageControlVoltageSource extends Element {
     private float gain;
     private static ArrayList<VoltageControlVoltageSource> allVoltageControlVoltageSources = new ArrayList<>();
 
-    public VoltageControlVoltageSource(float current, float voltage, float power, int node1, int node2, String name, int controlNode1, int controlNode2, float gain) {
-        super(current, voltage, power, node1, node2, name);
-        this.controlNode1 = controlNode1;
-        this.controlNode2 = controlNode2;
-        this.gain = gain;
-        allVoltageControlVoltageSources.add(this);
-    }
-
-    public VoltageControlVoltageSource(float current, float voltage, float power, int node1, int node2, float node1Voltage, float node2Voltage, String name, int controlNode1, int controlNode2, float gain) {
+    public VoltageControlVoltageSource(ComplexNumber current, ComplexNumber voltage, ComplexNumber power, int node1, int node2, ComplexNumber node1Voltage, ComplexNumber node2Voltage, String name, int controlNode1, int controlNode2, float gain) {
         super(current, voltage, power, node1, node2, node1Voltage, node2Voltage, name);
         this.controlNode1 = controlNode1;
         this.controlNode2 = controlNode2;

@@ -5,16 +5,24 @@ public class ComplexNumber {
         this.y = imaginary;
     }
 
-    public double real() {
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public float real() {
         return x;
     }
 
-    public double imaginary() {
+    public float imaginary() {
         return y;
     }
 
-    public double magnitude() {
-        return Math.sqrt(x * x + y * y);
+    public float magnitude() {
+        return (float) Math.sqrt(x * x + y * y);
     }
 
     public String toString() {

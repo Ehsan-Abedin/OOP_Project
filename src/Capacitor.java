@@ -4,15 +4,9 @@ public class Capacitor extends Element {
     private float capacitor;
     private static ArrayList<Capacitor> allCapacitors = new ArrayList<>();
 
-    public Capacitor(float current, float voltage, float power, int node1, int node2, float node1Voltage, float node2Voltage, String name, float capacitor) {
+    public Capacitor(ComplexNumber current, ComplexNumber voltage, ComplexNumber power, int node1, int node2, ComplexNumber node1Voltage, ComplexNumber node2Voltage, String name, float capacitor) {
         super(current, voltage, power, node1, node2, node1Voltage, node2Voltage, name);
         this.capacitor = capacitor;
-    }
-
-    public Capacitor(float current, float voltage, float power, int node1, int node2, String name, float capacitor) {
-        super(current, voltage, power, node1, node2, name);
-        this.capacitor = capacitor;
-        allCapacitors.add(this);
     }
 
     public float getCapacitor() {

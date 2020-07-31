@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class Node {
     private int node, flag = 0;
-    private float nodeVoltage;
+    private ComplexNumber nodeVoltage;
     private static ArrayList<Node> allNodes = new ArrayList<>();
 
-    public Node(int node, float nodeVoltage) {
+    public Node(int node, ComplexNumber nodeVoltage) {
         for (Node allNode : allNodes) {
             if (allNode.node == node) {
                 flag = 1;
@@ -23,7 +23,7 @@ public class Node {
         return node;
     }
 
-    public float getNodeVoltage() {
+    public ComplexNumber getNodeVoltage() {
         return nodeVoltage;
     }
 
@@ -35,7 +35,7 @@ public class Node {
         this.node = node;
     }
 
-    public void setNodeVoltage(float nodeVoltage) {
+    public void setNodeVoltage(ComplexNumber nodeVoltage) {
         this.nodeVoltage = nodeVoltage;
     }
 }
