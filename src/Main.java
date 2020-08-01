@@ -11,7 +11,7 @@ public class Main {
         this.simulationTime = simulationTime;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         if ((Capacitor.getAllCapacitors() == null) && (Inductance.getAllInductances() == null)) {
             int n = Node.getAllNodes().size();
             int m = VoltageSourceDC.getAllVoltageSourceDCs().size() + VoltageControlVoltageSource.getAllVoltageControlVoltageSources().size() + CurrentControlVoltageSource.getAllCurrentControlVoltageSources().size();
