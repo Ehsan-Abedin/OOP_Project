@@ -47,4 +47,9 @@ public class CurrentSourceAC extends Element{
     public void setPhase(float phase) {
         this.phase = phase;
     }
+
+    public ComplexNumber voltage (ComplexNumber node1Voltage, ComplexNumber node2Voltage) {
+        voltage = node1Voltage.subtract(node2Voltage);
+        return voltage;
+    }
 }

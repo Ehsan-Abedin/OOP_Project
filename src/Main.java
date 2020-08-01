@@ -193,7 +193,65 @@ public class Main {
                 allResistance.setCurrent(allResistance.current(allResistance.voltage));
                 allResistance.setPower(allResistance.power(allResistance.voltage, allResistance.current));
             }
-        } else if (VoltageSourceAC.getAllVoltageSourceACs() != null) {
+            for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
+                allVoltageSourceDC.setVoltage(allVoltageSourceDC.voltage);
+                allVoltageSourceDC.setPower(allVoltageSourceDC.power(allVoltageSourceDC.current, allVoltageSourceDC.voltage));
+            }
+            for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
+                allVoltageSourceAC.setVoltage(allVoltageSourceAC.voltage);
+                allVoltageSourceAC.setPower(allVoltageSourceAC.power(allVoltageSourceAC.current, allVoltageSourceAC.voltage));
+            }
+            for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allCurrentSourceDC.getNode1() == allNode.getNode())
+                        allCurrentSourceDC.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allCurrentSourceDC.getNode2() == allNode.getNode())
+                        allCurrentSourceDC.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allCurrentSourceDC.setVoltage(allCurrentSourceDC.voltage(allCurrentSourceDC.getNode1Voltage(), allCurrentSourceDC.getNode2Voltage()));
+                allCurrentSourceDC.setPower(allCurrentSourceDC.power(allCurrentSourceDC.current, allCurrentSourceDC.voltage));
+            }
+            for (CurrentSourceAC allCurrentSourceAC : CurrentSourceAC.getAllCurrentSourceACs()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allCurrentSourceAC.getNode1() == allNode.getNode())
+                        allCurrentSourceAC.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allCurrentSourceAC.getNode2() == allNode.getNode())
+                        allCurrentSourceAC.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allCurrentSourceAC.setVoltage(allCurrentSourceAC.voltage(allCurrentSourceAC.getNode1Voltage(), allCurrentSourceAC.getNode2Voltage()));
+                allCurrentSourceAC.setPower(allCurrentSourceAC.power(allCurrentSourceAC.current, allCurrentSourceAC.voltage));
+            }
+            for (VoltageControlVoltageSource allVoltageControlVoltageSource : VoltageControlVoltageSource.getAllVoltageControlVoltageSources()) {
+                allVoltageControlVoltageSource.setVoltage(allVoltageControlVoltageSource.voltage);
+                allVoltageControlVoltageSource.setPower(allVoltageControlVoltageSource.power(allVoltageControlVoltageSource.current, allVoltageControlVoltageSource.voltage));
+            }
+            for (VoltageControlCurrentSource allVoltageControlCurrentSource : VoltageControlCurrentSource.getAllVoltageControlCurrentSources()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allVoltageControlCurrentSource.getNode1() == allNode.getNode())
+                        allVoltageControlCurrentSource.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allVoltageControlCurrentSource.getNode2() == allNode.getNode())
+                        allVoltageControlCurrentSource.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allVoltageControlCurrentSource.setVoltage(allVoltageControlCurrentSource.voltage(allVoltageControlCurrentSource.getNode1Voltage(), allVoltageControlCurrentSource.getNode2Voltage()));
+                allVoltageControlCurrentSource.setPower(allVoltageControlCurrentSource.power(allVoltageControlCurrentSource.current, allVoltageControlCurrentSource.voltage));
+            }
+            for (CurrentControlCurrentSource allCurrentControlCurrentSource : CurrentControlCurrentSource.getAllCurrentControlCurrentSources()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allCurrentControlCurrentSource.getNode1() == allNode.getNode())
+                        allCurrentControlCurrentSource.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allCurrentControlCurrentSource.getNode2() == allNode.getNode())
+                        allCurrentControlCurrentSource.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allCurrentControlCurrentSource.setVoltage(allCurrentControlCurrentSource.voltage(allCurrentControlCurrentSource.getNode1Voltage(), allCurrentControlCurrentSource.power));
+                allCurrentControlCurrentSource.setPower(allCurrentControlCurrentSource.power(allCurrentControlCurrentSource.current, allCurrentControlCurrentSource.voltage));
+            }
+            for (CurrentControlVoltageSource allCurrentControlVoltageSource : CurrentControlVoltageSource.getAllCurrentControlVoltageSources()) {
+                allCurrentControlVoltageSource.setVoltage(allCurrentControlVoltageSource.voltage);
+                allCurrentControlVoltageSource.setPower(allCurrentControlVoltageSource.power(allCurrentControlVoltageSource.current, allCurrentControlVoltageSource.voltage));
+            }
+        }
+
+        else if (VoltageSourceAC.getAllVoltageSourceACs() != null) {
             int n = Node.getAllNodes().size();
             int m = VoltageSourceDC.getAllVoltageSourceDCs().size() + VoltageControlVoltageSource.getAllVoltageControlVoltageSources().size() + CurrentControlVoltageSource.getAllCurrentControlVoltageSources().size();
             ComplexNumber a[][] = new ComplexNumber[m + n + 1][m + n + 1];
@@ -251,10 +309,10 @@ public class Main {
             }
             for (int p = 1; p < n + 1; p++) {
                 for (int q = 1; q < m + 1; q++) {
-                    for (VoltageSourceDC allVoltageSourceDc : VoltageSourceDC.getAllVoltageSourceDCs()) {
+                    for (VoltageSourceAC allVoltageSourceAc : VoltageSourceAC.getAllVoltageSourceACs()) {
                         if (CurrentControlCurrentSource.getAllCurrentControlCurrentSources() != null) {
                             for (CurrentControlCurrentSource allCurrentControlCurrentSource : CurrentControlCurrentSource.getAllCurrentControlCurrentSources()) {
-                                if (allVoltageSourceDc.getNode1() == p) {
+                                if (allVoltageSourceAc.getNode1() == p) {
                                     if (allCurrentControlCurrentSource.getNode1() == p) {
                                         b[p][q].add(1 + allCurrentControlCurrentSource.getGain());
                                         c[q][p].add(1);
@@ -265,7 +323,7 @@ public class Main {
                                         b[p][q].add(1);
                                         c[q][p].add(1);
                                     }
-                                } else if (allVoltageSourceDc.getNode2() == p) {
+                                } else if (allVoltageSourceAc.getNode2() == p) {
                                     if (allCurrentControlCurrentSource.getNode1() == p) {
                                         b[p][q].add(-1 + allCurrentControlCurrentSource.getGain());
                                         c[q][p].subtract(1);
@@ -341,10 +399,10 @@ public class Main {
                         i[p][1].add(allCurrentSourceDC.getCurrent());
                 }
             }
-            for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs())
+            for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs())
                 for (int p = 1; p < m + 1; p++)
-                    if (Integer.parseInt(allVoltageSourceDC.getName().substring(1)) == p)
-                        e[p][1].add(allVoltageSourceDC.getVoltage());
+                    if (Integer.parseInt(allVoltageSourceAC.getName().substring(1)) == p)
+                        e[p][1].add(allVoltageSourceAC.getVoltage());
             for (int p = 1; p < n + 1; p++)
                 b[p][1] = i[p][1];
             for (int p = 1; p < m + 1; p++)
@@ -389,6 +447,10 @@ public class Main {
                 for (int p = 1; p < n + 1; p++)
                     if (allNode.getNode() == p)
                         allNode.setNodeVoltage(x[p][1]);
+            for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs())
+                for (int p = n + 1; p < m + n + 1; p++)
+                    if (Integer.parseInt(allVoltageSourceAC.getName().substring(1)) == p)
+                        allVoltageSourceAC.setCurrent(x[p][1]);
             for (VoltageControlVoltageSource allVoltageControlVoltageSource : VoltageControlVoltageSource.getAllVoltageControlVoltageSources())
                 allVoltageControlVoltageSource.setCurrent(x[m + n + 1][1]);
             for (CurrentControlVoltageSource allCurrentControlVoltageSource : CurrentControlVoltageSource.getAllCurrentControlVoltageSources())
@@ -426,7 +488,58 @@ public class Main {
                 allInductance.setPower(allInductance.voltage);
                 allInductance.setCurrent(allInductance.current(allInductance.getPower(), allInductance.getVoltage()));
             }
-
+            for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
+                allVoltageSourceAC.setVoltage(allVoltageSourceAC.voltage);
+                allVoltageSourceAC.setPower(allVoltageSourceAC.power(allVoltageSourceAC.current, allVoltageSourceAC.voltage));
+            }
+            for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allCurrentSourceDC.getNode1() == allNode.getNode())
+                        allCurrentSourceDC.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allCurrentSourceDC.getNode2() == allNode.getNode())
+                        allCurrentSourceDC.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allCurrentSourceDC.setVoltage(allCurrentSourceDC.voltage(allCurrentSourceDC.getNode1Voltage(), allCurrentSourceDC.getNode2Voltage()));
+                allCurrentSourceDC.setPower(allCurrentSourceDC.power(allCurrentSourceDC.current, allCurrentSourceDC.voltage));
+            }
+            for (CurrentSourceAC allCurrentSourceAC : CurrentSourceAC.getAllCurrentSourceACs()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allCurrentSourceAC.getNode1() == allNode.getNode())
+                        allCurrentSourceAC.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allCurrentSourceAC.getNode2() == allNode.getNode())
+                        allCurrentSourceAC.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allCurrentSourceAC.setVoltage(allCurrentSourceAC.voltage(allCurrentSourceAC.getNode1Voltage(), allCurrentSourceAC.getNode2Voltage()));
+                allCurrentSourceAC.setPower(allCurrentSourceAC.power(allCurrentSourceAC.current, allCurrentSourceAC.voltage));
+            }
+            for (VoltageControlVoltageSource allVoltageControlVoltageSource : VoltageControlVoltageSource.getAllVoltageControlVoltageSources()) {
+                allVoltageControlVoltageSource.setVoltage(allVoltageControlVoltageSource.voltage);
+                allVoltageControlVoltageSource.setPower(allVoltageControlVoltageSource.power(allVoltageControlVoltageSource.current, allVoltageControlVoltageSource.voltage));
+            }
+            for (VoltageControlCurrentSource allVoltageControlCurrentSource : VoltageControlCurrentSource.getAllVoltageControlCurrentSources()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allVoltageControlCurrentSource.getNode1() == allNode.getNode())
+                        allVoltageControlCurrentSource.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allVoltageControlCurrentSource.getNode2() == allNode.getNode())
+                        allVoltageControlCurrentSource.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allVoltageControlCurrentSource.setVoltage(allVoltageControlCurrentSource.voltage(allVoltageControlCurrentSource.getNode1Voltage(), allVoltageControlCurrentSource.getNode2Voltage()));
+                allVoltageControlCurrentSource.setPower(allVoltageControlCurrentSource.power(allVoltageControlCurrentSource.current, allVoltageControlCurrentSource.voltage));
+            }
+            for (CurrentControlCurrentSource allCurrentControlCurrentSource : CurrentControlCurrentSource.getAllCurrentControlCurrentSources()) {
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allCurrentControlCurrentSource.getNode1() == allNode.getNode())
+                        allCurrentControlCurrentSource.setNode1Voltage(allNode.getNodeVoltage());
+                    if (allCurrentControlCurrentSource.getNode2() == allNode.getNode())
+                        allCurrentControlCurrentSource.setNode2Voltage(allNode.getNodeVoltage());
+                }
+                allCurrentControlCurrentSource.setVoltage(allCurrentControlCurrentSource.voltage(allCurrentControlCurrentSource.getNode1Voltage(), allCurrentControlCurrentSource.power));
+                allCurrentControlCurrentSource.setPower(allCurrentControlCurrentSource.power(allCurrentControlCurrentSource.current, allCurrentControlCurrentSource.voltage));
+            }
+            for (CurrentControlVoltageSource allCurrentControlVoltageSource : CurrentControlVoltageSource.getAllCurrentControlVoltageSources()) {
+                allCurrentControlVoltageSource.setVoltage(allCurrentControlVoltageSource.voltage);
+                allCurrentControlVoltageSource.setPower(allCurrentControlVoltageSource.power(allCurrentControlVoltageSource.current, allCurrentControlVoltageSource.voltage));
+            }
         }
     }
 }
