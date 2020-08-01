@@ -412,6 +412,8 @@ public class Main {
                         allCapacitor.setNode2Voltage(allNode.getNodeVoltage());
                 }
                 allCapacitor.setVoltage(allCapacitor.voltage(allCapacitor.getNode1Voltage(), allCapacitor.getNode2Voltage()));
+                allCapacitor.setPower(allCapacitor.voltage);
+                allCapacitor.setCurrent(allCapacitor.current(allCapacitor.getPower(), allCapacitor.voltage));
             }
             for (Inductance allInductance : Inductance.getAllInductances()) {
                 for (Node allNode : Node.getAllNodes()) {
@@ -421,7 +423,10 @@ public class Main {
                         allInductance.setNode2Voltage(allNode.getNodeVoltage());
                 }
                 allInductance.setVoltage(allInductance.voltage(allInductance.getNode1Voltage(), allInductance.getNode2Voltage()));
+                allInductance.setPower(allInductance.voltage);
+                allInductance.setCurrent(allInductance.current(allInductance.getPower(), allInductance.getVoltage()));
             }
+
         }
     }
 }

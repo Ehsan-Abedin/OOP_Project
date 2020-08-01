@@ -25,4 +25,14 @@ public class Inductance extends Element {
         voltage = node1Voltage.subtract(node2Voltage);
         return voltage;
     }
+
+    public ComplexNumber current (ComplexNumber power, ComplexNumber voltage) {
+        current = power.division(voltage);
+        return current;
+    }
+
+    public ComplexNumber power (ComplexNumber voltage) {
+        power = voltage.multiply(voltage).multiply(2).division(inductance);
+        return power;
+    }
 }
