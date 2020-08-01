@@ -20,4 +20,9 @@ public class Capacitor extends Element {
     public void setCapacitor(float capacitor) {
         this.capacitor = capacitor;
     }
+
+    public ComplexNumber voltage (ComplexNumber node1Voltage, ComplexNumber node2Voltage) {
+        voltage = node1Voltage.subtract(node2Voltage);
+        return voltage;
+    }
 }

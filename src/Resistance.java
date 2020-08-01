@@ -27,4 +27,9 @@ public class Resistance extends Element {
         voltage = node1Voltage.subtract(node2Voltage);
         return voltage;
     }
+
+    public ComplexNumber current (ComplexNumber voltage) {
+        current = voltage.division(resistance);
+        return current;
+    }
 }

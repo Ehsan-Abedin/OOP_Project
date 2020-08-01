@@ -20,4 +20,9 @@ public class Inductance extends Element {
     public void setInductance(float inductance) {
         this.inductance = inductance;
     }
+
+    public ComplexNumber voltage (ComplexNumber node1Voltage, ComplexNumber node2Voltage) {
+        voltage = node1Voltage.subtract(node2Voltage);
+        return voltage;
+    }
 }
