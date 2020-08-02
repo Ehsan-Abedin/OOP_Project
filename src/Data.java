@@ -85,8 +85,8 @@ public class Data {
                     R=Float.parseFloat(RQuantity)/(10^12);
                 }
                 new Resistance(new ComplexNumber(0, 0),new ComplexNumber(0, 0),new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), RName, R);
-                new Node(N1, new ComplexNumber(0, 0));
-                new Node(N2, new ComplexNumber(0, 0));
+                new Node(N1, 0, 0, new ComplexNumber(0, 0));
+                new Node(N2, 0, 0, new ComplexNumber(0, 0));
             }
             if(m2.find()){
                 String CName=m2.group(1).trim();
@@ -129,8 +129,8 @@ public class Data {
                     C=Float.parseFloat(CQuantity)/(10^12);
                 }
                 new Capacitor(new ComplexNumber(0, 0),new ComplexNumber(0, 0),new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0) , CName, C);
-                new Node(N1, new ComplexNumber(0, 0));
-                new Node(N2, new ComplexNumber(0, 0));
+                new Node(N1, 0, 0, new ComplexNumber(0, 0));
+                new Node(N2, 0, 0, new ComplexNumber(0, 0));
             }
             if(m3.find()){
                 String LName=m3.group(1).trim();
@@ -173,8 +173,8 @@ public class Data {
                     L=Float.parseFloat(LQuantity)/(10^12);
                 }
                 new Inductance(new ComplexNumber(0, 0),new ComplexNumber(0, 0),new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), LName, L);
-                new Node(N1, new ComplexNumber(0, 0));
-                new Node(N2, new ComplexNumber(0, 0));
+                new Node(N1, 0, 0, new ComplexNumber(0, 0));
+                new Node(N2, 0, 0, new ComplexNumber(0, 0));
             }
             if(m4.find()){
                 String VACName=m4.group(1).trim();
@@ -192,8 +192,8 @@ public class Data {
                 }
                 else
                     new VoltageSourceDC(new ComplexNumber(0, 0),new ComplexNumber(0, 0),new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), VACName);
-                new Node(N1, new ComplexNumber(0, 0));
-                new Node(N2, new ComplexNumber(0, 0));
+                new Node(N1, 0, 0, new ComplexNumber(0, 0));
+                new Node(N2, 0, 0, new ComplexNumber(0, 0));
             }
             if(m5.find()){
                 String IACName=m5.group(1).trim();
@@ -211,8 +211,8 @@ public class Data {
                 }
                 else
                     new CurrentSourceDC(new ComplexNumber(0, 0),new ComplexNumber(0, 0),new ComplexNumber(0, 0),N1,N2,IACName);
-                new Node(N1, new ComplexNumber(0, 0));
-                new Node(N2, new ComplexNumber(0, 0));
+                new Node(N1, 0, 0, new ComplexNumber(0, 0));
+                new Node(N2, 0, 0, new ComplexNumber(0, 0));
             }
             if(m6.find()){
                 String VSCCName=m6.group(1).trim();
@@ -221,8 +221,8 @@ public class Data {
                 String gainStr = m6.group(5);
                 float gain = Float.parseFloat(gainStr);
                 new CurrentControlVoltageSource(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), VSCCName ,ControlElement, gain);
-                new Node(N1, new ComplexNumber(0, 0));
-                new Node(N2, new ComplexNumber(0, 0));
+                new Node(N1, 0, 0, new ComplexNumber(0, 0));
+                new Node(N2, 0, 0, new ComplexNumber(0, 0));
             }
             if(m7.find()){
                 String VSVCName=m7.group(1).trim();
@@ -231,8 +231,8 @@ public class Data {
                 String gainStr = m7.group(5);
                 float gain = Float.parseFloat(gainStr);
                 new VoltageControlVoltageSource(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), VSVCName, N1Control, N2Control, gain);
-                new Node(N1, new ComplexNumber(0, 0));
-                new Node(N2, new ComplexNumber(0, 0));
+                new Node(N1, 0, 0, new ComplexNumber(0, 0));
+                new Node(N2, 0, 0, new ComplexNumber(0, 0));
             }
             if(m8.find()){
                 String CSCCName=m8.group(1).trim();
@@ -241,8 +241,8 @@ public class Data {
                 String gainStr = m8.group(5);
                 float gain = Float.parseFloat(gainStr);
                 new CurrentControlCurrentSource(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), CSCCName, ControlElement, gain);
-                new Node(N1, new ComplexNumber(0, 0));
-                new Node(N2, new ComplexNumber(0, 0));
+                new Node(N1, 0, 0, new ComplexNumber(0, 0));
+                new Node(N2, 0, 0, new ComplexNumber(0, 0));
             }
             if(m9.find()){
                 String CSVCName=m9.group(1).trim();
@@ -251,8 +251,8 @@ public class Data {
                 String gainStr = m9.group(5);
                 float gain = Float.parseFloat(gainStr);
                 new VoltageControlCurrentSource(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), CSVCName, N1Control, N2Control, gain);
-                new Node(N1, new ComplexNumber(0, 0));
-                new Node(N2, new ComplexNumber(0, 0));
+                new Node(N1, 0, 0, new ComplexNumber(0, 0));
+                new Node(N2, 0, 0, new ComplexNumber(0, 0));
             }
             if(m10.find()){
                 String SimulationTimeQuantity = m10.group(2);

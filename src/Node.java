@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 public class Node {
-    private int node, flag = 0;
+    private int node, flag = 0, x , y;
     private ComplexNumber nodeVoltage;
     private static ArrayList<Node> allNodes = new ArrayList<>();
 
-    public Node(int node, ComplexNumber nodeVoltage) {
+    public Node(int node, int x, int y, ComplexNumber nodeVoltage) {
         for (Node allNode : allNodes) {
             if (allNode.node == node) {
                 flag = 1;
@@ -15,6 +15,8 @@ public class Node {
         if (flag == 0) {
             this.node = node;
             this.nodeVoltage = nodeVoltage;
+            this.x = x;
+            this.y = y;
             allNodes.add(this);
         }
     }
@@ -27,6 +29,14 @@ public class Node {
         return nodeVoltage;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     public static ArrayList<Node> getAllNodes() {
         return allNodes;
     }
@@ -37,5 +47,13 @@ public class Node {
 
     public void setNodeVoltage(ComplexNumber nodeVoltage) {
         this.nodeVoltage = nodeVoltage;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }
