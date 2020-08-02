@@ -17,6 +17,15 @@ class functions{
     ImageIcon WireH = new ImageIcon("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\wire-H.png");
     //ImageIcon ACV = new ImageIcon("");
     //ImageIcon ACH = new ImageIcon("");
+    public void CreateNodes(){
+        int counter=1;
+        for(int j=0 ; j<=5 ; j++){
+            for(int i=0 ; i<=6 ; i++){
+             new Node(counter,(78*i)+7,(75*j)+10,Node.getAllNodes().get(counter).getNodeVoltage());
+             counter++;
+            }
+        }
+    }
     public ImageIcon setIconElements(Node StartNode , Node EndNode , int firstState , int place){
 
 

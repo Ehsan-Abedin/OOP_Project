@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -12,8 +13,7 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
         <menus>
@@ -36,7 +36,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TabPane layoutY="66.0" prefHeight="330.0" prefWidth="285.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="66.0" prefHeight="651.0" prefWidth="472.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Input Circuit">
             <content>
@@ -50,19 +50,19 @@
           </Tab>
         </tabs>
       </TabPane>
-      <TitledPane animated="false" layoutX="289.0" layoutY="66.0" prefHeight="182.0" prefWidth="310.0" text="Graphic Circuit">
+      <TitledPane animated="false" layoutX="479.0" layoutY="66.0" prefHeight="330.0" prefWidth="404.0" text="Graphic Circuit">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="106.0" prefWidth="309.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="224.0" prefWidth="342.0" />
         </content>
       </TitledPane>
-      <Separator layoutX="283.0" layoutY="66.0" orientation="VERTICAL" prefHeight="341.0" prefWidth="5.0" />
-      <AnchorPane layoutX="1.0" layoutY="27.0" prefHeight="40.0" prefWidth="600.0" AnchorPane.bottomAnchor="333.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
-         <children>
-            <Button layoutX="404.0" layoutY="7.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.0" text="Draw" />
-            <Button layoutX="470.0" layoutY="7.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.0" text="Run" />
-            <Button layoutX="535.0" layoutY="7.0" mnemonicParsing="false" text="Output" />
-         </children>
-      </AnchorPane>
-      <TextArea editable="false" layoutX="289.0" layoutY="248.0" prefHeight="152.0" prefWidth="310.0" />
+      <Separator layoutX="468.0" layoutY="66.0" orientation="VERTICAL" prefHeight="651.0" prefWidth="11.0" />
+      <TextArea editable="false" layoutX="479.0" layoutY="396.0" prefHeight="321.0" prefWidth="404.0" />
+      <ButtonBar layoutY="26.0" prefHeight="40.0" prefWidth="883.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0">
+        <buttons>
+          <Button mnemonicParsing="false" text="Draw" />
+            <Button mnemonicParsing="false" text="Run" />
+            <Button mnemonicParsing="false" text="Output" />
+        </buttons>
+      </ButtonBar>
    </children>
 </AnchorPane>
