@@ -2,7 +2,6 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import javax.swing.*;
 class functions{
     ImageIcon ResistorV = new ImageIcon("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-V.png");
@@ -14,17 +13,22 @@ class functions{
     ImageIcon Ground = new ImageIcon("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\ground.png");
     ImageIcon DCV = new ImageIcon("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\dc-V.png");
     ImageIcon DCH = new ImageIcon("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\dc-H.png");
-    ImageIcon ACV = new ImageIcon("");
-    ImageIcon ACH = new ImageIcon("");
-
-
-
+    ImageIcon WireV = new ImageIcon("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\wire-V.png");
+    ImageIcon WireH = new ImageIcon("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\wire-H.png");
+    //ImageIcon ACV = new ImageIcon("");
+    //ImageIcon ACH = new ImageIcon("");
     public ImageIcon setIconElements(Node StartNode , Node EndNode , int firstState , int place){
-        return ;
+
+
+
+
     }
+    public ImageIcon DrawWires(Node StartNode , Node EndNode , int Place){
 
 
 
+
+    }
 
 }
 public class Graphics extends Application {
