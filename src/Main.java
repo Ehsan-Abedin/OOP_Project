@@ -201,7 +201,7 @@ public class Main {
                         if (allCurrentSourceAC.getNode1() == p)
                             i[p][1] = -allCurrentSourceAC.getCurrent().real();
                         else if (allCurrentSourceAC.getNode2() == p)
-                            i[p][1] = allCurrentSourceAC.getCurrent().real();
+                            i[p][1] = allCurrentSourceAC.getCurrentDC() * (float) Math.sin(2 * Math.PI * allCurrentSourceAC.getFrequency() * t + allCurrentSourceAC.getPhase());
                     }
                 }
                 for (int p = 1; p < m + 1; p++) {
