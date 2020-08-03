@@ -34,12 +34,13 @@ class functions{
     Image DCV = new Image(DCVI);
     Image WireH = new Image(WireHI);
     Image WireV = new Image(WireVI);
+
     public void CreateNodes(){
         int counter=1;
         for(int j=0 ; j<=5 ; j++){
             for(int i=0 ; i<=6 ; i++){
-             new Node(counter,(78*i)+7,(75*j)+10,Node.getAllNodes().get(counter).getNodeVoltage());
-             counter++;
+                new Node(counter,(78*i)+7,(75*j)+10,Node.getAllNodes().get(counter).getNodeVoltage());
+                counter++;
             }
         }
     }

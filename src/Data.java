@@ -28,6 +28,12 @@ public class Data {
         Pattern p9 = Pattern.compile(ISourceVControl);
         String Step= "(\\.tran.*) (\\d*)(\\w)";
         Pattern p10 = Pattern.compile(Step);
+        String DeltaV = "dV( )*(\\d*)(\\w*)";
+        Pattern p11 = Pattern.compile(DeltaV);
+        String DeltaI = "dI( )*(\\d*)(\\w*)";
+        Pattern p12 = Pattern.compile(DeltaI);
+        String DeltaT = "dT( )*(\\d*)(\\w*)";
+        Pattern p13 = Pattern.compile(DeltaT);
         File inputCircuit = new File("test.txt");
         String line = "";
         try (Scanner sc = new Scanner(inputCircuit, StandardCharsets.UTF_8.name())){
@@ -43,6 +49,9 @@ public class Data {
             Matcher m8 = p8.matcher(line);
             Matcher m9 = p9.matcher(line);
             Matcher m10= p10.matcher(line);
+            Matcher m11= p11.matcher(line);
+            Matcher m12= p12.matcher(line);
+            Matcher m13= p13.matcher(line);
             if(m1.find()){
                 String RName=m1.group(1).trim();
                 int N1=Integer.parseInt(m1.group(2)) , N2 = Integer.parseInt(m1.group(3));
@@ -282,6 +291,101 @@ public class Data {
                 else if(SimulationTimePower.charAt(0)=='G'){
                     SimulationTime*=1000000000;
                 }
+            }
+            if(m11.find()){
+                String DeltaVQuantity = m11.group(2);
+                String DeltaVPower = m11.group(3);
+                int myDeltaV = Integer.parseInt(DeltaVQuantity);
+                if(DeltaVPower.charAt(0)=='m'){
+                    myDeltaV/=1000;
+                }
+                else if(DeltaVPower.charAt(0)=='u'){
+                    myDeltaV/=1000000;
+                }
+                else if(DeltaVPower.charAt(0)=='m'){
+                    myDeltaV/=1000;
+                }
+                else if(DeltaVPower.charAt(0)=='p'){
+                    myDeltaV/=1000000;
+                    myDeltaV/=1000000;
+                }
+                else if(DeltaVPower.charAt(0)=='n'){
+                    myDeltaV/=1000000000;
+                }
+                else if(DeltaVPower.charAt(0)=='k'){
+                    myDeltaV*=1000;
+                }
+                else if(DeltaVPower.charAt(0)=='M'){
+                    myDeltaV*=1000000;
+                }
+                else if(DeltaVPower.charAt(0)=='G'){
+                    myDeltaV*=1000000000;
+                }
+            }
+            if(m12.find()){
+                String DeltaIQuantity = m12.group(2);
+                String DeltaIPower = m12.group(3);
+                int myDeltaI = Integer.parseInt(DeltaIQuantity);
+                if(DeltaIPower.charAt(0)=='m'){
+                    myDeltaI/=1000;
+                }
+                else if(DeltaIPower.charAt(0)=='u'){
+                    myDeltaI/=1000000;
+                }
+                else if(DeltaIPower.charAt(0)=='m'){
+                    myDeltaI/=1000;
+                }
+                else if(DeltaIPower.charAt(0)=='p'){
+                    myDeltaI/=1000000;
+                    myDeltaI/=1000000;
+                }
+                else if(DeltaIPower.charAt(0)=='n'){
+                    myDeltaI/=1000000000;
+                }
+                else if(DeltaIPower.charAt(0)=='k'){
+                    myDeltaI*=1000;
+                }
+                else if(DeltaIPower.charAt(0)=='M'){
+                    myDeltaI*=1000000;
+                }
+                else if(DeltaIPower.charAt(0)=='G'){
+                    myDeltaI*=1000000000;
+                }
+            }
+            if(m13.find()){
+                String DeltaTQuantity = m13.group(2);
+                String DeltaTPower = m13.group(3);
+                int myDeltaT = Integer.parseInt(DeltaTQuantity);
+                if(DeltaTPower.charAt(0)=='m'){
+                    myDeltaT/=1000;
+                }
+                else if(DeltaTPower.charAt(0)=='u'){
+                    myDeltaT/=1000000;
+                }
+                else if(DeltaTPower.charAt(0)=='m'){
+                    myDeltaT/=1000;
+                }
+                else if(DeltaTPower.charAt(0)=='p'){
+                    myDeltaT/=1000000;
+                    myDeltaT/=1000000;
+                }
+                else if(DeltaTPower.charAt(0)=='n'){
+                    myDeltaT/=1000000000;
+                }
+                else if(DeltaTPower.charAt(0)=='k'){
+                    myDeltaT*=1000;
+                }
+                else if(DeltaTPower.charAt(0)=='M'){
+                    myDeltaT*=1000000;
+                }
+                else if(DeltaTPower.charAt(0)=='G'){
+                    myDeltaT*=1000000000;
+                }
+
+
+
+
+
             }
         }
     }
