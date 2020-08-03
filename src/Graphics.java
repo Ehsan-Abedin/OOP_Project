@@ -47,8 +47,8 @@ class functions{
         for(int i=1 ; i<=Element.getAllElements().size() ; i++){
             if(Element.getAllElements().get(i).getName().charAt(0)=='R'){
                 if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
-                    ImageView R = new ImageView
-                    R.
+
+
 
 
 
