@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+
 public class Main {
     private static float deltaV = 0;
     private static float deltaI = 0;
@@ -11,7 +13,8 @@ public class Main {
         this.simulationTime = simulationTime;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        Data.getInput();
         if ((Capacitor.getAllCapacitors() == null) && (Inductance.getAllInductances() == null)) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
                 int n = Node.getAllNodes().size();
@@ -201,7 +204,7 @@ public class Main {
                         if (allCurrentSourceAC.getNode1() == p)
                             i[p][1] = -allCurrentSourceAC.getCurrent().real();
                         else if (allCurrentSourceAC.getNode2() == p)
-                            i[p][1] = allCurrentSourceAC.getCurrent().real();
+                            i[p][1] = allCurrentSourceAC.getCurrentDC() * (float) Math.sin(2 * Math.PI * allCurrentSourceAC.getFrequency() * t + allCurrentSourceAC.getPhase());
                     }
                 }
                 for (int p = 1; p < m + 1; p++) {
@@ -210,7 +213,7 @@ public class Main {
                             e[p][1] = allVoltageSourceDC.getVoltage().real();
                     for (VoltageSourceAC allvoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs())
                         if (Integer.parseInt(allvoltageSourceAC.getName().substring(1)) == p)
-                            e[p][1] = allvoltageSourceAC.getVoltage().real();
+                            e[p][1] = allvoltageSourceAC.getVoltageDC() * (float) Math.sin(2 * Math.PI * allvoltageSourceAC.getFrequency() * t + allvoltageSourceAC.getPhase());
                 }
                 for (int p = 1; p < n + 1; p++)
                     b[p][1] = i[p][1];
@@ -304,6 +307,7 @@ public class Main {
                     allCurrentControlVoltageSource.setVoltage(allCurrentControlVoltageSource.voltage);
                     allCurrentControlVoltageSource.setPower(allCurrentControlVoltageSource.power(allCurrentControlVoltageSource.current, allCurrentControlVoltageSource.voltage));
                 }
+                Data.setOutput();
             }
         } else if (VoltageSourceAC.getAllVoltageSourceACs() != null) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
@@ -457,13 +461,13 @@ public class Main {
                         if (allCurrentSourceAC.getNode1() == p)
                             i[p][1].subtract(allCurrentSourceAC.getCurrent().real());
                         else if (allCurrentSourceAC.getNode2() == p)
-                            i[p][1].add(allCurrentSourceAC.getCurrent().real());
+                            i[p][1].add(allCurrentSourceAC.getCurrentDC() * (float) Math.sin(2 * Math.PI * allCurrentSourceAC.getFrequency() * t + allCurrentSourceAC.getPhase()));
                     }
                 }
                 for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs())
                     for (int p = 1; p < m + 1; p++)
                         if (Integer.parseInt(allVoltageSourceAC.getName().substring(1)) == p)
-                            e[p][1].add(allVoltageSourceAC.getVoltage());
+                            e[p][1].add(allVoltageSourceAC.getVoltageDC() * (float) Math.sin(2 * Math.PI * allVoltageSourceAC.getFrequency() * t + allVoltageSourceAC.getPhase()));
                 for (int p = 1; p < n + 1; p++)
                     b[p][1] = i[p][1];
                 for (int p = 1; p < m + 1; p++)
@@ -601,6 +605,7 @@ public class Main {
                     allCurrentControlVoltageSource.setVoltage(allCurrentControlVoltageSource.voltage);
                     allCurrentControlVoltageSource.setPower(allCurrentControlVoltageSource.power(allCurrentControlVoltageSource.current, allCurrentControlVoltageSource.voltage));
                 }
+                Data.setOutput();
             }
         }
     }

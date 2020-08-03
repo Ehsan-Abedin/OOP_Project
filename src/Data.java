@@ -3,12 +3,11 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.time.chrono.IsoChronology;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Data {
-    public static void getInput(String args[]) throws FileNotFoundException {
+    public static void getInput() throws FileNotFoundException {
         String resistorRegex = "(R.+? ) *(\\d*) *(\\d) *(\\d.+?\\D)";
         Pattern p1 = Pattern.compile(resistorRegex);
         String capacitorRegex = "(C.+? ) *(\\d*) *(\\d) *(\\d*)(.)";
@@ -188,10 +187,10 @@ public class Data {
                 float ACFrequency=Float.parseFloat(VACFrequency);
                 float ACPhase=Float.parseFloat(VACPhase);
                 if(ACDomain==0&&ACFrequency==0&&ACPhase==0){
-                    new VoltageSourceAC(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), VACName, ACFirstState, ACDomain, ACFrequency, ACPhase);
+                    new VoltageSourceDC(new ComplexNumber(0, 0),new ComplexNumber(ACFirstState, 0),new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), VACName);
                 }
                 else
-                    new VoltageSourceDC(new ComplexNumber(0, 0),new ComplexNumber(0, 0),new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), VACName);
+                    new VoltageSourceAC(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), VACName, ACFirstState, ACDomain, ACFrequency, ACPhase);
                 new Node(N1, 0, 0, new ComplexNumber(0, 0));
                 new Node(N2, 0, 0, new ComplexNumber(0, 0));
             }
@@ -207,10 +206,10 @@ public class Data {
                 float ACFrequency=Float.parseFloat(IACFrequency);
                 float ACPhase=Float.parseFloat(IACPhase);
                 if(ACDomain==0&&ACFrequency==0&&ACPhase==0){
-                    new VoltageSourceAC(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0),N1 ,N2 , new ComplexNumber(0, 0), new ComplexNumber(0, 0), IACName, ACFirstState, ACDomain, ACFrequency, ACPhase);
+                    new CurrentSourceDC(new ComplexNumber(0, 0),new ComplexNumber(ACFirstState, 0),new ComplexNumber(0, 0),N1,N2,IACName);
                 }
                 else
-                    new CurrentSourceDC(new ComplexNumber(0, 0),new ComplexNumber(0, 0),new ComplexNumber(0, 0),N1,N2,IACName);
+                    new VoltageSourceAC(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0),N1 ,N2 , new ComplexNumber(0, 0), new ComplexNumber(0, 0), IACName, ACFirstState, ACDomain, ACFrequency, ACPhase);
                 new Node(N1, 0, 0, new ComplexNumber(0, 0));
                 new Node(N2, 0, 0, new ComplexNumber(0, 0));
             }
@@ -286,7 +285,7 @@ public class Data {
             }
         }
     }
-    public static void setOutput(String args){
+    public static void setOutput(){
         try {
             File Output = new File("Output.txt");
             if (Output.createNewFile()) {
@@ -301,15 +300,29 @@ public class Data {
         try {
             FileWriter OutputWriter = new FileWriter("Output.txt");
             for(int i=1 ; i<=Node.getAllNodes().size() ; i++){
-                String lineStr = Integer.toString(i);
-                String lineWriter = "Node " + lineStr + Node.getAllNodes().get(i).getNodeVoltage() ;
-                OutputWriter.write(lineWriter);
+                for (Node allNode : Node.getAllNodes()) {
+                    if (allNode.getNode() == i) {
+                        String lineStr = Integer.toString(i);
+                        String lineWriter = "Node " + lineStr + Node.getAllNodes().get(i).getNodeVoltage() ;
+                        OutputWriter.write(lineWriter);
+                    }
+                }
             }
             for(int j=0 ; j<= Element.getAllElements().size() ; j++){
                 String ElementName = Element.getAllElements().get(j).getName();
-                String VoltageStr = Float.toString(Element.getAllElements().get(j).voltage);
-                String CurrentStr = Float.toString(Element.getAllElements().get(j).current);
-                String PowerStr = Float.toString(Element.getAllElements().get(j).power);
+                String VoltageStr, CurrentStr, PowerStr;
+                if (Element.getAllElements().get(j).voltage.imaginary() == 0)
+                    VoltageStr = Float.toString(Element.getAllElements().get(j).voltage.real());
+                else
+                    VoltageStr = (Element.getAllElements().get(j).voltage.real()) + (Element.getAllElements().get(j).voltage.imaginary()) + "j";
+                if (Element.getAllElements().get(j).current.imaginary() == 0)
+                    CurrentStr = Float.toString(Element.getAllElements().get(j).current.real());
+                else
+                    CurrentStr = (Element.getAllElements().get(j).current.real()) + (Element.getAllElements().get(j).voltage.imaginary()) + "j";
+                if (Element.getAllElements().get(j).power.imaginary() == 0)
+                    PowerStr = Float.toString(Element.getAllElements().get(j).power.real());
+                else
+                    PowerStr = (Element.getAllElements().get(j).power.real()) + (Element.getAllElements().get(j).power.imaginary()) + "j";
                 String lineWriter = ElementName + VoltageStr + CurrentStr + PowerStr;
                 OutputWriter.write(lineWriter);
             }
