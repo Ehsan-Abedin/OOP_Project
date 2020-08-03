@@ -1,15 +1,13 @@
-import javax.swing.plaf.metal.MetalIconFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.time.chrono.IsoChronology;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Data {
-    public static void getInput(String args[]) throws FileNotFoundException {
+    public static void getInput() throws FileNotFoundException {
         String resistorRegex = "(R.+? ) *(\\d*) *(\\d) *(\\d.+?\\D)";
         Pattern p1 = Pattern.compile(resistorRegex);
         String capacitorRegex = "(C.+? ) *(\\d*) *(\\d) *(\\d*)(.)";
@@ -287,7 +285,7 @@ public class Data {
             }
         }
     }
-    public static void setOutput(String args){
+    public static void setOutput(){
         try {
             File Output = new File("Output.txt");
             if (Output.createNewFile()) {

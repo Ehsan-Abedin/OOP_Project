@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+
 public class Main {
     private static float deltaV = 0;
     private static float deltaI = 0;
@@ -11,7 +13,8 @@ public class Main {
         this.simulationTime = simulationTime;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        Data.getInput();
         if ((Capacitor.getAllCapacitors() == null) && (Inductance.getAllInductances() == null)) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
                 int n = Node.getAllNodes().size();
@@ -304,6 +307,7 @@ public class Main {
                     allCurrentControlVoltageSource.setVoltage(allCurrentControlVoltageSource.voltage);
                     allCurrentControlVoltageSource.setPower(allCurrentControlVoltageSource.power(allCurrentControlVoltageSource.current, allCurrentControlVoltageSource.voltage));
                 }
+                Data.setOutput();
             }
         } else if (VoltageSourceAC.getAllVoltageSourceACs() != null) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
@@ -601,6 +605,7 @@ public class Main {
                     allCurrentControlVoltageSource.setVoltage(allCurrentControlVoltageSource.voltage);
                     allCurrentControlVoltageSource.setPower(allCurrentControlVoltageSource.power(allCurrentControlVoltageSource.current, allCurrentControlVoltageSource.voltage));
                 }
+                Data.setOutput();
             }
         }
     }
