@@ -62,41 +62,38 @@ class functions{
             }
             else if(Element.getAllElements().get(i).getName().charAt(0)=='L'){
                 if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
-
-
-
-
+                    ImageView L = new ImageView(InductanceH);
+                    L.setX(Node.getAllNodes().get(firstNode).getX());
+                    L.setY(Node.getAllNodes().get(firstNode).getY()-33);
                 }
                 else{
-
-
-
+                    ImageView L = new ImageView(InductanceV);
+                    L.setX(Node.getAllNodes().get(firstNode).getX()-33);
+                    L.setY(Node.getAllNodes().get(firstNode).getY());
                 }
             }
             else if(Element.getAllElements().get(i).getName().charAt(0)=='C'){
                 if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
-
-
-
-
+                    ImageView C = new ImageView(CapacitorH);
+                    C.setX(Node.getAllNodes().get(firstNode).getX());
+                    C.setY(Node.getAllNodes().get(firstNode).getY()-33);
                 }
                 else{
-
-
-
+                    ImageView C = new ImageView(CapacitorV);
+                    C.setX(Node.getAllNodes().get(firstNode).getX()-33);
+                    C.setY(Node.getAllNodes().get(firstNode).getY());
                 }
             }
             else if(Element.getAllElements().get(i).getName().charAt(0)=='V'){
                 if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
-
-
-
-
+                    ImageView V = new ImageView(DCH);
+                    V.setX(Node.getAllNodes().get(firstNode).getX());
+                    V.setY(Node.getAllNodes().get(firstNode).getY()-33);
                 }
                 else{
-
-
-
+                    ImageView V = new ImageView(DCV);
+                    V.setX(Node.getAllNodes().get(firstNode).getX()-33);
+                    V.setY(Node.getAllNodes().get(firstNode).getY());
                 }
             }
         }
