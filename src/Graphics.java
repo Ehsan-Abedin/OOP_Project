@@ -1,4 +1,4 @@
-import javafx.application.Application;
+/*import javafx.application.Application;
 import javafx.geometry.Orientation;
 import javafx.scene.CacheHint;
 import javafx.scene.Group;
@@ -67,7 +67,7 @@ class functions{
             }
             else if(Element.getAllElements().get(i).getName().charAt(0)=='L'){
                 if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
-                    ImageView L = new ImageView(InductanceH);
+                    ImageViewElem L = new ImageView(InductanceH);
                     L.setX(Node.getAllNodes().get(firstNode).getX());
                     L.setY(Node.getAllNodes().get(firstNode).getY()-33);
                     return L;
@@ -194,4 +194,4 @@ public class Graphics extends Application {
         stage.show();
         stage.setTitle("Circuit Design");
     }
-}
+}*/

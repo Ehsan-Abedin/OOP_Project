@@ -36,9 +36,11 @@ public class Data {
         Pattern p13 = Pattern.compile(DeltaT);
         File inputCircuit = new File("test.txt");
         String line = "";
+        int myDeltaV = 0, myDeltaI = 0, myDeltaT = 0, SimulationTime = 0;
         try (Scanner sc = new Scanner(inputCircuit, StandardCharsets.UTF_8.name())) {
-            for (int i = 0; line != "END"; i++) {
+            while (sc.hasNextLine()) {
                 line = sc.nextLine();
+                System.out.println(line);
                 Matcher m1 = p1.matcher(line);
                 Matcher m2 = p2.matcher(line);
                 Matcher m3 = p3.matcher(line);
@@ -224,7 +226,7 @@ public class Data {
                 if (m10.find()) {
                     String SimulationTimeQuantity = m10.group(2);
                     String SimulationTimePower = m10.group(3);
-                    int SimulationTime = Integer.parseInt(SimulationTimeQuantity);
+                    SimulationTime = Integer.parseInt(SimulationTimeQuantity);
                     if (SimulationTimePower.charAt(0) == 'm') {
                         SimulationTime /= 1000;
                     } else if (SimulationTimePower.charAt(0) == 'u') {
@@ -247,7 +249,7 @@ public class Data {
                 if (m11.find()) {
                     String DeltaVQuantity = m11.group(2);
                     String DeltaVPower = m11.group(3);
-                    int myDeltaV = Integer.parseInt(DeltaVQuantity);
+                    myDeltaV = Integer.parseInt(DeltaVQuantity);
                     if (DeltaVPower.charAt(0) == 'm') {
                         myDeltaV /= 1000;
                     } else if (DeltaVPower.charAt(0) == 'u') {
@@ -270,7 +272,7 @@ public class Data {
                 if (m12.find()) {
                     String DeltaIQuantity = m12.group(2);
                     String DeltaIPower = m12.group(3);
-                    int myDeltaI = Integer.parseInt(DeltaIQuantity);
+                    myDeltaI = Integer.parseInt(DeltaIQuantity);
                     if (DeltaIPower.charAt(0) == 'm') {
                         myDeltaI /= 1000;
                     } else if (DeltaIPower.charAt(0) == 'u') {
@@ -293,7 +295,7 @@ public class Data {
                 if (m13.find()) {
                     String DeltaTQuantity = m13.group(2);
                     String DeltaTPower = m13.group(3);
-                    int myDeltaT = Integer.parseInt(DeltaTQuantity);
+                    myDeltaT = Integer.parseInt(DeltaTQuantity);
                     if (DeltaTPower.charAt(0) == 'm') {
                         myDeltaT /= 1000;
                     } else if (DeltaTPower.charAt(0) == 'u') {
@@ -314,9 +316,10 @@ public class Data {
                     }
                 }
             }
+            new Main(myDeltaV, myDeltaI, myDeltaT, SimulationTime);
         }
     }
-    public static void setOutput(){
+    public static void setOutput(int error){
         try {
             File Output = new File("Output.txt");
             if (Output.createNewFile()) {
@@ -330,6 +333,18 @@ public class Data {
         }
         try {
             FileWriter OutputWriter = new FileWriter("Output.txt");
+            if (error == -2) {
+                OutputWriter.write("-2");
+                return;
+            }
+            if (error == -3) {
+                OutputWriter.write("-3");
+                return;
+            }
+            if (error == -4) {
+                OutputWriter.write("-4");
+                return;
+            }
             for(int i=1 ; i<=Node.getAllNodes().size() ; i++){
                 for (Node allNode : Node.getAllNodes()) {
                     if (allNode.getNode() == i) {
