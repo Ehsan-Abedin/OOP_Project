@@ -36,7 +36,7 @@ public class Data {
         Pattern p13 = Pattern.compile(DeltaT);
         File inputCircuit = new File("test.txt");
         String line = "";
-        int myDeltaV = 0, myDeltaI = 0, myDeltaT = 0, SimulationTime = 0;
+        float myDeltaV = 0, myDeltaI = 0, myDeltaT = 0, SimulationTime = 0;
         try (Scanner sc = new Scanner(inputCircuit, StandardCharsets.UTF_8.name())) {
             while (sc.hasNextLine()) {
                 line = sc.nextLine();
@@ -226,7 +226,7 @@ public class Data {
                 if (m10.find()) {
                     String SimulationTimeQuantity = m10.group(2);
                     String SimulationTimePower = m10.group(3);
-                    SimulationTime = Integer.parseInt(SimulationTimeQuantity);
+                    SimulationTime = Float.parseFloat(SimulationTimeQuantity);
                     if (SimulationTimePower.charAt(0) == 'm') {
                         SimulationTime /= 1000;
                     } else if (SimulationTimePower.charAt(0) == 'u') {
@@ -249,7 +249,7 @@ public class Data {
                 if (m11.find()) {
                     String DeltaVQuantity = m11.group(2);
                     String DeltaVPower = m11.group(3);
-                    myDeltaV = Integer.parseInt(DeltaVQuantity);
+                    myDeltaV = Float.parseFloat(DeltaVQuantity);
                     if (DeltaVPower.charAt(0) == 'm') {
                         myDeltaV /= 1000;
                     } else if (DeltaVPower.charAt(0) == 'u') {
@@ -272,7 +272,7 @@ public class Data {
                 if (m12.find()) {
                     String DeltaIQuantity = m12.group(2);
                     String DeltaIPower = m12.group(3);
-                    myDeltaI = Integer.parseInt(DeltaIQuantity);
+                    myDeltaI = Float.parseFloat(DeltaIQuantity);
                     if (DeltaIPower.charAt(0) == 'm') {
                         myDeltaI /= 1000;
                     } else if (DeltaIPower.charAt(0) == 'u') {
@@ -295,7 +295,7 @@ public class Data {
                 if (m13.find()) {
                     String DeltaTQuantity = m13.group(2);
                     String DeltaTPower = m13.group(3);
-                    myDeltaT = Integer.parseInt(DeltaTQuantity);
+                    myDeltaT = Float.parseFloat(DeltaTQuantity);
                     if (DeltaTPower.charAt(0) == 'm') {
                         myDeltaT /= 1000;
                     } else if (DeltaTPower.charAt(0) == 'u') {
