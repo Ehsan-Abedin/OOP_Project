@@ -56,4 +56,15 @@ public class Node {
     public void setY(int y) {
         this.y = y;
     }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "node=" + node +
+                ", flag=" + flag +
+                ", x=" + x +
+                ", y=" + y +
+                ", nodeVoltage=" + nodeVoltage +
+                '}';
+    }
 }

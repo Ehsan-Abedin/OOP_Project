@@ -61,11 +61,11 @@ public class Main {
             return;
 
 */
-        for (Resistance allResistance : Resistance.getAllResistances()) {
-            System.out.println(allResistance);
+        for (Element allElement : Element.getAllElements()) {
+            System.out.println(allElement);
         }
-        for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
-            System.out.println(allVoltageSourceDC);
+        for (Node allNode : Node.getAllNodes()) {
+            System.out.println(allNode);
         }
         if ((Capacitor.getAllCapacitors() == null) && (Inductance.getAllInductances() == null)) {
             for (float t = 0; t <= simulationTime; t += deltaT) {

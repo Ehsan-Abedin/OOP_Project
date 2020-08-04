@@ -177,7 +177,7 @@ public class Data {
                     float ACFrequency = Float.parseFloat(IACFrequency);
                     float ACPhase = Float.parseFloat(IACPhase);
                     if (ACDomain == 0 && ACFrequency == 0 && ACPhase == 0) {
-                        new CurrentSourceDC(new ComplexNumber(0, 0), new ComplexNumber(ACFirstState, 0), new ComplexNumber(0, 0), N1, N2, IACName);
+                        new CurrentSourceDC(new ComplexNumber(0, 0), new ComplexNumber(ACFirstState, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), IACName);
                     } else
                         new VoltageSourceAC(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), IACName, ACFirstState, ACDomain, ACFrequency, ACPhase);
                     new Node(N1, 0, 0, new ComplexNumber(0, 0));
