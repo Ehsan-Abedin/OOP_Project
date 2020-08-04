@@ -53,11 +53,13 @@ class functions{
                     ImageView R = new ImageView(ResistorH);
                     R.setX(Node.getAllNodes().get(firstNode).getX());
                     R.setY(Node.getAllNodes().get(firstNode).getY()-33);
+                    return R;
                 }
                 else{
                     ImageView R = new ImageView(ResistorV);
                     R.setX(Node.getAllNodes().get(firstNode).getX()-33);
                     R.setY(Node.getAllNodes().get(firstNode).getY());
+                    return R;
                 }
             }
             else if(Element.getAllElements().get(i).getName().charAt(0)=='L'){
@@ -65,11 +67,13 @@ class functions{
                     ImageView L = new ImageView(InductanceH);
                     L.setX(Node.getAllNodes().get(firstNode).getX());
                     L.setY(Node.getAllNodes().get(firstNode).getY()-33);
+                    return L;
                 }
                 else{
                     ImageView L = new ImageView(InductanceV);
                     L.setX(Node.getAllNodes().get(firstNode).getX()-33);
                     L.setY(Node.getAllNodes().get(firstNode).getY());
+                    return L;
                 }
             }
             else if(Element.getAllElements().get(i).getName().charAt(0)=='C'){
@@ -77,11 +81,13 @@ class functions{
                     ImageView C = new ImageView(CapacitorH);
                     C.setX(Node.getAllNodes().get(firstNode).getX());
                     C.setY(Node.getAllNodes().get(firstNode).getY()-33);
+                    return C;
                 }
                 else{
                     ImageView C = new ImageView(CapacitorV);
                     C.setX(Node.getAllNodes().get(firstNode).getX()-33);
                     C.setY(Node.getAllNodes().get(firstNode).getY());
+                    return C;
                 }
             }
             else if(Element.getAllElements().get(i).getName().charAt(0)=='V'){
@@ -89,11 +95,13 @@ class functions{
                     ImageView V = new ImageView(DCH);
                     V.setX(Node.getAllNodes().get(firstNode).getX());
                     V.setY(Node.getAllNodes().get(firstNode).getY()-33);
+                    return V;
                 }
                 else{
                     ImageView V = new ImageView(DCV);
                     V.setX(Node.getAllNodes().get(firstNode).getX()-33);
                     V.setY(Node.getAllNodes().get(firstNode).getY());
+                    return V;
                 }
             }
         }
