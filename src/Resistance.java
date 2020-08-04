@@ -9,6 +9,7 @@ public class Resistance extends Element {
     public Resistance(ComplexNumber current, ComplexNumber voltage, ComplexNumber power, int node1, int node2, ComplexNumber node1Voltage, ComplexNumber node2Voltage, String name, float resistance) {
         super(current, voltage, power, node1, node2, node1Voltage, node2Voltage, name);
         this.resistance = resistance;
+        allResistances.add(this);
     }
 
     public float getResistance() {

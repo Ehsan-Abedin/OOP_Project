@@ -16,6 +16,7 @@ public class Element {
         this.node1Voltage = node1Voltage;
         this.node2Voltage = node2Voltage;
         this.name = name;
+        allElements.add(this);
     }
 
     public Element(ComplexNumber current, ComplexNumber voltage, ComplexNumber power, int node1, int node2, String name) {

@@ -10,6 +10,7 @@ public class VoltageControlVoltageSource extends Element {
         this.controlNode1 = controlNode1;
         this.controlNode2 = controlNode2;
         this.gain = gain;
+        allVoltageControlVoltageSources.add(this);
     }
 
     public int getControlNode1() {

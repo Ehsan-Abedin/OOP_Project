@@ -59,29 +59,30 @@ public class Data {
                     int N1 = Integer.parseInt(m1.group(2)), N2 = Integer.parseInt(m1.group(3));
                     String RQuantity = m1.group(4);
                     float R = 0;
-                    if (RQuantity.indexOf(RQuantity.length() - 1) == 'k') {
+                    if (RQuantity.charAt(RQuantity.length() - 1) == 'k') {
                         RQuantity = RQuantity.replace("k", "");
                         R = Float.parseFloat(RQuantity) * 1000;
-                    } else if (RQuantity.indexOf(RQuantity.length() - 1) == 'G') {
+                    } else if (RQuantity.charAt(RQuantity.length() - 1) == 'G') {
                         RQuantity = RQuantity.replace("G", "");
                         R = Float.parseFloat(RQuantity) * 1000000000;
-                    } else if (RQuantity.indexOf(RQuantity.length() - 1) == 'M') {
+                    } else if (RQuantity.charAt(RQuantity.length() - 1) == 'M') {
                         RQuantity = RQuantity.replace("M", "");
                         R = Float.parseFloat(RQuantity) * 1000000;
-                    } else if (RQuantity.indexOf(RQuantity.length() - 1) == 'm') {
+                    } else if (RQuantity.charAt(RQuantity.length() - 1) == 'm') {
                         RQuantity = RQuantity.replace("m", "");
                         R = Float.parseFloat(RQuantity) / 1000;
-                    } else if (RQuantity.indexOf(RQuantity.length() - 1) == 'n') {
+                    } else if (RQuantity.charAt(RQuantity.length() - 1) == 'n') {
                         RQuantity = RQuantity.replace("n", "");
                         R = Float.parseFloat(RQuantity) / 1000000000;
-                    } else if (RQuantity.indexOf(RQuantity.length() - 1) == 'u') {
+                    } else if (RQuantity.charAt(RQuantity.length() - 1) == 'u') {
                         RQuantity = RQuantity.replace("u", "");
                         R = Float.parseFloat(RQuantity) / 1000000;
-                    } else if (RQuantity.indexOf(RQuantity.length() - 1) == 'p') {
+                    } else if (RQuantity.charAt(RQuantity.length() - 1) == 'p') {
                         RQuantity = RQuantity.replace("p", "");
                         R = Float.parseFloat(RQuantity) / (10 ^ 12);
                     }
                     new Resistance(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), RName, R);
+                    System.out.println(1);
                     new Node(N1, 0, 0, new ComplexNumber(0, 0));
                     new Node(N2, 0, 0, new ComplexNumber(0, 0));
                 }
@@ -90,25 +91,25 @@ public class Data {
                     int N1 = Integer.parseInt(m2.group(2)), N2 = Integer.parseInt(m2.group(3));
                     String CQuantity = m2.group(4);
                     float C = 0;
-                    if (CQuantity.indexOf(CQuantity.length() - 1) == 'k') {
+                    if (CQuantity.charAt(CQuantity.length() - 1) == 'k') {
                         CQuantity = CQuantity.replace("k", "");
                         C = Float.parseFloat(CQuantity) * 1000;
-                    } else if (CQuantity.indexOf(CQuantity.length() - 1) == 'G') {
+                    } else if (CQuantity.charAt(CQuantity.length() - 1) == 'G') {
                         CQuantity = CQuantity.replace("G", "");
                         C = Float.parseFloat(CQuantity) * 1000000000;
-                    } else if (CQuantity.indexOf(CQuantity.length() - 1) == 'M') {
+                    } else if (CQuantity.charAt(CQuantity.length() - 1) == 'M') {
                         CQuantity = CQuantity.replace("M", "");
                         C = Float.parseFloat(CQuantity) * 1000000;
-                    } else if (CQuantity.indexOf(CQuantity.length() - 1) == 'm') {
+                    } else if (CQuantity.charAt(CQuantity.length() - 1) == 'm') {
                         CQuantity = CQuantity.replace("m", "");
                         C = Float.parseFloat(CQuantity) / 1000;
-                    } else if (CQuantity.indexOf(CQuantity.length() - 1) == 'n') {
+                    } else if (CQuantity.charAt(CQuantity.length() - 1) == 'n') {
                         CQuantity = CQuantity.replace("n", "");
                         C = Float.parseFloat(CQuantity) / 1000000000;
-                    } else if (CQuantity.indexOf(CQuantity.length() - 1) == 'u') {
+                    } else if (CQuantity.charAt(CQuantity.length() - 1) == 'u') {
                         CQuantity = CQuantity.replace("u", "");
                         C = Float.parseFloat(CQuantity) / 1000000;
-                    } else if (CQuantity.indexOf(CQuantity.length() - 1) == 'p') {
+                    } else if (CQuantity.charAt(CQuantity.length() - 1) == 'p') {
                         CQuantity = CQuantity.replace("p", "");
                         C = Float.parseFloat(CQuantity) / (10 ^ 12);
                     }
@@ -121,25 +122,25 @@ public class Data {
                     int N1 = Integer.parseInt(m3.group(2)), N2 = Integer.parseInt(m3.group(3));
                     String LQuantity = m3.group(4);
                     float L = 0;
-                    if (LQuantity.indexOf(LQuantity.length() - 1) == 'k') {
+                    if (LQuantity.charAt(LQuantity.length() - 1) == 'k') {
                         LQuantity = LQuantity.replace("k", "");
                         L = Float.parseFloat(LQuantity) * 1000;
-                    } else if (LQuantity.indexOf(LQuantity.length() - 1) == 'G') {
+                    } else if (LQuantity.charAt(LQuantity.length() - 1) == 'G') {
                         LQuantity = LQuantity.replace("G", "");
                         L = Float.parseFloat(LQuantity) * 1000000000;
-                    } else if (LQuantity.indexOf(LQuantity.length() - 1) == 'M') {
+                    } else if (LQuantity.charAt(LQuantity.length() - 1) == 'M') {
                         LQuantity = LQuantity.replace("M", "");
                         L = Float.parseFloat(LQuantity) * 1000000;
-                    } else if (LQuantity.indexOf(LQuantity.length() - 1) == 'm') {
+                    } else if (LQuantity.charAt(LQuantity.length() - 1) == 'm') {
                         LQuantity = LQuantity.replace("m", "");
                         L = Float.parseFloat(LQuantity) / 1000;
-                    } else if (LQuantity.indexOf(LQuantity.length() - 1) == 'n') {
+                    } else if (LQuantity.charAt(LQuantity.length() - 1) == 'n') {
                         LQuantity = LQuantity.replace("n", "");
                         L = Float.parseFloat(LQuantity) / 1000000000;
-                    } else if (LQuantity.indexOf(LQuantity.length() - 1) == 'u') {
+                    } else if (LQuantity.charAt(LQuantity.length() - 1) == 'u') {
                         LQuantity = LQuantity.replace("u", "");
                         L = Float.parseFloat(LQuantity) / 1000000;
-                    } else if (LQuantity.indexOf(LQuantity.length() - 1) == 'p') {
+                    } else if (LQuantity.charAt(LQuantity.length() - 1) == 'p') {
                         LQuantity = LQuantity.replace("p", "");
                         L = Float.parseFloat(LQuantity) / (10 ^ 12);
                     }

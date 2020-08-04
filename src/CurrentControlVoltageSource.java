@@ -9,6 +9,7 @@ public class CurrentControlVoltageSource extends Element {
         super(current, voltage, power, node1, node2, node1Voltage, node2Voltage, name);
         this.controlElement = controlElement;
         this.gain = gain;
+        allCurrentControlVoltageSources.add(this);
     }
 
     public String getControlElement() {
