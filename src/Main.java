@@ -6,11 +6,11 @@ public class Main {
     private static float deltaT = 0;
     private static float simulationTime = 0;
 
-    public Main(float deltaV, float deltaI, float deltaT, float simulationTime) {
-        this.deltaV = deltaV;
-        this.deltaI = deltaI;
-        this.deltaT = deltaT;
-        this.simulationTime = simulationTime;
+    public static void setData(float V, float I, float T, float Time) {
+        deltaV = V;
+        deltaI = I;
+        deltaT = T;
+        simulationTime = Time;
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -268,9 +268,9 @@ public class Main {
                             e[p][1] = allvoltageSourceAC.getVoltageDC() * (float) Math.sin(2 * Math.PI * allvoltageSourceAC.getFrequency() * t + allvoltageSourceAC.getPhase());
                 }
                 for (int p = 1; p < n + 1; p++)
-                    b[p][1] = i[p][1];
+                    z[p][1] = i[p][1];
                 for (int p = 1; p < m + 1; p++)
-                    b[n + p][1] = e[p][1];
+                    z[n + p][1] = e[p][1];
                 float invert_a[][] = Functions.invert(a);
                 for (int p = 1; p < m + n + 1; p++)
                     for (int q = 1; q < 2; q++)

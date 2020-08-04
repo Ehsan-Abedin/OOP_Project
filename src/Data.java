@@ -316,11 +316,11 @@ public class Data {
                     }
                 }
             }
-            new Main(myDeltaV, myDeltaI, myDeltaT, SimulationTime);
+            Main.setData(myDeltaV, myDeltaI, myDeltaT, SimulationTime);
         }
     }
     public static void setOutput(int error){
-        try {
+        /*try {
             File Output = new File("Output.txt");
             if (Output.createNewFile()) {
                 System.out.println("File created: " + Output.getName());
@@ -330,7 +330,7 @@ public class Data {
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-        }
+        }*/
         try {
             FileWriter OutputWriter = new FileWriter("Output.txt");
             if (error == -2) {
@@ -349,7 +349,7 @@ public class Data {
                 for (Node allNode : Node.getAllNodes()) {
                     if (allNode.getNode() == i) {
                         String lineStr = Integer.toString(i);
-                        String lineWriter = "Node " + lineStr + Node.getAllNodes().get(i).getNodeVoltage() ;
+                        String lineWriter = "Node " + lineStr + allNode.getNodeVoltage();
                         OutputWriter.write(lineWriter);
                     }
                 }
