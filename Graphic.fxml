@@ -40,12 +40,18 @@
         <tabs>
           <Tab text="Input Circuit">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea editable="false" prefHeight="622.0" prefWidth="472.0" text="Your Input Circuit" />
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="Output Circuit">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea editable="false" layoutX="-9.0" prefHeight="651.0" prefWidth="488.0" text="Your Output Circuit" />
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>

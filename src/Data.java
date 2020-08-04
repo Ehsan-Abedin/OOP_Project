@@ -8,11 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Data {
     public static void getInput() throws FileNotFoundException {
-        String resistorRegex = "(R.+? ) *(\\d*) *(\\d) *(\\d.+?\\D)";
+        String resistorRegex = "(R+\\d*)+\\s+(\\d+)+\\s+(\\d+)+\\s+(\\w*\\d+.*)";
         Pattern p1 = Pattern.compile(resistorRegex);
-        String capacitorRegex = "(C.+? ) *(\\d*) *(\\d) *(\\d*)(.)";
+        String capacitorRegex = "(C+\\d*)+\\s+(\\d+)+\\s+(\\d+)+\\s+(\\w*\\d+.*)";
         Pattern p2 = Pattern.compile(capacitorRegex);
-        String inductanceRegex = "(L.+? ) *(\\d*) *(\\d) *(\\d*)(.)";
+        String inductanceRegex = "(L+\\d*)+\\s+(\\d+)+\\s+(\\d+)+\\s+(\\w*\\d+.*)";
         Pattern p3 = Pattern.compile(inductanceRegex);
         String VACSourceRegex = "(V.+? ) *(\\d*) *(\\d) *(.+? ) *(.+? ) *(.+? ) *(.+? ) *(.*)";
         Pattern p4 = Pattern.compile(VACSourceRegex);
