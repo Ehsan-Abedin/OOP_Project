@@ -1,4 +1,4 @@
-import javafx.application.Application;
+/*import javafx.application.Application;
 import javafx.scene.CacheHint;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -110,8 +110,8 @@ class functions{
 
     }
 
-}
-public class Graphics extends Application {
+}*/
+/*public class Graphics extends Application {
     public static void Graphic(String args){
         launch(args);
     }
@@ -123,4 +123,4 @@ public class Graphics extends Application {
         stage.show();
         stage.setTitle("Circuit Design");
     }
-}
+}*/

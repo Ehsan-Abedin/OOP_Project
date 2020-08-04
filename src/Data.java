@@ -52,6 +52,7 @@ public class Data {
             Matcher m11= p11.matcher(line);
             Matcher m12= p12.matcher(line);
             Matcher m13= p13.matcher(line);
+            int myDeltaV = 0, myDeltaI = 0, myDeltaT = 0, SimulationTime = 0;
             if(m1.find()){
                 String RName=m1.group(1).trim();
                 int N1=Integer.parseInt(m1.group(2)) , N2 = Integer.parseInt(m1.group(3));
@@ -215,7 +216,7 @@ public class Data {
                 float ACFrequency=Float.parseFloat(IACFrequency);
                 float ACPhase=Float.parseFloat(IACPhase);
                 if(ACDomain==0&&ACFrequency==0&&ACPhase==0){
-                    new CurrentSourceDC(new ComplexNumber(0, 0),new ComplexNumber(ACFirstState, 0),new ComplexNumber(0, 0),N1,N2,IACName);
+                    new CurrentSourceDC(new ComplexNumber(ACFirstState, 0),new ComplexNumber(ACFirstState, 0),new ComplexNumber(0, 0),N1,N2,IACName);
                 }
                 else
                     new VoltageSourceAC(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0),N1 ,N2 , new ComplexNumber(0, 0), new ComplexNumber(0, 0), IACName, ACFirstState, ACDomain, ACFrequency, ACPhase);
@@ -265,7 +266,7 @@ public class Data {
             if(m10.find()){
                 String SimulationTimeQuantity = m10.group(2);
                 String SimulationTimePower = m10.group(3);
-                int SimulationTime = Integer.parseInt(SimulationTimeQuantity);
+                SimulationTime = Integer.parseInt(SimulationTimeQuantity);
                 if(SimulationTimePower.charAt(0)=='m'){
                     SimulationTime/=1000;
                 }
@@ -295,7 +296,7 @@ public class Data {
             if(m11.find()){
                 String DeltaVQuantity = m11.group(2);
                 String DeltaVPower = m11.group(3);
-                int myDeltaV = Integer.parseInt(DeltaVQuantity);
+                myDeltaV = Integer.parseInt(DeltaVQuantity);
                 if(DeltaVPower.charAt(0)=='m'){
                     myDeltaV/=1000;
                 }
@@ -325,7 +326,7 @@ public class Data {
             if(m12.find()){
                 String DeltaIQuantity = m12.group(2);
                 String DeltaIPower = m12.group(3);
-                int myDeltaI = Integer.parseInt(DeltaIQuantity);
+                myDeltaI = Integer.parseInt(DeltaIQuantity);
                 if(DeltaIPower.charAt(0)=='m'){
                     myDeltaI/=1000;
                 }
@@ -355,7 +356,7 @@ public class Data {
             if(m13.find()){
                 String DeltaTQuantity = m13.group(2);
                 String DeltaTPower = m13.group(3);
-                int myDeltaT = Integer.parseInt(DeltaTQuantity);
+                myDeltaT = Integer.parseInt(DeltaTQuantity);
                 if(DeltaTPower.charAt(0)=='m'){
                     myDeltaT/=1000;
                 }
@@ -381,11 +382,7 @@ public class Data {
                 else if(DeltaTPower.charAt(0)=='G'){
                     myDeltaT*=1000000000;
                 }
-
-
-
-
-
+                new Main(myDeltaV, myDeltaI, myDeltaT, SimulationTime);
             }
         }
     }

@@ -14,7 +14,48 @@ public class Main {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
+        System.out.println("Hello World !");
         Data.getInput();
+        for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
+            for (CurrentSourceDC currentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
+                if ((allCurrentSourceDC.getNode1() == currentSourceDC.getNode2()) || (allCurrentSourceDC.getNode2() == currentSourceDC.getNode1()))
+                    if (allCurrentSourceDC.getCurrent() != currentSourceDC.getCurrent())
+                        return;
+            }
+        }
+        for (CurrentSourceAC allCurrentSourceAC : CurrentSourceAC.getAllCurrentSourceACs()) {
+            for (CurrentSourceAC currentSourceAC : CurrentSourceAC.getAllCurrentSourceACs()) {
+                if ((allCurrentSourceAC.getNode1() == currentSourceAC.getNode2()) || (allCurrentSourceAC.getNode2() == currentSourceAC.getNode1()))
+                    if (allCurrentSourceAC.getCurrent() != currentSourceAC.getCurrent())
+                        return;
+            }
+        }
+        for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
+            for (VoltageSourceDC voltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
+                if (((allVoltageSourceDC.getNode1() == voltageSourceDC.getNode1()) && (allVoltageSourceDC.getNode2() == voltageSourceDC.getNode2())) || ((allVoltageSourceDC.getNode2() == voltageSourceDC.getNode1()) && (allVoltageSourceDC.getNode1() == voltageSourceDC.getNode2())))
+                    if (allVoltageSourceDC.getVoltage() != voltageSourceDC.getVoltage())
+                        return;
+            }
+        }
+        for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
+            for (VoltageSourceAC voltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
+                if (((allVoltageSourceAC.getNode1() == voltageSourceAC.getNode1()) && (allVoltageSourceAC.getNode2() == voltageSourceAC.getNode2())) || ((allVoltageSourceAC.getNode2() == voltageSourceAC.getNode1()) && (allVoltageSourceAC.getNode1() == voltageSourceAC.getNode2())))
+                    if (allVoltageSourceAC.getVoltage() != voltageSourceAC.getVoltage())
+                        return;
+            }
+        }
+
+        int flag = 0;
+        for (Node allNode : Node.getAllNodes()) {
+            if (allNode.getNode() == 0)
+                flag = 1;
+            if ((allNode.getNode() == 0) && ((allNode.getNodeVoltage().real() != 0) || (allNode.getNodeVoltage().imaginary() != 0)))
+                return;
+        }
+        if (flag != 1)
+            return;
+
+
         if ((Capacitor.getAllCapacitors() == null) && (Inductance.getAllInductances() == null)) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
                 int n = Node.getAllNodes().size();
@@ -610,6 +651,3 @@ public class Main {
         }
     }
 }
-
-
-
