@@ -13,9 +13,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-
-import static jdk.nashorn.internal.objects.Global.Infinity;
-
 class functions{
     functions() throws FileNotFoundException {}
     FileInputStream ResistorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-H.png");
