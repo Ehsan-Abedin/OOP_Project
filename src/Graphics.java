@@ -1,4 +1,4 @@
-/*import javafx.application.Application;
+import javafx.application.Application;
 import javafx.geometry.Orientation;
 import javafx.scene.CacheHint;
 import javafx.scene.Group;
@@ -35,7 +35,6 @@ class functions{
     Image DCV = new Image(DCVI);
     Image WireH = new Image(WireHI);
     Image WireV = new Image(WireVI);
-
     public void CreateNodes(){
         int counter=1;
         for(int j=0 ; j<=5 ; j++){
@@ -136,4 +135,4 @@ public class Graphics extends Application {
         stage.show();
         stage.setTitle("Circuit Design");
     }
-}*/
+}
