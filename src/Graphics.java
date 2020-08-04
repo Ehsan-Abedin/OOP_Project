@@ -138,21 +138,29 @@ class functions{
 public class Graphics extends Application {
     public static void Graphic(String args){
         launch(args);
+    }
+    @Override
+    public void start(Stage stage) throws Exception {
+        Group Layout = new Group();
+        Scene scene = new Scene(Layout,700,610);
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Circuit Design");
         AnchorPane anchorPane0 = new AnchorPane();
-        anchorPane0.setMinHeight(-Infinity);
+       // anchorPane0.setMinHeight(-Infinity);
         anchorPane0.setPrefHeight(715.0);
-        anchorPane0.setXmlns(http://javafx.com/javafx/11.0.1);
-        anchorPane0.setFx(http://javafx.com/fxml/1);
-        anchorPane0.setMaxHeight(-Infinity);
+        //anchorPane0.setXmlns(http://javafx.com/javafx/11.0.1);
+      //  anchorPane0.setFx(http://javafx.com/fxml/1);
+    //    anchorPane0.setMaxHeight(-Infinity);
         anchorPane0.setPrefWidth(883.0);
-        anchorPane0.setMinWidth(-Infinity);
-        anchorPane0.setMaxWidth(-Infinity);
+  //      anchorPane0.setMinWidth(-Infinity);
+//        anchorPane0.setMaxWidth(-Infinity);
         MenuBar menuBar1 = new MenuBar();
         menuBar1.setPrefHeight(26.0);
-        menuBar1.setAnchorPane.topAnchor(1.0);
+       // menuBar1.setAnchorPane.topAnchor(1.0);
         menuBar1.setPrefWidth(600.0);
-        menuBar1.setAnchorPane.rightAnchor(0.0);
-        menuBar1.setAnchorPane.leftAnchor(0,0);
+     //   menuBar1.setAnchorPane.rightAnchor(0.0);
+   //     menuBar1.setAnchorPane.leftAnchor(0,0);
         menuBar1.setLayoutY(1.0);
 
 // Adding child to parent
@@ -161,7 +169,7 @@ public class Graphics extends Application {
         tabPane2.setPrefHeight(651.0);
         tabPane2.setPrefWidth(472.0);
         tabPane2.setLayoutY(66.0);
-        tabPane2.setTabClosingPolicy(UNAVAILABLE);
+   //     tabPane2.setTabClosingPolicy(UNAVAILABLE);
 
 // Adding child to parent
         anchorPane0.getChildren().add(tabPane2);
@@ -195,19 +203,11 @@ public class Graphics extends Application {
         ButtonBar buttonBar6 = new ButtonBar();
         buttonBar6.setPrefHeight(40.0);
         buttonBar6.setPrefWidth(883.0);
-        buttonBar6.setAnchorPane.rightAnchor(10.0);
-        buttonBar6.setAnchorPane.leftAnchor(0.0);
+   //     buttonBar6.setAnchorPane.rightAnchor(10.0);
+ //       buttonBar6.setAnchorPane.leftAnchor(0.0);
         buttonBar6.setLayoutY(26.0);
 
 // Adding child to parent
         anchorPane0.getChildren().add(buttonBar6);
-    }
-    @Override
-    public void start(Stage stage) throws Exception {
-        Group Layout = new Group();
-        Scene scene = new Scene(Layout,700,610);
-        stage.setScene(scene);
-        stage.show();
-        stage.setTitle("Circuit Design");
     }
 }
