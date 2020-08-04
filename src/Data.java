@@ -82,7 +82,6 @@ public class Data {
                         R = Float.parseFloat(RQuantity) / (10 ^ 12);
                     }
                     new Resistance(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), RName, R);
-                    System.out.println(1);
                     new Node(N1, 0, 0, new ComplexNumber(0, 0));
                     new Node(N2, 0, 0, new ComplexNumber(0, 0));
                 }

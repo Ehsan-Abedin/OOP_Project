@@ -14,7 +14,6 @@ public class Main {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        System.out.println("Hello World !");
         Data.getInput();
         /*for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
             for (CurrentSourceDC currentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
@@ -63,7 +62,10 @@ public class Main {
 
 */
         for (Resistance allResistance : Resistance.getAllResistances()) {
-            System.out.println(allResistance.toString());
+            System.out.println(allResistance);
+        }
+        for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
+            System.out.println(allVoltageSourceDC);
         }
         if ((Capacitor.getAllCapacitors() == null) && (Inductance.getAllInductances() == null)) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
