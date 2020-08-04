@@ -33,15 +33,27 @@ class functions{
     Image DCV = new Image(DCVI);
     Image WireH = new Image(WireHI);
     Image WireV = new Image(WireVI);
-    public void CreateNodes(){
-        int counter=1;
-        for(int j=0 ; j<=5 ; j++){
-            for(int i=0 ; i<=6 ; i++){
-                new Node(counter,(78*i)+7,(75*j)+10,Node.getAllNodes().get(counter).getNodeVoltage());
-                Node.getAllNodes().get(counter).setX((78*i)+7);
-                Node.getAllNodes().get(counter).setY((75*j)+10);
-                counter++;
-            }
+    public void SetNodes(){
+        int counter=0;
+        for(counter=1;counter<=6;counter++){
+            Node.getAllNodes().get(counter).setX((78*counter)+7);
+            Node.getAllNodes().get(counter).setY(10);
+        }
+        for(counter=7;counter<=12;counter++){
+            Node.getAllNodes().get(counter).setX((78*counter)+7);
+            Node.getAllNodes().get(counter).setY(85);
+        }
+        for(counter=13;counter<=18;counter++){
+            Node.getAllNodes().get(counter).setX((78*counter)+7);
+            Node.getAllNodes().get(counter).setY(160);
+        }
+        for(counter=19;counter<=24;counter++){
+            Node.getAllNodes().get(counter).setX((78*counter)+7);
+            Node.getAllNodes().get(counter).setY(235);
+        }
+        for(counter=25;counter<=30;counter++){
+            Node.getAllNodes().get(counter).setX((78*counter)+7);
+            Node.getAllNodes().get(counter).setY(310);
         }
     }
     public ImageView setIconElements(Node StartNode , Node EndNode , int firstState , int place) throws FileNotFoundException {
@@ -140,7 +152,7 @@ public class Graphics extends Application {
         menuBar1.setAnchorPane.topAnchor(1.0);
         menuBar1.setPrefWidth(600.0);
         menuBar1.setAnchorPane.rightAnchor(0.0);
-        menuBar1.setAnchorPane.leftAnchor(0.0);
+        menuBar1.setAnchorPane.leftAnchor(0,0);
         menuBar1.setLayoutY(1.0);
 
 // Adding child to parent
