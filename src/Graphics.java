@@ -8,9 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.io.*;
-
 class functions{
     functions() throws FileNotFoundException {}
     FileInputStream ResistorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-H.png");
@@ -40,6 +38,8 @@ class functions{
         for(int j=0 ; j<=5 ; j++){
             for(int i=0 ; i<=6 ; i++){
                 new Node(counter,(78*i)+7,(75*j)+10,Node.getAllNodes().get(counter).getNodeVoltage());
+                Node.getAllNodes().get(counter).setX((78*i)+7);
+                Node.getAllNodes().get(counter).setY((75*j)+10);
                 counter++;
             }
         }
@@ -126,6 +126,69 @@ class functions{
 public class Graphics extends Application {
     public static void Graphic(String args){
         launch(args);
+        AnchorPane anchorPane0 = new AnchorPane();
+        anchorPane0.setMinHeight(-Infinity);
+        anchorPane0.setPrefHeight(715.0);
+        anchorPane0.setXmlns(http://javafx.com/javafx/11.0.1);
+        anchorPane0.setFx(http://javafx.com/fxml/1);
+        anchorPane0.setMaxHeight(-Infinity);
+        anchorPane0.setPrefWidth(883.0);
+        anchorPane0.setMinWidth(-Infinity);
+        anchorPane0.setMaxWidth(-Infinity);
+        MenuBar menuBar1 = new MenuBar();
+        menuBar1.setPrefHeight(26.0);
+        menuBar1.setAnchorPane.topAnchor(1.0);
+        menuBar1.setPrefWidth(600.0);
+        menuBar1.setAnchorPane.rightAnchor(0.0);
+        menuBar1.setAnchorPane.leftAnchor(0.0);
+        menuBar1.setLayoutY(1.0);
+
+// Adding child to parent
+        anchorPane0.getChildren().add(menuBar1);
+        TabPane tabPane2 = new TabPane();
+        tabPane2.setPrefHeight(651.0);
+        tabPane2.setPrefWidth(472.0);
+        tabPane2.setLayoutY(66.0);
+        tabPane2.setTabClosingPolicy(UNAVAILABLE);
+
+// Adding child to parent
+        anchorPane0.getChildren().add(tabPane2);
+        TitledPane titledPane3 = new TitledPane();
+        titledPane3.setPrefHeight(330.0);
+        titledPane3.setPrefWidth(404.0);
+        titledPane3.setAnimated(false);
+        titledPane3.setLayoutX(479.0);
+        titledPane3.setLayoutY(66.0);
+        titledPane3.setText("Graphic Circuit");
+// Adding child to parent
+        anchorPane0.getChildren().add(titledPane3);
+        Separator separator4 = new Separator();
+        separator4.setPrefHeight(651.0);
+        separator4.setOrientation(Orientation.VERTICAL);
+        separator4.setPrefWidth(11.0);
+        separator4.setLayoutX(468.0);
+        separator4.setLayoutY(66.0);
+
+// Adding child to parent
+        anchorPane0.getChildren().add(separator4);
+        TextArea textArea5 = new TextArea();
+        textArea5.setPrefHeight(321.0);
+        textArea5.setEditable(false);
+        textArea5.setPrefWidth(404.0);
+        textArea5.setLayoutX(479.0);
+        textArea5.setLayoutY(396.0);
+
+// Adding child to parent
+        anchorPane0.getChildren().add(textArea5);
+        ButtonBar buttonBar6 = new ButtonBar();
+        buttonBar6.setPrefHeight(40.0);
+        buttonBar6.setPrefWidth(883.0);
+        buttonBar6.setAnchorPane.rightAnchor(10.0);
+        buttonBar6.setAnchorPane.leftAnchor(0.0);
+        buttonBar6.setLayoutY(26.0);
+
+// Adding child to parent
+        anchorPane0.getChildren().add(buttonBar6);
     }
     @Override
     public void start(Stage stage) throws Exception {
