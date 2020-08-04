@@ -381,11 +381,6 @@ public class Data {
                 else if(DeltaTPower.charAt(0)=='G'){
                     myDeltaT*=1000000000;
                 }
-
-
-
-
-
             }
         }
     }

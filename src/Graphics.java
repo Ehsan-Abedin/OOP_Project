@@ -6,13 +6,13 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javax.swing.*;
 import javax.swing.text.html.ImageView;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-
 class functions{
     functions() throws FileNotFoundException {}
-    InputStream ResistorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-H.png");
+    FileInputStream ResistorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-H.png");
     InputStream ResistorVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-V.png");
     InputStream CapacitorVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\capacitor-V.png");
     InputStream CapacitorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\capacitor-H.png");
@@ -44,22 +44,20 @@ class functions{
             }
         }
     }
-    public ImageView setIconElements(Node StartNode , Node EndNode , int firstState , int place){
+    public ImageView setIconElements(Node StartNode , Node EndNode , int firstState , int place) throws FileNotFoundException {
+        int firstNode=0 , secondNode=0 ;
         for(int i=1 ; i<=Element.getAllElements().size() ; i++){
+            firstNode = Element.getAllElements().get(i).getNode1();
             if(Element.getAllElements().get(i).getName().charAt(0)=='R'){
                 if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
-
-
-
-
-
-
-
+                    ImageView R = new ImageView(ResistorH);
+                    R.setX(Node.getAllNodes().get(firstNode).getX());
+                    R.setY(Node.getAllNodes().get(firstNode).getY()-33);
                 }
                 else{
-
-
-
+                    ImageView R = new ImageView(ResistorV);
+                    R.setX(Node.getAllNodes().get(firstNode).getX()-33);
+                    R.setY(Node.getAllNodes().get(firstNode).getY());
                 }
             }
             else if(Element.getAllElements().get(i).getName().charAt(0)=='L'){
