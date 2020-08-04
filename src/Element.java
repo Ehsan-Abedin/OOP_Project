@@ -118,4 +118,18 @@ public class Element {
         power = voltage.multiply(current);
         return power;
     }
+
+    @Override
+    public String toString() {
+        return "Element{" +
+                "current=" + current +
+                ", voltage=" + voltage +
+                ", power=" + power +
+                ", node1=" + node1 +
+                ", node2=" + node2 +
+                ", node1Voltage=" + node1Voltage +
+                ", node2Voltage=" + node2Voltage +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
