@@ -67,9 +67,12 @@ public class Main {
         for (Node allNode : Node.getAllNodes()) {
             System.out.println(allNode);
         }
+        for (Resistance allResistance : Resistance.getAllResistances()) {
+            System.out.println(allResistance.getResistance());
+        }
         if ((Capacitor.getAllCapacitors().size() == 0) && (Inductance.getAllInductances().size() == 0)) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
-                int n = Node.getAllNodes().size();
+                int n = Node.getAllNodes().size() - 1;
                 int m = VoltageSourceDC.getAllVoltageSourceDCs().size() + VoltageSourceAC.getAllVoltageSourceACs().size() + VoltageControlVoltageSource.getAllVoltageControlVoltageSources().size() + CurrentControlVoltageSource.getAllCurrentControlVoltageSources().size();
                 float a[][] = new float[m + n + 1][m + n + 1];
                 float g[][] = new float[n + 1][n + 1];
@@ -84,11 +87,13 @@ public class Main {
                     for (int q = 1; q < n + 1; q++) {
                         float sum = 0;
                         for (Resistance allResistance : Resistance.getAllResistances()) {
-                            if (p == q)
+                            if (p == q) {
                                 if ((allResistance.getNode1() == p) || (allResistance.getNode2() == p))
                                     sum += 1 / allResistance.getResistance();
-                                else if (((allResistance.getNode1() == p) && (allResistance.getNode2()) == q) || ((allResistance.getNode1() == q) && (allResistance.getNode2()) == p))
+                            } else {
+                                if (((allResistance.getNode1() == p) && (allResistance.getNode2()) == q) || ((allResistance.getNode1() == q) && (allResistance.getNode2()) == p))
                                     sum -= 1 / allResistance.getResistance();
+                            }
                         }
                         for (VoltageControlCurrentSource allVoltageControlCurrentSource : VoltageControlCurrentSource.getAllVoltageControlCurrentSources()) {
                             if (allVoltageControlCurrentSource.getNode1() == p) {
@@ -109,7 +114,7 @@ public class Main {
                 for (int p = 1; p < n + 1; p++) {
                     for (int q = 1; q < m + 1; q++) {
                         for (VoltageSourceDC allVoltageSourceDc : VoltageSourceDC.getAllVoltageSourceDCs()) {
-                            if (CurrentControlCurrentSource.getAllCurrentControlCurrentSources() != null) {
+                            if (CurrentControlCurrentSource.getAllCurrentControlCurrentSources().size() != 0) {
                                 for (CurrentControlCurrentSource allCurrentControlCurrentSource : CurrentControlCurrentSource.getAllCurrentControlCurrentSources()) {
                                     if (allVoltageSourceDc.getNode1() == p) {
                                         if (allCurrentControlCurrentSource.getNode1() == p) {
@@ -147,9 +152,23 @@ public class Main {
                                     }
                                 }
                             }
+                            else {
+                                if (allVoltageSourceDc.getNode1() == p) {
+                                    b[p][q] = 1;
+                                    c[q][p] = 1;
+                                }
+                                else if (allVoltageSourceDc.getNode2() == p) {
+                                    b[p][q] = -1;
+                                    c[q][p] = -1;
+                                }
+                                else {
+                                    b[p][q] = 0;
+                                    c[q][p] = 0;
+                                }
+                            }
                         }
                         for (VoltageSourceAC allVoltageSourceAc : VoltageSourceAC.getAllVoltageSourceACs()) {
-                            if (CurrentControlCurrentSource.getAllCurrentControlCurrentSources() != null) {
+                            if (CurrentControlCurrentSource.getAllCurrentControlCurrentSources().size() != 0) {
                                 for (CurrentControlCurrentSource allCurrentControlCurrentSource : CurrentControlCurrentSource.getAllCurrentControlCurrentSources()) {
                                     if (allVoltageSourceAc.getNode1() == p) {
                                         if (allCurrentControlCurrentSource.getNode1() == p) {
@@ -185,6 +204,20 @@ public class Main {
                                             c[q][p] = 0;
                                         }
                                     }
+                                }
+                            }
+                            else {
+                                if (allVoltageSourceAc.getNode1() == p) {
+                                    b[p][q] = 1;
+                                    c[q][p] = 1;
+                                }
+                                else if (allVoltageSourceAc.getNode2() == p) {
+                                    b[p][q] = -1;
+                                    c[q][p] = -1;
+                                }
+                                else {
+                                    b[p][q] = 0;
+                                    c[q][p] = 0;
                                 }
                             }
                         }
@@ -282,8 +315,7 @@ public class Main {
                             allNode.setNodeVoltage(new ComplexNumber(x[p][1], 0));
                 for (int p = n + 1; p < m + n + 1; p++) {
                     for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs())
-                        if (Integer.parseInt(allVoltageSourceDC.getName().substring(1)) == p)
-                            allVoltageSourceDC.setCurrent(new ComplexNumber(x[p][1], 0));
+                        allVoltageSourceDC.setCurrent(new ComplexNumber(x[p][1], 0));
                     for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs())
                         if (Integer.parseInt((allVoltageSourceAC.getName().substring(1))) == p)
                             allVoltageSourceAC.setCurrent(new ComplexNumber(x[p][1], 0));
@@ -363,7 +395,7 @@ public class Main {
             }
         } else if (VoltageSourceAC.getAllVoltageSourceACs().size() != 0) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
-                int n = Node.getAllNodes().size();
+                int n = Node.getAllNodes().size() - 1;
                 int m = VoltageSourceDC.getAllVoltageSourceDCs().size() + VoltageControlVoltageSource.getAllVoltageControlVoltageSources().size() + CurrentControlVoltageSource.getAllCurrentControlVoltageSources().size();
                 ComplexNumber a[][] = new ComplexNumber[m + n + 1][m + n + 1];
                 ComplexNumber g[][] = new ComplexNumber[n + 1][n + 1];
@@ -378,11 +410,14 @@ public class Main {
                     for (int q = 1; q < n + 1; q++) {
                         ComplexNumber sum = new ComplexNumber(0, 0);
                         for (Resistance allResistance : Resistance.getAllResistances()) {
-                            if (p == q)
+                            if (p == q) {
                                 if ((allResistance.getNode1() == p) || (allResistance.getNode2() == p))
                                     sum.add(1 / allResistance.getResistance());
-                                else if (((allResistance.getNode1() == p) && (allResistance.getNode2()) == q) || ((allResistance.getNode1() == q) && (allResistance.getNode2()) == p))
+                            }
+                            else {
+                                if (((allResistance.getNode1() == p) && (allResistance.getNode2()) == q) || ((allResistance.getNode1() == q) && (allResistance.getNode2()) == p))
                                     sum.subtract(1 / allResistance.getResistance());
+                            }
                         }
                         for (Capacitor allCapacitor : Capacitor.getAllCapacitors()) {
                             if (p == q)
@@ -421,7 +456,7 @@ public class Main {
                 for (int p = 1; p < n + 1; p++) {
                     for (int q = 1; q < m + 1; q++) {
                         for (VoltageSourceAC allVoltageSourceAc : VoltageSourceAC.getAllVoltageSourceACs()) {
-                            if (CurrentControlCurrentSource.getAllCurrentControlCurrentSources() != null) {
+                            if (CurrentControlCurrentSource.getAllCurrentControlCurrentSources().size() != 0) {
                                 for (CurrentControlCurrentSource allCurrentControlCurrentSource : CurrentControlCurrentSource.getAllCurrentControlCurrentSources()) {
                                     if (allVoltageSourceAc.getNode1() == p) {
                                         if (allCurrentControlCurrentSource.getNode1() == p) {
@@ -440,10 +475,10 @@ public class Main {
                                             c[q][p].subtract(1);
                                         } else if (allCurrentControlCurrentSource.getNode2() == p) {
                                             b[p][q].subtract(1 + allCurrentControlCurrentSource.getGain());
-                                            c[q][p].add(-1);
+                                            c[q][p].subtract(1);
                                         } else {
-                                            b[p][q].add(-1);
-                                            c[q][p].add(-1);
+                                            b[p][q].subtract(1);
+                                            c[q][p].subtract(1);
                                         }
                                     } else {
                                         if (allCurrentControlCurrentSource.getNode1() == p) {
@@ -457,6 +492,20 @@ public class Main {
                                             c[q][p].add(0);
                                         }
                                     }
+                                }
+                            }
+                            else {
+                                if (allVoltageSourceAc.getNode1() == p) {
+                                    b[p][q].add(1);
+                                    c[q][p].add(1);
+                                }
+                                else if (allVoltageSourceAc.getNode2() == p) {
+                                    b[p][q].subtract(1);
+                                    c[q][p].subtract(1);
+                                }
+                                else {
+                                    b[p][q].add(0);
+                                    c[q][p].add(0);
                                 }
                             }
                         }
@@ -486,6 +535,18 @@ public class Main {
                                     c[q][p].add(allVoltageControlVoltageSource.getGain());
                                 else
                                     c[q][p].add(0);
+                            }
+                        }
+                        for (CurrentControlVoltageSource allCurrentControlVoltageSource : CurrentControlVoltageSource.getAllCurrentControlVoltageSources()) {
+                            if (allCurrentControlVoltageSource.getNode1() == p) {
+                                b[p][q].add(1);
+                                c[q][p].add(1);
+                            } else if (allCurrentControlVoltageSource.getNode2() == p) {
+                                b[p][q].subtract(1);
+                                c[q][p].subtract(1);
+                            } else {
+                                b[p][q].add(0);
+                                c[q][p].add(0);
                             }
                         }
                     }

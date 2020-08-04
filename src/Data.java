@@ -81,6 +81,8 @@ public class Data {
                         RQuantity = RQuantity.replace("p", "");
                         R = Float.parseFloat(RQuantity) / (10 ^ 12);
                     }
+                    else
+                        R = Float.parseFloat(RQuantity);
                     new Resistance(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), RName, R);
                     new Node(N1, 0, 0, new ComplexNumber(0, 0));
                     new Node(N2, 0, 0, new ComplexNumber(0, 0));
@@ -112,6 +114,8 @@ public class Data {
                         CQuantity = CQuantity.replace("p", "");
                         C = Float.parseFloat(CQuantity) / (10 ^ 12);
                     }
+                    else
+                        C = Float.parseFloat(CQuantity);
                     new Capacitor(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), CName, C);
                     new Node(N1, 0, 0, new ComplexNumber(0, 0));
                     new Node(N2, 0, 0, new ComplexNumber(0, 0));
@@ -143,6 +147,8 @@ public class Data {
                         LQuantity = LQuantity.replace("p", "");
                         L = Float.parseFloat(LQuantity) / (10 ^ 12);
                     }
+                    else
+                        L = Float.parseFloat(LQuantity);
                     new Inductance(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), LName, L);
                     new Node(N1, 0, 0, new ComplexNumber(0, 0));
                     new Node(N2, 0, 0, new ComplexNumber(0, 0));
@@ -369,7 +375,7 @@ public class Data {
                     PowerStr = Float.toString(Element.getAllElements().get(j).power.real());
                 else
                     PowerStr = (Element.getAllElements().get(j).power.real()) + (Element.getAllElements().get(j).power.imaginary()) + "j";
-                String lineWriter = ElementName + VoltageStr + CurrentStr + PowerStr;
+                String lineWriter = ElementName + " " + VoltageStr + " " + CurrentStr + " " + PowerStr;
                 OutputWriter.write(lineWriter);
             }
             OutputWriter.close();
