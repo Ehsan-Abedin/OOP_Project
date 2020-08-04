@@ -333,6 +333,18 @@ public class Data {
         }
         try {
             FileWriter OutputWriter = new FileWriter("Output.txt");
+            if (error == -2) {
+                OutputWriter.write("-2");
+                return;
+            }
+            if (error == -3) {
+                OutputWriter.write("-3");
+                return;
+            }
+            if (error == -4) {
+                OutputWriter.write("-4");
+                return;
+            }
             for(int i=1 ; i<=Node.getAllNodes().size() ; i++){
                 for (Node allNode : Node.getAllNodes()) {
                     if (allNode.getNode() == i) {
