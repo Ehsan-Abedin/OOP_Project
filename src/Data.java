@@ -14,7 +14,7 @@ public class Data {
         Pattern p2 = Pattern.compile(capacitorRegex);
         String inductanceRegex = "(L+\\d*)+\\s+(\\d+)+\\s+(\\d+)+\\s+(\\w*\\d+.*)";
         Pattern p3 = Pattern.compile(inductanceRegex);
-        String VACSourceRegex = "(V.+? ) *(\\d*) *(\\d) *(.+? ) *(.+? ) *(.+? ) *(.+? ) *(.*)";
+        String VACSourceRegex = "(\\w+)+\\s+(\\d+)+\\s+(\\d+)+\\s+(\\d+.*)+\\s+(\\d+.*)+\\s+(\\d+.*)+\\s+(\\d+.*)";
         Pattern p4 = Pattern.compile(VACSourceRegex);
         String IACSourceRegex = "(I.+? ) *(\\d*) *(\\d) *(.+? ) *(.+? ) *(.+? ) *(.+? ) *(.*)";
         Pattern p5 = Pattern.compile(IACSourceRegex);
@@ -62,7 +62,7 @@ public class Data {
                     if (RQuantity.indexOf(RQuantity.length() - 1) == 'k') {
                         RQuantity = RQuantity.replace("k", "");
                         R = Float.parseFloat(RQuantity) * 1000;
-                    } else if (RQuantity.indexOf(RQuantity.length() - 1) == 'G') {
+                    } else if (RQuantity.charAt(RQuantity.length() - 1) == 'G') {
                         RQuantity = RQuantity.replace("G", "");
                         R = Float.parseFloat(RQuantity) * 1000000000;
                     } else if (RQuantity.indexOf(RQuantity.length() - 1) == 'M') {
@@ -150,10 +150,10 @@ public class Data {
                 if (m4.find()) {
                     String VACName = m4.group(1).trim();
                     int N1 = Integer.parseInt(m4.group(2)), N2 = Integer.parseInt(m4.group(3));
-                    String VACFirstState = m4.group(5).trim();
-                    String VACDomain = m4.group(6).trim();
-                    String VACFrequency = m4.group(7).trim();
-                    String VACPhase = m4.group(8).trim();
+                    String VACFirstState = m4.group(4).trim();
+                    String VACDomain = m4.group(5).trim();
+                    String VACFrequency = m4.group(6).trim();
+                    String VACPhase = m4.group(7).trim();
                     float ACFirstState = Float.parseFloat(VACFirstState);
                     float ACDomain = Float.parseFloat(VACDomain);
                     float ACFrequency = Float.parseFloat(VACFrequency);
