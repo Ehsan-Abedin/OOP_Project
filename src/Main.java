@@ -67,7 +67,7 @@ public class Main {
         for (Node allNode : Node.getAllNodes()) {
             System.out.println(allNode);
         }
-        if ((Capacitor.getAllCapacitors() == null) && (Inductance.getAllInductances() == null)) {
+        if ((Capacitor.getAllCapacitors().size() == 0) && (Inductance.getAllInductances().size() == 0)) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
                 int n = Node.getAllNodes().size();
                 int m = VoltageSourceDC.getAllVoltageSourceDCs().size() + VoltageSourceAC.getAllVoltageSourceACs().size() + VoltageControlVoltageSource.getAllVoltageControlVoltageSources().size() + CurrentControlVoltageSource.getAllCurrentControlVoltageSources().size();
@@ -361,7 +361,7 @@ public class Main {
                 }
                 Data.setOutput(0);
             }
-        } else if (VoltageSourceAC.getAllVoltageSourceACs() != null) {
+        } else if (VoltageSourceAC.getAllVoltageSourceACs().size() != 0) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
                 int n = Node.getAllNodes().size();
                 int m = VoltageSourceDC.getAllVoltageSourceDCs().size() + VoltageControlVoltageSource.getAllVoltageControlVoltageSources().size() + CurrentControlVoltageSource.getAllCurrentControlVoltageSources().size();
