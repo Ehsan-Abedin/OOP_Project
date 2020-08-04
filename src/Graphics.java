@@ -53,6 +53,7 @@ class functions{
             if(Element.getAllElements().get(i).getName().charAt(0)=='R'){
                 if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
                     ImageView R = new ImageView(ResistorH);
+
                     R.setX(Node.getAllNodes().get(firstNode).getX());
                     R.setY(Node.getAllNodes().get(firstNode).getY()-33);
                     return R;

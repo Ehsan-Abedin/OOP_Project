@@ -63,7 +63,7 @@ public class Main {
 
 */
         for (Resistance allResistance : Resistance.getAllResistances()) {
-            System.out.println(allResistance);
+            System.out.println(allResistance.toString());
         }
         if ((Capacitor.getAllCapacitors() == null) && (Inductance.getAllInductances() == null)) {
             for (float t = 0; t <= simulationTime; t += deltaT) {

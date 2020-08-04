@@ -10,6 +10,7 @@ public class VoltageSourceAC extends Element {
         this.amplitude = amplitude;
         this.frequency = frequency;
         this.phase = phase;
+        allVoltageSourceACs.add(this);
     }
 
     public float getVoltageDC() {

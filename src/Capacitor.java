@@ -7,6 +7,7 @@ public class Capacitor extends Element {
     public Capacitor(ComplexNumber current, ComplexNumber voltage, ComplexNumber power, int node1, int node2, ComplexNumber node1Voltage, ComplexNumber node2Voltage, String name, float capacitor) {
         super(current, voltage, power, node1, node2, node1Voltage, node2Voltage, name);
         this.capacitor = capacitor;
+        allCapacitors.add(this);
     }
 
     public float getCapacitor() {

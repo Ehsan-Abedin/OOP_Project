@@ -10,6 +10,7 @@ public class CurrentSourceAC extends Element{
         this.amplitude = amplitude;
         this.frequency = frequency;
         this.phase = phase;
+        allCurrentSourceACs.add(this);
     }
 
     public float getCurrentDC() {
