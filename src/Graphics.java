@@ -1,4 +1,4 @@
-/*import javafx.application.Application;
+import javafx.application.Application;
 import javafx.geometry.Orientation;
 import javafx.scene.CacheHint;
 import javafx.scene.Group;
@@ -8,12 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import jdk.nashorn.internal.objects.Global;
-
 import java.io.*;
-
-import static javafx.scene.control.TabPane.TabClosingPolicy.UNAVAILABLE;
-
 class functions{
     functions() throws FileNotFoundException {}
     FileInputStream ResistorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-H.png");
@@ -132,14 +127,14 @@ public class Graphics extends Application {
     public static void Graphic(String args){
         launch(args);
         AnchorPane anchorPane0 = new AnchorPane();
-        anchorPane0.setMinHeight(-Global.Infinity);
+        anchorPane0.setMinHeight(-Infinity);
         anchorPane0.setPrefHeight(715.0);
         anchorPane0.setXmlns(http://javafx.com/javafx/11.0.1);
         anchorPane0.setFx(http://javafx.com/fxml/1);
-        anchorPane0.setMaxHeight(-Global.Infinity);
+        anchorPane0.setMaxHeight(-Infinity);
         anchorPane0.setPrefWidth(883.0);
-        anchorPane0.setMinWidth(-Global.Infinity);
-        anchorPane0.setMaxWidth(-Global.Infinity);
+        anchorPane0.setMinWidth(-Infinity);
+        anchorPane0.setMaxWidth(-Infinity);
         MenuBar menuBar1 = new MenuBar();
         menuBar1.setPrefHeight(26.0);
         menuBar1.setAnchorPane.topAnchor(1.0);
@@ -203,4 +198,4 @@ public class Graphics extends Application {
         stage.show();
         stage.setTitle("Circuit Design");
     }
-}*/
+}
