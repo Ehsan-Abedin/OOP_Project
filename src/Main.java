@@ -25,16 +25,22 @@ public class Main {
         }
         for (CurrentSourceAC allCurrentSourceAC : CurrentSourceAC.getAllCurrentSourceACs()) {
             for (CurrentSourceAC currentSourceAC : CurrentSourceAC.getAllCurrentSourceACs()) {
-                if ((allCurrentSourceAC.getNode1() == currentSourceAC.getNode2()) || (allCurrentSourceAC.getNode2() == currentSourceAC.getNode1()))
-                    if (allCurrentSourceAC.getCurrent() != currentSourceAC.getCurrent())
+                if ((allCurrentSourceAC.getNode1() == currentSourceAC.getNode2()) || (allCurrentSourceAC.getNode2() == currentSourceAC.getNode1())) {
+                    if (allCurrentSourceAC.getCurrent() != currentSourceAC.getCurrent()) {
+                        Data.setOutput(-2);
                         return;
+                    }
+                }
             }
         }
         for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
             for (VoltageSourceDC voltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
-                if (((allVoltageSourceDC.getNode1() == voltageSourceDC.getNode1()) && (allVoltageSourceDC.getNode2() == voltageSourceDC.getNode2())) || ((allVoltageSourceDC.getNode2() == voltageSourceDC.getNode1()) && (allVoltageSourceDC.getNode1() == voltageSourceDC.getNode2())))
-                    if (allVoltageSourceDC.getVoltage() != voltageSourceDC.getVoltage())
+                if (((allVoltageSourceDC.getNode1() == voltageSourceDC.getNode1()) && (allVoltageSourceDC.getNode2() == voltageSourceDC.getNode2())) || ((allVoltageSourceDC.getNode2() == voltageSourceDC.getNode1()) && (allVoltageSourceDC.getNode1() == voltageSourceDC.getNode2()))) {
+                    if (allVoltageSourceDC.getVoltage() != voltageSourceDC.getVoltage()) {
+                        Data.setOutput(-3);
                         return;
+                    }
+                }
             }
         }
         for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
@@ -348,7 +354,7 @@ public class Main {
                     allCurrentControlVoltageSource.setVoltage(allCurrentControlVoltageSource.voltage);
                     allCurrentControlVoltageSource.setPower(allCurrentControlVoltageSource.power(allCurrentControlVoltageSource.current, allCurrentControlVoltageSource.voltage));
                 }
-                Data.setOutput();
+                Data.setOutput(0);
             }
         } else if (VoltageSourceAC.getAllVoltageSourceACs() != null) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
@@ -646,7 +652,7 @@ public class Main {
                     allCurrentControlVoltageSource.setVoltage(allCurrentControlVoltageSource.voltage);
                     allCurrentControlVoltageSource.setPower(allCurrentControlVoltageSource.power(allCurrentControlVoltageSource.current, allCurrentControlVoltageSource.voltage));
                 }
-                Data.setOutput();
+                Data.setOutput(0);
             }
         }
     }
