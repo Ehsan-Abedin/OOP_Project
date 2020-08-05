@@ -56,11 +56,7 @@
           </Tab>
         </tabs>
       </TabPane>
-      <TitledPane animated="false" layoutX="479.0" layoutY="66.0" prefHeight="330.0" prefWidth="404.0" text="Graphic Circuit">
-        <content>
-          <AnchorPane accessibleRole="IMAGE_VIEW" minHeight="0.0" minWidth="0.0" prefHeight="224.0" prefWidth="342.0" />
-        </content>
-      </TitledPane>
+      <TitledPane animated="false" layoutX="479.0" layoutY="66.0" prefHeight="330.0" prefWidth="404.0" text="Graphic Circuit" />
       <Separator layoutX="468.0" layoutY="66.0" orientation="VERTICAL" prefHeight="651.0" prefWidth="11.0" />
       <TextArea editable="false" layoutX="479.0" layoutY="396.0" prefHeight="321.0" prefWidth="404.0" />
       <ButtonBar layoutY="26.0" prefHeight="40.0" prefWidth="883.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0">
