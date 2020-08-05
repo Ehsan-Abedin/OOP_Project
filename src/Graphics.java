@@ -40,7 +40,7 @@ class GraphicFunctions{
         int counter=0;
         for(counter=1;counter<=6;counter++){
             if(counter<Node.getAllNodes().size()){
-                Node.getAllNodes().get(counter).setX((78*counter)+7);
+                Node.getAllNodes().get(counter).setX((8*counter)+7);
                 Node.getAllNodes().get(counter).setY(10);
             }
             else{
