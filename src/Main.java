@@ -1,9 +1,9 @@
 import java.io.FileNotFoundException;
 public class Main {
-    private static float deltaV = 0;
-    private static float deltaI = 0;
-    private static float deltaT = 0;
-    private static float simulationTime = 0;
+    public static float deltaV = 0;
+    public static float deltaI = 0;
+    public static float deltaT = 0;
+    public static float simulationTime = 0;
 
     public static void setData(float V, float I, float T, float Time) {
         deltaV = V;

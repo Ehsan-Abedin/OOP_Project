@@ -226,9 +226,9 @@ public class Graphics extends Application {
             AnchorPane anchorPane1 = new AnchorPane();
             anchorPane1.setPrefHeight(729.0);
             anchorPane1.setPrefWidth(855.0);
-            NumberAxis xAxis = new NumberAxis(1960, 2020, );
+            NumberAxis xAxis = new NumberAxis(1960, 2020, Main.simulationTime);
             xAxis.setLabel("Time");
-            NumberAxis yAxis = new NumberAxis(0, 350, 50);
+            NumberAxis yAxis = new NumberAxis(0, 350, 10);
             yAxis.setLabel("No.of schools");
             LineChart lineChart1 = new LineChart(xAxis,yAxis);
             lineChart1.setPrefHeight(402.0);
