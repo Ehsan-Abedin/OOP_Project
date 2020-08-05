@@ -14,9 +14,9 @@ public class Data {
         Pattern p2 = Pattern.compile(capacitorRegex);
         String inductanceRegex = "(L+\\d*)+\\s+(\\d+)+\\s+(\\d+)+\\s+(\\w*\\d+.*)";
         Pattern p3 = Pattern.compile(inductanceRegex);
-        String VACSourceRegex = "(\\w+)+\\s+(\\d+)+\\s+(\\d+)+\\s+(\\d+.*)+\\s+(\\d+.*)+\\s+(\\d+.*)+\\s+(\\d+.*)";
+        String VACSourceRegex = "(V\\d+)+\\s+(\\d+)+\\s+(\\d+)+\\s+(\\d+.*)+\\s+(\\d+.*)+\\s+(\\d+.*)+\\s+(\\d+.*)";
         Pattern p4 = Pattern.compile(VACSourceRegex);
-        String IACSourceRegex = "(I.+? ) *(\\d*) *(\\d) *(.+? ) *(.+? ) *(.+? ) *(.+? ) *(.*)";
+        String IACSourceRegex = "(I\\d+)+\\s+(\\d+)+\\s+(\\d+)+\\s+(\\d+.*)+\\s+(\\d+.*)+\\s+(\\d+.*)+\\s+(\\d+.*)";
         Pattern p5 = Pattern.compile(IACSourceRegex);
         String VSourceIControl = "(H.+? ) *(\\d*) *(\\d*) *(.+? ) *(\\d*)";
         Pattern p6 = Pattern.compile(VSourceIControl);
@@ -59,8 +59,8 @@ public class Data {
                     int N1 = Integer.parseInt(m1.group(2)), N2 = Integer.parseInt(m1.group(3));
                     String RQuantity = m1.group(4);
                     float R = 0;
-                    if (RQuantity.charAt(RQuantity.length() - 1) == 'k') {
-                        RQuantity = RQuantity.replace("k", "");
+                    if (RQuantity.charAt(RQuantity.length() - 1) == 'K') {
+                        RQuantity = RQuantity.replace("K", "");
                         R = Float.parseFloat(RQuantity) * 1000;
                     } else if (RQuantity.charAt(RQuantity.length() - 1) == 'G') {
                         RQuantity = RQuantity.replace("G", "");
@@ -92,7 +92,7 @@ public class Data {
                     int N1 = Integer.parseInt(m2.group(2)), N2 = Integer.parseInt(m2.group(3));
                     String CQuantity = m2.group(4);
                     float C = 0;
-                    if (CQuantity.charAt(CQuantity.length() - 1) == 'k') {
+                    if (CQuantity.charAt(CQuantity.length() - 1) == 'K') {
                         CQuantity = CQuantity.replace("k", "");
                         C = Float.parseFloat(CQuantity) * 1000;
                     } else if (CQuantity.charAt(CQuantity.length() - 1) == 'G') {
@@ -125,7 +125,7 @@ public class Data {
                     int N1 = Integer.parseInt(m3.group(2)), N2 = Integer.parseInt(m3.group(3));
                     String LQuantity = m3.group(4);
                     float L = 0;
-                    if (LQuantity.charAt(LQuantity.length() - 1) == 'k') {
+                    if (LQuantity.charAt(LQuantity.length() - 1) == 'K') {
                         LQuantity = LQuantity.replace("k", "");
                         L = Float.parseFloat(LQuantity) * 1000;
                     } else if (LQuantity.charAt(LQuantity.length() - 1) == 'G') {
@@ -174,16 +174,16 @@ public class Data {
                 if (m5.find()) {
                     String IACName = m5.group(1).trim();
                     int N1 = Integer.parseInt(m5.group(2)), N2 = Integer.parseInt(m5.group(3));
-                    String IACFirstState = m5.group(5).trim();
-                    String IACDomain = m5.group(6).trim();
-                    String IACFrequency = m5.group(7).trim();
-                    String IACPhase = m5.group(8).trim();
+                    String IACFirstState = m5.group(4).trim();
+                    String IACDomain = m5.group(5).trim();
+                    String IACFrequency = m5.group(6).trim();
+                    String IACPhase = m5.group(7).trim();
                     float ACFirstState = Float.parseFloat(IACFirstState);
                     float ACDomain = Float.parseFloat(IACDomain);
                     float ACFrequency = Float.parseFloat(IACFrequency);
                     float ACPhase = Float.parseFloat(IACPhase);
                     if (ACDomain == 0 && ACFrequency == 0 && ACPhase == 0) {
-                        new CurrentSourceDC(new ComplexNumber(0, 0), new ComplexNumber(ACFirstState, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), IACName);
+                        new CurrentSourceDC(new ComplexNumber(ACFirstState, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), IACName);
                     } else
                         new VoltageSourceAC(new ComplexNumber(0, 0), new ComplexNumber(0, 0), new ComplexNumber(0, 0), N1, N2, new ComplexNumber(0, 0), new ComplexNumber(0, 0), IACName, ACFirstState, ACDomain, ACFrequency, ACPhase);
                     new Node(N1, 0, 0, new ComplexNumber(0, 0));
@@ -244,7 +244,7 @@ public class Data {
                         SimulationTime /= 1000000;
                     } else if (SimulationTimePower.charAt(0) == 'n') {
                         SimulationTime /= 1000000000;
-                    } else if (SimulationTimePower.charAt(0) == 'k') {
+                    } else if (SimulationTimePower.charAt(0) == 'K') {
                         SimulationTime *= 1000;
                     } else if (SimulationTimePower.charAt(0) == 'M') {
                         SimulationTime *= 1000000;
@@ -267,7 +267,7 @@ public class Data {
                         myDeltaV /= 1000000;
                     } else if (DeltaVPower.charAt(0) == 'n') {
                         myDeltaV /= 1000000000;
-                    } else if (DeltaVPower.charAt(0) == 'k') {
+                    } else if (DeltaVPower.charAt(0) == 'K') {
                         myDeltaV *= 1000;
                     } else if (DeltaVPower.charAt(0) == 'M') {
                         myDeltaV *= 1000000;
@@ -290,7 +290,7 @@ public class Data {
                         myDeltaI /= 1000000;
                     } else if (DeltaIPower.charAt(0) == 'n') {
                         myDeltaI /= 1000000000;
-                    } else if (DeltaIPower.charAt(0) == 'k') {
+                    } else if (DeltaIPower.charAt(0) == 'K') {
                         myDeltaI *= 1000;
                     } else if (DeltaIPower.charAt(0) == 'M') {
                         myDeltaI *= 1000000;
@@ -313,7 +313,7 @@ public class Data {
                         myDeltaT /= 1000000;
                     } else if (DeltaTPower.charAt(0) == 'n') {
                         myDeltaT /= 1000000000;
-                    } else if (DeltaTPower.charAt(0) == 'k') {
+                    } else if (DeltaTPower.charAt(0) == 'K') {
                         myDeltaT *= 1000;
                     } else if (DeltaTPower.charAt(0) == 'M') {
                         myDeltaT *= 1000000;
