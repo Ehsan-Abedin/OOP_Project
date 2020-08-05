@@ -28,7 +28,7 @@ public class Element {
         this.name = name;
     }
 
-    public static ArrayList<Element> getAllElements() {
+    /*public static ArrayList<Element> getAllElements() {
         allElements.addAll(Resistance.getAllResistances());
         allElements.addAll(Capacitor.getAllCapacitors());
         allElements.addAll(Inductance.getAllInductances());
@@ -41,7 +41,7 @@ public class Element {
         allElements.addAll(CurrentControlCurrentSource.getAllCurrentControlCurrentSources());
         allElements.addAll(CurrentControlVoltageSource.getAllCurrentControlVoltageSources());
         return allElements;
-    }
+    }*/
 
     public static Element getElementByNode(Node node1, Node node2) {
         for (Element allElement : allElements) {
@@ -81,6 +81,10 @@ public class Element {
 
     public ComplexNumber getNode2Voltage() {
         return node2Voltage;
+    }
+
+    public static ArrayList<Element> getAllElements() {
+        return allElements;
     }
 
     public void setCurrent(ComplexNumber current) {

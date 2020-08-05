@@ -352,31 +352,35 @@ public class Data {
                 return;
             }
             for(int i=1 ; i<=Node.getAllNodes().size() ; i++){
+                String lineWriter = null;
                 for (Node allNode : Node.getAllNodes()) {
                     if (allNode.getNode() == i) {
                         String lineStr = Integer.toString(i);
-                        String lineWriter = "Node " + lineStr + allNode.getNodeVoltage();
+                        if (allNode.getNodeVoltage().imaginary() == 0)
+                            lineWriter = "Node " + lineStr + "\t" + allNode.getNodeVoltage().real();
                         OutputWriter.write(lineWriter);
+                        OutputWriter.write(System.getProperty("line.separator"));
                     }
                 }
             }
-            for(int j=0 ; j<= Element.getAllElements().size() ; j++){
-                String ElementName = Element.getAllElements().get(j).getName();
+            for (Element allElement : Element.getAllElements()) {
+                String ElementName = allElement.getName();
                 String VoltageStr, CurrentStr, PowerStr;
-                if (Element.getAllElements().get(j).voltage.imaginary() == 0)
-                    VoltageStr = Float.toString(Element.getAllElements().get(j).voltage.real());
+                if (allElement.voltage.imaginary() == 0)
+                    VoltageStr = Float.toString(allElement.voltage.real());
                 else
-                    VoltageStr = (Element.getAllElements().get(j).voltage.real()) + (Element.getAllElements().get(j).voltage.imaginary()) + "j";
-                if (Element.getAllElements().get(j).current.imaginary() == 0)
-                    CurrentStr = Float.toString(Element.getAllElements().get(j).current.real());
+                    VoltageStr = (allElement.voltage.real()) + (allElement.voltage.imaginary()) + "j";
+                if (allElement.current.imaginary() == 0)
+                    CurrentStr = Float.toString(allElement.current.real());
                 else
-                    CurrentStr = (Element.getAllElements().get(j).current.real()) + (Element.getAllElements().get(j).voltage.imaginary()) + "j";
-                if (Element.getAllElements().get(j).power.imaginary() == 0)
-                    PowerStr = Float.toString(Element.getAllElements().get(j).power.real());
+                    CurrentStr = (allElement.current.real()) + (allElement.voltage.imaginary()) + "j";
+                if (allElement.power.imaginary() == 0)
+                    PowerStr = Float.toString(allElement.power.real());
                 else
-                    PowerStr = (Element.getAllElements().get(j).power.real()) + (Element.getAllElements().get(j).power.imaginary()) + "j";
-                String lineWriter = ElementName + " " + VoltageStr + " " + CurrentStr + " " + PowerStr;
+                    PowerStr = (allElement.power.real()) + (allElement.power.imaginary()) + "j";
+                String lineWriter = ElementName + "\t" + VoltageStr + "\t" + CurrentStr + "\t" + PowerStr;
                 OutputWriter.write(lineWriter);
+                OutputWriter.write(System.getProperty("line.separator"));
             }
             OutputWriter.close();
             System.out.println("Successfully wrote to the file.");

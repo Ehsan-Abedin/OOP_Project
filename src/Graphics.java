@@ -1,4 +1,4 @@
-import javafx.application.Application;
+/*import javafx.application.Application;
 import javafx.geometry.Orientation;
 import javafx.scene.CacheHint;
 import javafx.scene.Group;
@@ -9,8 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.*;
-class functions{
-    functions() throws FileNotFoundException {}
+class GraphicFunctions{
+    GraphicFunctions() throws FileNotFoundException {}
     FileInputStream ResistorHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\resistor-H.png");
     InputStream ResistorVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\resistor-V.png");
     InputStream CapacitorVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\capacitor-V.png");
@@ -192,4 +192,4 @@ public class Graphics extends Application {
         stage.setScene(scene);
         stage.show();
     }
-}
+}*/
