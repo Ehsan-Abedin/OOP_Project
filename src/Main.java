@@ -1,5 +1,4 @@
 import java.io.FileNotFoundException;
-
 public class Main {
     private static float deltaV = 0;
     private static float deltaI = 0;
