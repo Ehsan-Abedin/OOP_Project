@@ -1,3 +1,4 @@
+/*
 import java.io.FileNotFoundException;
 public class Main {
     public static float deltaV = 0;
@@ -14,7 +15,8 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         Data.getInput();
-        /*for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
+        */
+/*for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
             for (CurrentSourceDC currentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
                 if ((allCurrentSourceDC.getNode1() == currentSourceDC.getNode2()) || (allCurrentSourceDC.getNode2() == currentSourceDC.getNode1()))
                     if (allCurrentSourceDC.getCurrent() != currentSourceDC.getCurrent())
@@ -59,7 +61,8 @@ public class Main {
         if (flag != 1)
             return;
 
-*/
+*//*
+
         for (Element allElement : Element.getAllElements()) {
             System.out.println(allElement);
         }
@@ -262,9 +265,11 @@ public class Main {
                         }
                     }
                 }
-            /*if (CurrentControlVoltageSource.getAllCurrentControlVoltageSources() != null) {
+            */
+/*if (CurrentControlVoltageSource.getAllCurrentControlVoltageSources() != null) {
 
-            }*/
+            }*//*
+
                 for (int p = 1; p < n + 1; p++)
                     for (int q = 1; q < n + 1; q++)
                         a[p][q] = g[p][q];
@@ -722,3 +727,4 @@ public class Main {
         }
     }
 }
+*/

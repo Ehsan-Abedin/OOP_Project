@@ -36,14 +36,51 @@ class GraphicFunctions{
     Image DCV = new Image(DCVI);
     Image WireH = new Image(WireHI);
     Image WireV = new Image(WireVI);
-    public void CreateNodes(){
-        int counter=1;
-        for(int j=0 ; j<=5 ; j++){
-            for(int i=0 ; i<=6 ; i++){
-                new Node(counter,(78*i)+7,(75*j)+10,Node.getAllNodes().get(counter).getNodeVoltage());
-                Node.getAllNodes().get(counter).setX((78*i)+7);
-                Node.getAllNodes().get(counter).setY((75*j)+10);
-                counter++;
+    public void SetNodes(){
+        int counter=0;
+        for(counter=1;counter<=6;counter++){
+            if(counter<Node.getAllNodes().size()){
+                Node.getAllNodes().get(counter).setX((78*counter)+7);
+                Node.getAllNodes().get(counter).setY(10);
+            }
+            else{
+                new Node(counter,(78*counter)+7,10,new ComplexNumber(0,0));
+            }
+        }
+        for(counter=7;counter<=12;counter++){
+            if(counter<Node.getAllNodes().size()){
+                Node.getAllNodes().get(counter).setX((78*(counter-6))+7);
+                Node.getAllNodes().get(counter).setY(85);
+            }
+            else{
+                new Node(counter,(78*(counter-6)+7),85,new ComplexNumber(0,0));
+            }
+        }
+        for(counter=13;counter<=18;counter++){
+            if(counter<Node.getAllNodes().size()){
+                Node.getAllNodes().get(counter).setX((78*(counter-6))+7);
+                Node.getAllNodes().get(counter).setY(160);
+            }
+            else{
+                new Node(counter,(78*(counter-6))+7,160,new ComplexNumber(0,0));
+            }
+        }
+        for(counter=19;counter<=24;counter++){
+            if(counter<Node.getAllNodes().size()){
+                Node.getAllNodes().get(counter).setX((78*(counter-6))+7);
+                Node.getAllNodes().get(counter).setY(235);
+            }
+            else{
+                new Node(counter,(78*(counter-6))+7,235,new ComplexNumber(0,0));
+            }
+        }
+        for(counter=25;counter<=30;counter++){
+            if(counter<Node.getAllNodes().size()){
+                Node.getAllNodes().get(counter).setX((78*(counter-6))+7);
+                Node.getAllNodes().get(counter).setY(310);
+            }
+            else{
+                new Node(counter,(78*(counter-6))+7,310,new ComplexNumber(0,0));
             }
         }
     }
@@ -54,7 +91,6 @@ class GraphicFunctions{
             if(Element.getAllElements().get(i).getName().charAt(0)=='R'){
                 if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
                     ImageView R = new ImageView(ResistorH);
-
                     R.setX(Node.getAllNodes().get(firstNode).getX());
                     R.setY(Node.getAllNodes().get(firstNode).getY()-33);
                     return R;
@@ -110,11 +146,6 @@ class GraphicFunctions{
             }
         }
         return null;
-    }
-    public void DrawWires(Node StartNode , Node EndNode , int Place){
-        //for
-
-
     }
     public String inputANDOutputTexts() throws IOException {
         String inputTabText = "";
@@ -177,7 +208,6 @@ public class Graphics extends Application {
         titledPane3.setLayoutX(479.0);
         titledPane3.setLayoutY(66.0);
         titledPane3.setText("Graphic Circuit");
-
 // Adding child to parent
         anchorPane0.getChildren().add(titledPane3);
         Separator separator4 = new Separator();
@@ -186,7 +216,6 @@ public class Graphics extends Application {
         separator4.setPrefWidth(11.0);
         separator4.setLayoutX(468.0);
         separator4.setLayoutY(66.0);
-
 // Adding child to parent
         anchorPane0.getChildren().add(separator4);
         TextArea textArea5 = new TextArea();
@@ -208,9 +237,32 @@ public class Graphics extends Application {
         buttonBar6.getButtons().add(Output);
         buttonBar6.getButtons().add(Run);
         Draw.setOnAction(E->{
-            a.CreateNodes();
-            //ImageView b = new ImageView(a.setIconElements());
-
+            a.SetNodes();
+            Group root = new Group();
+            for(int i=0 ; i<Element.getAllElements().size();i++){
+                if(Element.getAllElements().get(i).getName().charAt(0)=='R'){
+                    if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
+                        ImageView R = new ImageView(a.ResistorH);
+                        R.setX(Node.getAllNodes().get(Element.getAllElements().get(i).getNode1()).getX());
+                        R.setY(Node.getAllNodes().get(Element.getAllElements().get(i).getNode1()).getY()-33);
+                        root.getChildren().add(R);
+                    }
+                    else{
+                        ImageView R = new ImageView(a.ResistorV);
+                        R.setX(Node.getAllNodes().get(Element.getAllElements().get(i).getNode1()).getX()-33);
+                        R.setY(Node.getAllNodes().get(Element.getAllElements().get(i).getNode1()).getY());
+                        root.getChildren().add(R);
+                    }
+                }
+            }
+            for(int j=0;j<Node.getAllNodes().size();j++){
+                System.out.println(Node.getAllNodes().get(j).getX());
+                System.out.println(Node.getAllNodes().get(j).getY());
+            }
+            Scene s = new Scene(root,1000,1000);
+            stage.setResizable(false);
+            stage.setScene(s);
+            stage.show();
         });
         Output.setOnAction(E->{
             TextArea outputCircuit = new TextArea();
@@ -226,7 +278,7 @@ public class Graphics extends Application {
             AnchorPane anchorPane1 = new AnchorPane();
             anchorPane1.setPrefHeight(729.0);
             anchorPane1.setPrefWidth(855.0);
-            NumberAxis xAxis = new NumberAxis(1960, 2020, Main.simulationTime);
+            NumberAxis xAxis = new NumberAxis(1960, 2020, 10);
             xAxis.setLabel("Time");
             NumberAxis yAxis = new NumberAxis(0, 350, 10);
             yAxis.setLabel("No.of schools");

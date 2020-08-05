@@ -322,7 +322,7 @@ public class Data {
                     }
                 }
             }
-            Main.setData(myDeltaV, myDeltaI, myDeltaT, SimulationTime);
+            //Main.setData(myDeltaV, myDeltaI, myDeltaT, SimulationTime);
         }
     }
     public static void setOutput(int error){
