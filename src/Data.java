@@ -358,6 +358,8 @@ public class Data {
                         String lineStr = Integer.toString(i);
                         if (allNode.getNodeVoltage().imaginary() == 0)
                             lineWriter = "Node " + lineStr + "\t" + allNode.getNodeVoltage().real();
+                        else
+                            lineWriter = "Node " + lineStr + "\t" + allNode.getNodeVoltage().real() + " + " + allNode.getNodeVoltage().imaginary() + "j";
                         OutputWriter.write(lineWriter);
                         OutputWriter.write(System.getProperty("line.separator"));
                     }
@@ -369,15 +371,15 @@ public class Data {
                 if (allElement.voltage.imaginary() == 0)
                     VoltageStr = Float.toString(allElement.voltage.real());
                 else
-                    VoltageStr = (allElement.voltage.real()) + (allElement.voltage.imaginary()) + "j";
+                    VoltageStr = (allElement.voltage.real()) + " + " + (allElement.voltage.imaginary()) + "j";
                 if (allElement.current.imaginary() == 0)
                     CurrentStr = Float.toString(allElement.current.real());
                 else
-                    CurrentStr = (allElement.current.real()) + (allElement.voltage.imaginary()) + "j";
+                    CurrentStr = (allElement.current.real()) + " + " +  (allElement.voltage.imaginary()) + "j";
                 if (allElement.power.imaginary() == 0)
                     PowerStr = Float.toString(allElement.power.real());
                 else
-                    PowerStr = (allElement.power.real()) + (allElement.power.imaginary()) + "j";
+                    PowerStr = (allElement.power.real()) + " + " + (allElement.power.imaginary()) + "j";
                 String lineWriter = ElementName + "\t" + VoltageStr + "\t" + CurrentStr + "\t" + PowerStr;
                 OutputWriter.write(lineWriter);
                 OutputWriter.write(System.getProperty("line.separator"));

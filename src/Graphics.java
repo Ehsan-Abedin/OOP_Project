@@ -1,4 +1,4 @@
-/*import javafx.application.Application;
+import javafx.application.Application;
 import javafx.geometry.Orientation;
 import javafx.scene.CacheHint;
 import javafx.scene.Group;
@@ -192,4 +192,4 @@ public class Graphics extends Application {
         stage.setScene(scene);
         stage.show();
     }
-}*/
+}

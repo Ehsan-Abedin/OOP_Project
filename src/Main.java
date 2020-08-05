@@ -14,11 +14,15 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         Data.getInput();
-        /*for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
+
+        for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
             for (CurrentSourceDC currentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
-                if ((allCurrentSourceDC.getNode1() == currentSourceDC.getNode2()) || (allCurrentSourceDC.getNode2() == currentSourceDC.getNode1()))
-                    if (allCurrentSourceDC.getCurrent() != currentSourceDC.getCurrent())
+                if ((allCurrentSourceDC.getNode1() == currentSourceDC.getNode2()) || (allCurrentSourceDC.getNode2() == currentSourceDC.getNode1())) {
+                    if (allCurrentSourceDC.getCurrent() != currentSourceDC.getCurrent()) {
+                        Data.setOutput(-2);
                         return;
+                    }
+                }
             }
         }
         for (CurrentSourceAC allCurrentSourceAC : CurrentSourceAC.getAllCurrentSourceACs()) {
@@ -31,6 +35,7 @@ public class Main {
                 }
             }
         }
+
         for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
             for (VoltageSourceDC voltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
                 if (((allVoltageSourceDC.getNode1() == voltageSourceDC.getNode1()) && (allVoltageSourceDC.getNode2() == voltageSourceDC.getNode2())) || ((allVoltageSourceDC.getNode2() == voltageSourceDC.getNode1()) && (allVoltageSourceDC.getNode1() == voltageSourceDC.getNode2()))) {
@@ -43,9 +48,12 @@ public class Main {
         }
         for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
             for (VoltageSourceAC voltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
-                if (((allVoltageSourceAC.getNode1() == voltageSourceAC.getNode1()) && (allVoltageSourceAC.getNode2() == voltageSourceAC.getNode2())) || ((allVoltageSourceAC.getNode2() == voltageSourceAC.getNode1()) && (allVoltageSourceAC.getNode1() == voltageSourceAC.getNode2())))
-                    if (allVoltageSourceAC.getVoltage() != voltageSourceAC.getVoltage())
+                if (((allVoltageSourceAC.getNode1() == voltageSourceAC.getNode1()) && (allVoltageSourceAC.getNode2() == voltageSourceAC.getNode2())) || ((allVoltageSourceAC.getNode2() == voltageSourceAC.getNode1()) && (allVoltageSourceAC.getNode1() == voltageSourceAC.getNode2()))) {
+                    if (allVoltageSourceAC.getVoltage() != voltageSourceAC.getVoltage()) {
+                        Data.setOutput(-3);
                         return;
+                    }
+                }
             }
         }
 
@@ -53,21 +61,21 @@ public class Main {
         for (Node allNode : Node.getAllNodes()) {
             if (allNode.getNode() == 0)
                 flag = 1;
-            if ((allNode.getNode() == 0) && ((allNode.getNodeVoltage().real() != 0) || (allNode.getNodeVoltage().imaginary() != 0)))
+            if ((allNode.getNode() == 0) && ((allNode.getNodeVoltage().real() != 0) || (allNode.getNodeVoltage().imaginary() != 0))) {
+                Data.setOutput(-4);
                 return;
+            }
         }
-        if (flag != 1)
+        if (flag != 1) {
+            Data.setOutput(-4);
             return;
+        }
 
-*/
         for (Element allElement : Element.getAllElements()) {
             System.out.println(allElement);
         }
         for (Node allNode : Node.getAllNodes()) {
             System.out.println(allNode);
-        }
-        for (Resistance allResistance : Resistance.getAllResistances()) {
-            System.out.println(allResistance.getResistance());
         }
         if ((Capacitor.getAllCapacitors().size() == 0) && (Inductance.getAllInductances().size() == 0)) {
             for (float t = 0; t <= simulationTime; t += deltaT) {
@@ -279,9 +287,9 @@ public class Main {
                     }
                     for (CurrentSourceAC allCurrentSourceAC : CurrentSourceAC.getAllCurrentSourceACs()) {
                         if (allCurrentSourceAC.getNode1() == p)
-                            i[p][1] = -allCurrentSourceAC.getCurrent().real();
+                            i[p][1] = -allCurrentSourceAC.getAmplitude() * (float) Math.sin(2 * Math.PI * allCurrentSourceAC.getFrequency() * t + allCurrentSourceAC.getPhase());
                         else if (allCurrentSourceAC.getNode2() == p)
-                            i[p][1] = allCurrentSourceAC.getCurrentDC() * (float) Math.sin(2 * Math.PI * allCurrentSourceAC.getFrequency() * t + allCurrentSourceAC.getPhase());
+                            i[p][1] = allCurrentSourceAC.getAmplitude() * (float) Math.sin(2 * Math.PI * allCurrentSourceAC.getFrequency() * t + allCurrentSourceAC.getPhase());
                     }
                 }
                 for (int p = 1; p < m + 1; p++) {
@@ -290,7 +298,7 @@ public class Main {
                             e[p][1] = allVoltageSourceDC.getVoltage().real();
                     for (VoltageSourceAC allvoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs())
                         if (Integer.parseInt(allvoltageSourceAC.getName().substring(1)) == p)
-                            e[p][1] = allvoltageSourceAC.getVoltageDC() * (float) Math.sin(2 * Math.PI * allvoltageSourceAC.getFrequency() * t + allvoltageSourceAC.getPhase());
+                            e[p][1] = allvoltageSourceAC.getAmplitude() * (float) Math.sin(2 * Math.PI * allvoltageSourceAC.getFrequency() * t + allvoltageSourceAC.getPhase());
                 }
                 for (int p = 1; p < n + 1; p++)
                     z[p][1] = i[p][1];
@@ -627,6 +635,13 @@ public class Main {
                     }
                     q++;
                 }
+                for (int p = 1; p < m+1; p++) {
+                    ComplexNumber sum = new ComplexNumber(0, 0);
+                    for (int q = 1; q < m + 1; q++) {
+                        sum = sum.add(0);
+                        d[p][q] = sum;
+                    }
+                }
                 for (int p = 1; p < n + 1; p++)
                     for (int q = 1; q < n + 1; q++)
                         a[p][q] = g[p][q];
@@ -641,28 +656,59 @@ public class Main {
                         a[n + p][n + q] = d[p][q];
                 for (int p = 1; p < n + 1; p++) {
                     for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
-                        if (allCurrentSourceDC.getNode1() == p)
-                            i[p][1] = i[p][1].subtract(allCurrentSourceDC.getCurrent());
-                        else if (allCurrentSourceDC.getNode2() == p)
-                            i[p][1] = i[p][1].add(allCurrentSourceDC.getCurrent().real());
+                        ComplexNumber sum = new ComplexNumber(0, 0);
+                        if (allCurrentSourceDC.getNode1() == p) {
+                            sum = sum.subtract(allCurrentSourceDC.getCurrent());
+                            i[p][1] = sum;
+                        }
+                        else if (allCurrentSourceDC.getNode2() == p) {
+                            sum = sum.add(allCurrentSourceDC.getCurrent().real());
+                            i[p][1] = sum;
+                        }
+                        else {
+                            sum = sum.add(0);
+                            i[p][1] = sum;
+                        }
                     }
                     for (CurrentSourceAC allCurrentSourceAC : CurrentSourceAC.getAllCurrentSourceACs()) {
-                        if (allCurrentSourceAC.getNode1() == p)
-                            i[p][1] = i[p][1].subtract(allCurrentSourceAC.getCurrent().real());
-                        else if (allCurrentSourceAC.getNode2() == p)
-                            i[p][1] = i[p][1].add(allCurrentSourceAC.getCurrentDC() * (float) Math.sin(2 * Math.PI * allCurrentSourceAC.getFrequency() * t + allCurrentSourceAC.getPhase()));
+                        ComplexNumber sum = new ComplexNumber(0, 0);
+                        if (allCurrentSourceAC.getNode1() == p) {
+                            sum = sum.subtract(allCurrentSourceAC.getAmplitude() * (float) Math.sin(2 * Math.PI * allCurrentSourceAC.getFrequency() * t + allCurrentSourceAC.getPhase()));
+                            i[p][1] = sum;
+                        }
+                        else if (allCurrentSourceAC.getNode2() == p) {
+                            sum = sum.add(allCurrentSourceAC.getAmplitude() * (float) Math.sin(2 * Math.PI * allCurrentSourceAC.getFrequency() * t + allCurrentSourceAC.getPhase()));
+                            i[p][1] = sum;
+                        }
                     }
                 }
-                for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs())
-                    for (int p = 1; p < m + 1; p++)
-                        if (Integer.parseInt(allVoltageSourceAC.getName().substring(1)) == p)
-                            e[p][1] = e[p][1].add(allVoltageSourceAC.getVoltageDC() * (float) Math.sin(2 * Math.PI * allVoltageSourceAC.getFrequency() * t + allVoltageSourceAC.getPhase()));
+                for (int p = 1; p < n+1; p++) {
+                    ComplexNumber sum = new ComplexNumber(0, 0);
+                    sum = sum.add(0);
+                    if (i[p][1] == null)
+                        i[p][1] = sum;
+                }
+                for (int p = 1; p < m + 1; p++) {
+                    for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
+                        ComplexNumber sum = new ComplexNumber(0, 0);
+                        if (Integer.parseInt(allVoltageSourceAC.getName().substring(1)) == p) {
+                            sum = sum.add(allVoltageSourceAC.getAmplitude());
+                            e[p][1] = sum;
+                        }
+                    }
+                }
+                for (int p = 1; p < m+1; p++) {
+                    ComplexNumber sum = new ComplexNumber(0, 0);
+                    sum = sum.add(0);
+                    if (e[p][1] == null)
+                        e[p][1] = sum;
+                }
                 for (int p = 1; p < n + 1; p++)
-                    b[p][1] = i[p][1];
+                    z[p][1] = i[p][1];
                 for (int p = 1; p < m + 1; p++)
-                    b[n + p][1] = e[p][1];
+                    z[n + p][1] = e[p][1];
 
-                float aTemp[][] = new float[m + n + 1][m + n + 1];
+                /*float aTemp[][] = new float[m + n + 1][m + n + 1];
                 float bTemp[][] = new float[m + n + 1][m + n + 1];
                 float xTemp[][] = new float[m + n + 1][m + n + 1];
                 float yTemp[][] = new float[m + n + 1][m + n + 1];
@@ -692,11 +738,26 @@ public class Main {
                         invert_a[p][q].setX(xTemp[p][q]);
                         invert_a[p][q].setY(yTemp[p][q]);
                     }
+                }*/
+                ComplexNumber[][] invert_a = new ComplexNumber[0][];
+                for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
+                     invert_a = Functions.invert((int) allVoltageSourceAC.getFrequency());
                 }
-                for (int p = 1; p < m + n + 1; p++)
-                    for (int q = 1; q < 2; q++)
-                        for (int r = 1; r < m + n + 1; r++)
-                            x[p][q] = x[p][q].add(invert_a[p][r].multiply(z[r][q]));
+                for (int p = 1; p < m + n + 1; p++) {
+                    ComplexNumber sum = new ComplexNumber(0, 0);
+                    sum = sum.add(0);
+                    if (x[p][1] == null)
+                        x[p][1] = sum;
+                }
+                for (int p = 1; p < m + n + 1; p++) {
+                    for (int q = 1; q < 2; q++) {
+                        for (int r = 1; r < m + n + 1; r++) {
+                            ComplexNumber sum = new ComplexNumber(0, 0);
+                            sum = sum.add(invert_a[p][r].multiply(z[r][q]));
+                            x[p][q] = x[p][q].add(sum);
+                        }
+                    }
+                }
                 for (Node allNode : Node.getAllNodes())
                     for (int p = 1; p < n + 1; p++)
                         if (allNode.getNode() == p)
@@ -804,6 +865,87 @@ public class Main {
                 }
                 Data.setOutput(0);
             }
+        }
+        else {
+            if (Inductance.getAllInductances().size() == 0) {
+                if (CurrentSourceDC.getAllCurrentSourceDCs().size() != 0) {
+                    for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
+                        for (Resistance allResistance : Resistance.getAllResistances()) {
+                            allResistance.setCurrent(allCurrentSourceDC.getCurrent());
+                            allResistance.setVoltage(new ComplexNumber(allResistance.getCurrent().multiply(allResistance.getResistance()).real(), 0));
+                            allResistance.setPower(allResistance.power(allResistance.getCurrent(), allResistance.getVoltage()));
+                            allCurrentSourceDC.setVoltage(allResistance.getVoltage());
+                            allCurrentSourceDC.setPower(allCurrentSourceDC.power(allCurrentSourceDC.current.multiply(-1), allCurrentSourceDC.voltage));
+                        }
+                    }
+                    for (Capacitor allCapacitor : Capacitor.getAllCapacitors()) {
+                        for (Resistance allResistance : Resistance.getAllResistances()) {
+                            allCapacitor.setVoltage(allResistance.getVoltage());
+                            allCapacitor.setCurrent(new ComplexNumber(0, 0));
+                            allCapacitor.setPower(allCapacitor.power(allCapacitor.getCurrent(), allCapacitor.getVoltage()));
+                        }
+                    }
+                    for (Node allNode : Node.getAllNodes()) {
+                        for (Resistance allResistance : Resistance.getAllResistances()) {
+                            if (allNode.getNode() != 0)
+                                allNode.setNodeVoltage(allResistance.voltage);
+                        }
+                    }
+                }
+            }
+            else {
+                if (CurrentSourceDC.getAllCurrentSourceDCs().size() != 0) {
+                    for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
+                        for (Inductance allInductance : Inductance.getAllInductances()) {
+                            allCurrentSourceDC.setCurrent(allCurrentSourceDC.getCurrent());
+                            allInductance.setVoltage(new ComplexNumber(0, 0));
+                            allInductance.setPower(allInductance.power(allInductance.current, allInductance.voltage));
+                        }
+                        for (Resistance allResistance : Resistance.getAllResistances()) {
+                            allResistance.setCurrent(new ComplexNumber(0, 0));
+                            allResistance.setVoltage(new ComplexNumber(0, 0));
+                            allResistance.setPower(allResistance.power(allResistance.current, allResistance.voltage));
+                        }
+                        for (Capacitor allCapacitor : Capacitor.getAllCapacitors()) {
+                            allCapacitor.setCurrent(new ComplexNumber(0, 0));
+                            allCapacitor.setVoltage(new ComplexNumber(0, 0));
+                            allCapacitor.setPower(allCapacitor.power(allCapacitor.current, allCapacitor.voltage));
+                        }
+                        allCurrentSourceDC.setVoltage(new ComplexNumber(0, 0));
+                        allCurrentSourceDC.setPower(allCurrentSourceDC.power(allCurrentSourceDC.current, allCurrentSourceDC.voltage));
+                    }
+                }
+                else {
+                    for (Node allNode : Node.getAllNodes()) {
+                        for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
+                            if (allNode.getNode() != 0)
+                                allNode.setNodeVoltage(allVoltageSourceDC.voltage);
+                        }
+                    }
+                    for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
+                        allVoltageSourceDC.setCurrent(new ComplexNumber(0, 0));
+                        allVoltageSourceDC.setPower(allVoltageSourceDC.power(allVoltageSourceDC.current, allVoltageSourceDC.voltage));
+                    }
+                    for (Resistance allResistance : Resistance.getAllResistances()) {
+                        allResistance.setVoltage(allResistance.voltage(allResistance.getNode1Voltage(), allResistance.getNode2Voltage()));
+                        allResistance.setCurrent(allResistance.voltage.division(allResistance.getResistance()));
+                        allResistance.setPower(allResistance.power(allResistance.current, allResistance.voltage));
+                    }
+                    for (Capacitor allCapacitor : Capacitor.getAllCapacitors()) {
+                        for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
+                            allCapacitor.setVoltage(allVoltageSourceDC.getVoltage());
+                            allCapacitor.setCurrent(new ComplexNumber(0, 0));
+                            allCapacitor.setPower(allCapacitor.power(allCapacitor.current, allCapacitor.voltage));
+                        }
+                    }
+                    for (Inductance allInductance : Inductance.getAllInductances()) {
+                        allInductance.setVoltage(allInductance.voltage(allInductance.getNode1Voltage(), allInductance.getNode2Voltage()));
+                        allInductance.setCurrent(new ComplexNumber(0, 0));
+                        allInductance.setPower(allInductance.power(allInductance.current, allInductance.voltage));
+                    }
+                }
+            }
+            Data.setOutput(0);
         }
     }
 }
