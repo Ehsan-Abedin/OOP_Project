@@ -11,17 +11,17 @@ import javafx.stage.Stage;
 import java.io.*;
 class functions{
     functions() throws FileNotFoundException {}
-    FileInputStream ResistorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-H.png");
-    InputStream ResistorVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-V.png");
-    InputStream CapacitorVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\capacitor-V.png");
-    InputStream CapacitorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\capacitor-H.png");
-    InputStream InductanceVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\inductor-V.png");
-    InputStream InductanceHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\inductor-H.png");
-    InputStream GroundI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\ground.png");
-    InputStream DCVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\dc-V.png");
-    InputStream DCHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\dc-H.png");
-    InputStream WireVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\wire-V.png");
-    InputStream WireHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\wire-H.png");
+    FileInputStream ResistorHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\resistor-H.png");
+    InputStream ResistorVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\resistor-V.png");
+    InputStream CapacitorVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\capacitor-V.png");
+    InputStream CapacitorHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\capacitor-H.png");
+    InputStream InductanceVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\inductor-V.png");
+    InputStream InductanceHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\inductor-H.png");
+    InputStream GroundI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\ground.png");
+    InputStream DCVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\dc-V.png");
+    InputStream DCHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\dc-H.png");
+    InputStream WireVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\wire-V.png");
+    InputStream WireHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\wire-H.png");
     Image ResistorH = new Image(ResistorHI);
     Image ResistorV = new Image(ResistorVI);
     Image CapacitorH = new Image(CapacitorHI);
