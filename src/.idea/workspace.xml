@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ceef8822-55a2-4954-8b56-9fb34713c02c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/src.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/javaFX.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Graphic.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../Graphic.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OOP_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../OOP_Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/OOP_Project/Element.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/OOP_Project/Element.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/OOP_Project/Functions.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/OOP_Project/Functions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/Graphics.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1fg61JKmPrH0YqSHISA8a5Dy30K" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ceef8822-55a2-4954-8b56-9fb34713c02c" name="Default Changelist" comment="" />
+      <created>1596627171807</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596627171807</updated>
+      <workItem from="1596627172933" duration="610000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1596627181545">
