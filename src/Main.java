@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         Data.getInput();
-/*        for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
+        for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
             for (CurrentSourceDC currentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
                 if ((allCurrentSourceDC.getNode1() == currentSourceDC.getNode2()) || (allCurrentSourceDC.getNode2() == currentSourceDC.getNode1())) {
                     if (allCurrentSourceDC.getCurrent() != currentSourceDC.getCurrent()) {
@@ -708,7 +708,7 @@ public class Main {
                 for (int p = 1; p < m + 1; p++)
                     z[n + p][1] = e[p][1];
 
-                *//*float aTemp[][] = new float[m + n + 1][m + n + 1];
+                /*float aTemp[][] = new float[m + n + 1][m + n + 1];
                 float bTemp[][] = new float[m + n + 1][m + n + 1];
                 float xTemp[][] = new float[m + n + 1][m + n + 1];
                 float yTemp[][] = new float[m + n + 1][m + n + 1];
@@ -738,10 +738,18 @@ public class Main {
                         invert_a[p][q].setX(xTemp[p][q]);
                         invert_a[p][q].setY(yTemp[p][q]);
                     }
-                }*//*
+                }*/
                 ComplexNumber[][] invert_a = new ComplexNumber[0][];
                 for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
                     invert_a = Functions.invert((int) allVoltageSourceAC.getFrequency());
+                }
+                for (int p = 1; p < m+n+1; p++) {
+                    for (int q = 1; q < m+n+1; q++) {
+                        ComplexNumber sum = new ComplexNumber(0, 0);
+                        sum = sum.add(0);
+                        if (invert_a[p][q] == null)
+                            invert_a[p][q] = sum;
+                    }
                 }
                 for (int p = 1; p < m + n + 1; p++) {
                     ComplexNumber sum = new ComplexNumber(0, 0);
@@ -892,6 +900,26 @@ public class Main {
                         }
                     }
                 }
+                else {
+                    for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
+                        for (Resistance allResistance : Resistance.getAllResistances()) {
+                            allResistance.setVoltage(allVoltageSourceDC.getVoltage());
+                            allResistance.setCurrent(allResistance.getVoltage().division(allResistance.getResistance()));
+                            allResistance.setPower(allResistance.power(allResistance.current, allResistance.voltage));
+                            allVoltageSourceDC.setCurrent(allResistance.current.multiply(-1));
+                        }
+                        for (Capacitor allCapacitor : Capacitor.getAllCapacitors()) {
+                            allCapacitor.setVoltage(allVoltageSourceDC.getVoltage());
+                            allCapacitor.setCurrent(new ComplexNumber(0, 0));
+                            allCapacitor.setPower(allCapacitor.power(allCapacitor.current, allCapacitor.voltage));
+                        }
+                        allVoltageSourceDC.setPower(allVoltageSourceDC.power(allVoltageSourceDC.current, allVoltageSourceDC.voltage));
+                        for (Node allNode : Node.getAllNodes()) {
+                            if (allNode.getNode() != 0)
+                                allNode.setNodeVoltage(allVoltageSourceDC.voltage);
+                        }
+                    }
+                }
             }
             else {
                 if (CurrentSourceDC.getAllCurrentSourceDCs().size() != 0) {
@@ -946,7 +974,7 @@ public class Main {
                 }
             }
             Data.setOutput(0);
-        }*/
+        }
         new Thread() {
             @Override
             public void run() {
