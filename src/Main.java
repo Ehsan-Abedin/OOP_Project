@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         Data.getInput();
-/*        for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
+        for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
             for (CurrentSourceDC currentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
                 if ((allCurrentSourceDC.getNode1() == currentSourceDC.getNode2()) || (allCurrentSourceDC.getNode2() == currentSourceDC.getNode1())) {
                     if (allCurrentSourceDC.getCurrent() != currentSourceDC.getCurrent()) {
@@ -708,7 +708,7 @@ public class Main {
                 for (int p = 1; p < m + 1; p++)
                     z[n + p][1] = e[p][1];
 
-                *//*float aTemp[][] = new float[m + n + 1][m + n + 1];
+                /*float aTemp[][] = new float[m + n + 1][m + n + 1];
                 float bTemp[][] = new float[m + n + 1][m + n + 1];
                 float xTemp[][] = new float[m + n + 1][m + n + 1];
                 float yTemp[][] = new float[m + n + 1][m + n + 1];
@@ -738,7 +738,7 @@ public class Main {
                         invert_a[p][q].setX(xTemp[p][q]);
                         invert_a[p][q].setY(yTemp[p][q]);
                     }
-                }*//*
+                }*/
                 ComplexNumber[][] invert_a = new ComplexNumber[0][];
                 for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
                     invert_a = Functions.invert((int) allVoltageSourceAC.getFrequency());
@@ -974,7 +974,7 @@ public class Main {
                 }
             }
             Data.setOutput(0);
-        }*/
+        }
         new Thread() {
             @Override
             public void run() {
