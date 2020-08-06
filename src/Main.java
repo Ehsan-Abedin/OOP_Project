@@ -1,3 +1,5 @@
+import javafx.stage.Stage;
+
 import java.io.FileNotFoundException;
 public class Main {
     public static float deltaV = 0;
@@ -945,5 +947,11 @@ public class Main {
             }
             Data.setOutput(0);
         }
+        new Thread() {
+            @Override
+            public void run() {
+                javafx.application.Application.launch(Graphics.class);
+            }
+        }.start();
     }
 }
