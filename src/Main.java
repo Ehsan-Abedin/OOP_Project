@@ -743,6 +743,14 @@ public class Main {
                 for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
                     invert_a = Functions.invert((int) allVoltageSourceAC.getFrequency());
                 }
+                for (int p = 1; p < m+n+1; p++) {
+                    for (int q = 1; q < m+n+1; q++) {
+                        ComplexNumber sum = new ComplexNumber(0, 0);
+                        sum = sum.add(0);
+                        if (invert_a[p][q] == null)
+                            invert_a[p][q] = sum;
+                    }
+                }
                 for (int p = 1; p < m + n + 1; p++) {
                     ComplexNumber sum = new ComplexNumber(0, 0);
                     sum = sum.add(0);
