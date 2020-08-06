@@ -44,6 +44,8 @@ class GraphicFunctions{
     Image ACV = new Image(ACVI);
     public void SetNodes(){
         int counter=0;
+        Node.getAllNodes().get(counter).setX(0);
+        Node.getAllNodes().get(counter).setY(10);
         for(counter=1;counter<=6;counter++){
             if(counter<Node.getAllNodes().size()){
                 Node.getAllNodes().get(counter).setX((75*(counter-1))+10);
@@ -90,23 +92,6 @@ class GraphicFunctions{
             }
         }
     }
-    public ImageView setIconElements(Node a , Node b ) throws FileNotFoundException {
-        if(a.getNode()==b.getNode()){
-            if(Element.getElementByNode(a,b).getName().charAt(0)=='R'){
-                System.out.println("R Found!");
-                ImageView R = new ImageView(ResistorH);
-                R.setX(a.getX());
-                R.setY(a.getY()-37);
-                return R;
-            }
-        }
-        else{
-
-
-
-        }
-        return null;
-    }
     public String inputANDOutputTexts() throws IOException {
         String inputTabText = "";
         String outputTabText = "";
@@ -125,7 +110,6 @@ class GraphicFunctions{
             outputTabText+= inputTabText + "\n";
         return outputTabText;
     }
-
 }
 public class Graphics extends Application {
     public static void Graphic(String args){
@@ -134,6 +118,7 @@ public class Graphics extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         GraphicFunctions a = new GraphicFunctions();
+        a.SetNodes();
         AnchorPane anchorPane0 = new AnchorPane();
         anchorPane0.setPrefHeight(715.0);
         // anchorPane0.setXmlns(http://javafx.com/javafx/11.0.1);
@@ -168,6 +153,8 @@ public class Graphics extends Application {
         titledPane3.setLayoutX(479.0);
         titledPane3.setLayoutY(66.0);
         titledPane3.setText("Graphic Circuit");
+        VBox ali = new VBox();
+        titledPane3.setContent(ali);
 // Adding child to parent
         anchorPane0.getChildren().add(titledPane3);
         Separator separator4 = new Separator();
@@ -198,12 +185,16 @@ public class Graphics extends Application {
         buttonBar6.getButtons().add(Run);
         Draw.setOnAction(E->{
             a.SetNodes();
-            VBox ali = new VBox();
+            ImageView g0 = new ImageView(a.Ground);
+            g0.setX(Node.getAllNodes().get(0).getX());
+            g0.setY(Node.getAllNodes().get(0).getY());
+            System.out.println(Node.getAllNodes().get(0).getY());
+            ali.getChildren().add(g0);
             for(int j=0 ; j<Element.getAllElements().size();j++){
                 if(Element.getAllElements().get(j).getName().charAt(0)=='R'){
                     ImageView b = new ImageView(a.ResistorH);
-                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
-                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode2()).getX());
+                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode2()).getY());
                     b.setVisible(true);
                     ali.getChildren().add(b);
                 }
@@ -231,10 +222,13 @@ public class Graphics extends Application {
                 else if(Element.getAllElements().get(j).getName().charAt(0)=='I'){
                     if(Math.abs(Element.getAllElements().get(j).getNode1()-Element.getAllElements().get(j).getNode2())==1){
                         ImageView b = new ImageView(a.ACH);
-                        b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
-                        b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                        b.setFitWidth(50);
+                        b.setFitHeight(50);
                         b.setVisible(true);
                         ali.getChildren().add(b);
+                        b.setX(500);
+                        b.setY(400);
+                        b.setLayoutX(500);
                     }
                     else{
                         ImageView b = new ImageView(a.ACV);
@@ -245,13 +239,9 @@ public class Graphics extends Application {
                     }
                 }
             }
-            for(int j=0;j<Node.getAllNodes().size();j++){
-                System.out.printf("Node %d: (%d,%d)\n",Node.getAllNodes().get(j).getNode(),Node.getAllNodes().get(j).getX(),Node.getAllNodes().get(j).getY());
+            for(int k=0;k<Node.getAllNodes().size();k++){
+                System.out.printf("Node %d: (%d,%d)\n",Node.getAllNodes().get(k).getNode(),Node.getAllNodes().get(k).getX(),Node.getAllNodes().get(k).getY());
             }
-            Scene s = new Scene(ali,700,700);
-            stage.setResizable(true);
-            stage.setScene(s);
-            stage.show();
         });
         Output.setOnAction(E->{
             TextArea outputCircuit = new TextArea();
@@ -296,7 +286,7 @@ public class Graphics extends Application {
         anchorPane0.getChildren().add(buttonBar6);
         Scene scene = new Scene(anchorPane0,anchorPane0.getWidth(),anchorPane0.getHeight());
         stage.setTitle("Circuit Design");
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setScene(scene);
         stage.show();
     }
