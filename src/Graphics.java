@@ -14,20 +14,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.Date;
-
 class GraphicFunctions{
     GraphicFunctions() throws FileNotFoundException {}
-    FileInputStream ResistorHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\resistor-H.png");
-    InputStream ResistorVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\resistor-V.png");
-    InputStream CapacitorVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\capacitor-V.png");
-    InputStream CapacitorHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\capacitor-H.png");
-    InputStream InductanceVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\inductor-V.png");
-    InputStream InductanceHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\inductor-H.png");
-    InputStream GroundI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\ground.png");
-    InputStream DCVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\dc-V.png");
-    InputStream DCHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\dc-H.png");
-    InputStream WireVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\wire-V.png");
-    InputStream WireHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\wire-H.png");
+    FileInputStream ResistorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-H.png");
+    InputStream ResistorVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-V.png");
+    InputStream CapacitorVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\capacitor-V.png");
+    InputStream CapacitorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\capacitor-H.png");
+    InputStream InductanceVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\inductor-V.png");
+    InputStream InductanceHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\inductor-H.png");
+    InputStream GroundI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\ground.png");
+    InputStream DCVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\dc-V.png");
+    InputStream DCHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\dc-H.png");
+    InputStream WireVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\wire-V.png");
+    InputStream WireHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\wire-H.png");
+    InputStream ACHI= new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\AC-H.png");
+    InputStream ACVI= new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\AC-V.png");
     Image ResistorH = new Image(ResistorHI);
     Image ResistorV = new Image(ResistorVI);
     Image CapacitorH = new Image(CapacitorHI);
@@ -39,6 +40,8 @@ class GraphicFunctions{
     Image DCV = new Image(DCVI);
     Image WireH = new Image(WireHI);
     Image WireV = new Image(WireVI);
+    Image ACH = new Image(ACHI);
+    Image ACV = new Image(ACVI);
     public void SetNodes(){
         int counter=0;
         for(counter=1;counter<=6;counter++){
@@ -107,7 +110,7 @@ class GraphicFunctions{
     public String inputANDOutputTexts() throws IOException {
         String inputTabText = "";
         String outputTabText = "";
-        File file = new File("D:\\EHSAN\\University\\OOP\\OOP_Project\\Test.txt");
+        File file = new File("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Test.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         while ((inputTabText = br.readLine()) != null)
             outputTabText+= inputTabText + "\n";
@@ -116,7 +119,7 @@ class GraphicFunctions{
     public String JustOutputTexts() throws IOException {
         String inputTabText = "";
         String outputTabText = "";
-        File file = new File("D:\\EHSAN\\University\\OOP\\OOP_Project\\Output.txt");
+        File file = new File("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Output.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         while ((inputTabText = br.readLine()) != null)
             outputTabText+= inputTabText + "\n";
@@ -196,22 +199,54 @@ public class Graphics extends Application {
         Draw.setOnAction(E->{
             a.SetNodes();
             VBox ali = new VBox();
-            System.out.println(Element.getAllElements().size());
             for(int j=0 ; j<Element.getAllElements().size();j++){
-                System.out.println("ergert");
-                try {
-                    ImageView b = new ImageView(String.valueOf(a.setIconElements(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()),Node.getAllNodes().get(Element.getAllElements().get(j).getNode2()))));
+                if(Element.getAllElements().get(j).getName().charAt(0)=='R'){
+                    ImageView b = new ImageView(a.ResistorH);
                     b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
                     b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
                     b.setVisible(true);
                     ali.getChildren().add(b);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                }
+                else if(Element.getAllElements().get(j).getName().charAt(0)=='C'){
+                    ImageView b = new ImageView(a.CapacitorH);
+                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                    b.setVisible(true);
+                    ali.getChildren().add(b);
+                }
+                else if(Element.getAllElements().get(j).getName().charAt(0)=='L'){
+                    ImageView b = new ImageView(a.InductanceH);
+                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                    b.setVisible(true);
+                    ali.getChildren().add(b);
+                }
+                else if(Element.getAllElements().get(j).getName().charAt(0)=='V'){
+                    ImageView b = new ImageView(a.DCH);
+                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                    b.setVisible(true);
+                    ali.getChildren().add(b);
+                }
+                else if(Element.getAllElements().get(j).getName().charAt(0)=='I'){
+                    if(Math.abs(Element.getAllElements().get(j).getNode1()-Element.getAllElements().get(j).getNode2())==1){
+                        ImageView b = new ImageView(a.ACH);
+                        b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                        b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                        b.setVisible(true);
+                        ali.getChildren().add(b);
+                    }
+                    else{
+                        ImageView b = new ImageView(a.ACV);
+                        b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                        b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                        b.setVisible(true);
+                        ali.getChildren().add(b);
+                    }
                 }
             }
             for(int j=0;j<Node.getAllNodes().size();j++){
                 System.out.printf("Node %d: (%d,%d)\n",Node.getAllNodes().get(j).getNode(),Node.getAllNodes().get(j).getX(),Node.getAllNodes().get(j).getY());
-
             }
             Scene s = new Scene(ali,700,700);
             stage.setResizable(true);
