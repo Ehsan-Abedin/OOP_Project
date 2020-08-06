@@ -10,8 +10,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.*;
+import java.util.Date;
+
 class GraphicFunctions{
     GraphicFunctions() throws FileNotFoundException {}
     FileInputStream ResistorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-H.png");
@@ -40,110 +43,64 @@ class GraphicFunctions{
         int counter=0;
         for(counter=1;counter<=6;counter++){
             if(counter<Node.getAllNodes().size()){
-                Node.getAllNodes().get(counter).setX((8*counter)+7);
+                Node.getAllNodes().get(counter).setX((75*(counter-1))+10);
                 Node.getAllNodes().get(counter).setY(10);
             }
             else{
-                new Node(counter,(78*counter)+7,10,new ComplexNumber(0,0));
+                new Node(counter,(75*(counter-1))+10,10,new ComplexNumber(0,0));
             }
         }
         for(counter=7;counter<=12;counter++){
             if(counter<Node.getAllNodes().size()){
-                Node.getAllNodes().get(counter).setX((78*(counter-6))+7);
+                Node.getAllNodes().get(counter).setX((75*(counter-7))+10);
                 Node.getAllNodes().get(counter).setY(85);
             }
             else{
-                new Node(counter,(78*(counter-6)+7),85,new ComplexNumber(0,0));
+                new Node(counter,(75*(counter-7)+10),85,new ComplexNumber(0,0));
             }
         }
         for(counter=13;counter<=18;counter++){
             if(counter<Node.getAllNodes().size()){
-                Node.getAllNodes().get(counter).setX((78*(counter-6))+7);
+                Node.getAllNodes().get(counter).setX((75*(counter-13))+10);
                 Node.getAllNodes().get(counter).setY(160);
             }
             else{
-                new Node(counter,(78*(counter-6))+7,160,new ComplexNumber(0,0));
+                new Node(counter,(75*(counter-13))+10,160,new ComplexNumber(0,0));
             }
         }
         for(counter=19;counter<=24;counter++){
             if(counter<Node.getAllNodes().size()){
-                Node.getAllNodes().get(counter).setX((78*(counter-6))+7);
+                Node.getAllNodes().get(counter).setX((75*(counter-19))+10);
                 Node.getAllNodes().get(counter).setY(235);
             }
             else{
-                new Node(counter,(78*(counter-6))+7,235,new ComplexNumber(0,0));
+                new Node(counter,(75*(counter-19))+10,235,new ComplexNumber(0,0));
             }
         }
         for(counter=25;counter<=30;counter++){
             if(counter<Node.getAllNodes().size()){
-                Node.getAllNodes().get(counter).setX((78*(counter-6))+7);
+                Node.getAllNodes().get(counter).setX((75*(counter-25))+10);
                 Node.getAllNodes().get(counter).setY(310);
             }
             else{
-                new Node(counter,(78*(counter-6))+7,310,new ComplexNumber(0,0));
+                new Node(counter,(75*(counter-25))+10,310,new ComplexNumber(0,0));
             }
         }
     }
-    public ImageView setIconElements() throws FileNotFoundException {
-        int firstNode=0 , secondNode=0 ;
-        for(int i=1 ; i<=Element.getAllElements().size() ; i++){
-            firstNode = Element.getAllElements().get(i).getNode1();
-            if(Element.getAllElements().get(i).getName().charAt(0)=='R'){
-                if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
-                    ImageView R = new ImageView(ResistorH);
-                    R.setX(Node.getAllNodes().get(firstNode).getX());
-                    R.setY(Node.getAllNodes().get(firstNode).getY()-33);
-                    return R;
-                }
-                else{
-                    ImageView R = new ImageView(ResistorV);
-                    R.setX(Node.getAllNodes().get(firstNode).getX()-33);
-                    R.setY(Node.getAllNodes().get(firstNode).getY());
-                    return R;
-                }
+    public ImageView setIconElements(Node a , Node b ) throws FileNotFoundException {
+        if(a.getNode()==b.getNode()){
+            if(Element.getElementByNode(a,b).getName().charAt(0)=='R'){
+                System.out.println("R Found!");
+                ImageView R = new ImageView(ResistorH);
+                R.setX(a.getX());
+                R.setY(a.getY()-37);
+                return R;
             }
-            else if(Element.getAllElements().get(i).getName().charAt(0)=='L'){
-                if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
-                    ImageView L = new ImageView(InductanceH);
-                    L.setX(Node.getAllNodes().get(firstNode).getX());
-                    L.setY(Node.getAllNodes().get(firstNode).getY()-33);
-                    return L;
-                }
-                else{
-                    ImageView L = new ImageView(InductanceV);
-                    L.setX(Node.getAllNodes().get(firstNode).getX()-33);
-                    L.setY(Node.getAllNodes().get(firstNode).getY());
-                    return L;
-                }
-            }
-            else if(Element.getAllElements().get(i).getName().charAt(0)=='C'){
-                if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
-                    ImageView C = new ImageView(CapacitorH);
-                    C.setX(Node.getAllNodes().get(firstNode).getX());
-                    C.setY(Node.getAllNodes().get(firstNode).getY()-33);
-                    return C;
-                }
-                else{
-                    ImageView C = new ImageView(CapacitorV);
-                    C.setX(Node.getAllNodes().get(firstNode).getX()-33);
-                    C.setY(Node.getAllNodes().get(firstNode).getY());
-                    return C;
-                }
-            }
-            else if(Element.getAllElements().get(i).getName().charAt(0)=='V'){
-                if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
-                    ImageView V = new ImageView(DCH);
-                    V.setX(Node.getAllNodes().get(firstNode).getX());
-                    V.setY(Node.getAllNodes().get(firstNode).getY()-33);
-                    return V;
-                }
-                else{
-                    ImageView V = new ImageView(DCV);
-                    V.setX(Node.getAllNodes().get(firstNode).getX()-33);
-                    V.setY(Node.getAllNodes().get(firstNode).getY());
-                    return V;
-                }
-            }
+        }
+        else{
+
+
+
         }
         return null;
     }
@@ -238,29 +195,26 @@ public class Graphics extends Application {
         buttonBar6.getButtons().add(Run);
         Draw.setOnAction(E->{
             a.SetNodes();
-            Group root = new Group();
-            for(int i=0 ; i<Element.getAllElements().size();i++){
-                if(Element.getAllElements().get(i).getName().charAt(0)=='R'){
-                    if(Math.abs(Element.getAllElements().get(i).getNode1()-Element.getAllElements().get(i).getNode2())==1){
-                        ImageView R = new ImageView(a.ResistorH);
-                        R.setX(Node.getAllNodes().get(Element.getAllElements().get(i).getNode1()).getX());
-                        R.setY(Node.getAllNodes().get(Element.getAllElements().get(i).getNode1()).getY()-33);
-                        root.getChildren().add(R);
-                    }
-                    else{
-                        ImageView R = new ImageView(a.ResistorV);
-                        R.setX(Node.getAllNodes().get(Element.getAllElements().get(i).getNode1()).getX()-33);
-                        R.setY(Node.getAllNodes().get(Element.getAllElements().get(i).getNode1()).getY());
-                        root.getChildren().add(R);
-                    }
+            VBox ali = new VBox();
+            System.out.println(Element.getAllElements().size());
+            for(int j=0 ; j<Element.getAllElements().size();j++){
+                System.out.println("ergert");
+                try {
+                    ImageView b = new ImageView(String.valueOf(a.setIconElements(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()),Node.getAllNodes().get(Element.getAllElements().get(j).getNode2()))));
+                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                    b.setVisible(true);
+                    ali.getChildren().add(b);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
             for(int j=0;j<Node.getAllNodes().size();j++){
-                System.out.println(Node.getAllNodes().get(j).getX());
-                System.out.println(Node.getAllNodes().get(j).getY());
+                System.out.printf("Node %d: (%d,%d)\n",Node.getAllNodes().get(j).getNode(),Node.getAllNodes().get(j).getX(),Node.getAllNodes().get(j).getY());
+
             }
-            Scene s = new Scene(root,1000,1000);
-            stage.setResizable(false);
+            Scene s = new Scene(ali,700,700);
+            stage.setResizable(true);
             stage.setScene(s);
             stage.show();
         });
@@ -305,7 +259,6 @@ public class Graphics extends Application {
             stage.show();
         });
         anchorPane0.getChildren().add(buttonBar6);
-        a.setIconElements();
         Scene scene = new Scene(anchorPane0,anchorPane0.getWidth(),anchorPane0.getHeight());
         stage.setTitle("Circuit Design");
         stage.setResizable(false);
