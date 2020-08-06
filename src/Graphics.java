@@ -12,6 +12,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import javax.sound.sampled.Line;
 import java.io.*;
 import java.util.Date;
 class GraphicFunctions{
@@ -193,51 +195,51 @@ public class Graphics extends Application {
             for(int j=0 ; j<Element.getAllElements().size();j++){
                 if(Element.getAllElements().get(j).getName().charAt(0)=='R'){
                     ImageView b = new ImageView(a.ResistorH);
-                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode2()).getX());
-                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode2()).getY());
+                    b.setTranslateX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode2()).getX());
+                    b.setTranslateY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode2()).getY());
                     b.setVisible(true);
                     ali.getChildren().add(b);
                 }
                 else if(Element.getAllElements().get(j).getName().charAt(0)=='C'){
                     ImageView b = new ImageView(a.CapacitorH);
-                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
-                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                    b.setTranslateX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                    b.setTranslateY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
                     b.setVisible(true);
                     ali.getChildren().add(b);
                 }
                 else if(Element.getAllElements().get(j).getName().charAt(0)=='L'){
                     ImageView b = new ImageView(a.InductanceH);
-                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
-                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                    b.setTranslateX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                    b.setTranslateY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
                     b.setVisible(true);
                     ali.getChildren().add(b);
                 }
                 else if(Element.getAllElements().get(j).getName().charAt(0)=='V'){
                     ImageView b = new ImageView(a.DCH);
-                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
-                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                    b.setTranslateX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                    b.setTranslateY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
                     b.setVisible(true);
                     ali.getChildren().add(b);
                 }
                 else if(Element.getAllElements().get(j).getName().charAt(0)=='I'){
                     if(Math.abs(Element.getAllElements().get(j).getNode1()-Element.getAllElements().get(j).getNode2())==1){
                         ImageView b = new ImageView(a.ACH);
-                        b.setFitWidth(50);
-                        b.setFitHeight(50);
+                        b.setTranslateX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                        b.setTranslateY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
                         b.setVisible(true);
                         ali.getChildren().add(b);
-                        b.setX(500);
-                        b.setY(400);
-                        b.setLayoutX(500);
                     }
                     else{
                         ImageView b = new ImageView(a.ACV);
-                        b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
-                        b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                        b.setTranslateX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                        b.setTranslateY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
                         b.setVisible(true);
                         ali.getChildren().add(b);
                     }
                 }
+            }
+            for(int t=0 ; t<Node.getAllNodes().size();t++){
+
             }
             for(int k=0;k<Node.getAllNodes().size();k++){
                 System.out.printf("Node %d: (%d,%d)\n",Node.getAllNodes().get(k).getNode(),Node.getAllNodes().get(k).getX(),Node.getAllNodes().get(k).getY());
