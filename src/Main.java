@@ -900,6 +900,26 @@ public class Main {
                         }
                     }
                 }
+                else {
+                    for (VoltageSourceDC allVoltageSourceDC : VoltageSourceDC.getAllVoltageSourceDCs()) {
+                        for (Resistance allResistance : Resistance.getAllResistances()) {
+                            allResistance.setVoltage(allVoltageSourceDC.getVoltage());
+                            allResistance.setCurrent(allResistance.getVoltage().division(allResistance.getResistance()));
+                            allResistance.setPower(allResistance.power(allResistance.current, allResistance.voltage));
+                            allVoltageSourceDC.setCurrent(allResistance.current.multiply(-1));
+                        }
+                        for (Capacitor allCapacitor : Capacitor.getAllCapacitors()) {
+                            allCapacitor.setVoltage(allVoltageSourceDC.getVoltage());
+                            allCapacitor.setCurrent(new ComplexNumber(0, 0));
+                            allCapacitor.setPower(allCapacitor.power(allCapacitor.current, allCapacitor.voltage));
+                        }
+                        allVoltageSourceDC.setPower(allVoltageSourceDC.power(allVoltageSourceDC.current, allVoltageSourceDC.voltage));
+                        for (Node allNode : Node.getAllNodes()) {
+                            if (allNode.getNode() != 0)
+                                allNode.setNodeVoltage(allVoltageSourceDC.voltage);
+                        }
+                    }
+                }
             }
             else {
                 if (CurrentSourceDC.getAllCurrentSourceDCs().size() != 0) {
