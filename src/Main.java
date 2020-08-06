@@ -4,7 +4,6 @@ public class Main {
     public static float deltaI = 0;
     public static float deltaT = 0;
     public static float simulationTime = 0;
-
     public static void setData(float V, float I, float T, float Time) {
         deltaV = V;
         deltaI = I;
@@ -14,7 +13,6 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
         Data.getInput();
-
         for (CurrentSourceDC allCurrentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
             for (CurrentSourceDC currentSourceDC : CurrentSourceDC.getAllCurrentSourceDCs()) {
                 if ((allCurrentSourceDC.getNode1() == currentSourceDC.getNode2()) || (allCurrentSourceDC.getNode2() == currentSourceDC.getNode1())) {
@@ -741,7 +739,7 @@ public class Main {
                 }*/
                 ComplexNumber[][] invert_a = new ComplexNumber[0][];
                 for (VoltageSourceAC allVoltageSourceAC : VoltageSourceAC.getAllVoltageSourceACs()) {
-                     invert_a = Functions.invert((int) allVoltageSourceAC.getFrequency());
+                    invert_a = Functions.invert((int) allVoltageSourceAC.getFrequency());
                 }
                 for (int p = 1; p < m + n + 1; p++) {
                     ComplexNumber sum = new ComplexNumber(0, 0);
