@@ -14,20 +14,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.Date;
-
 class GraphicFunctions{
     GraphicFunctions() throws FileNotFoundException {}
-    FileInputStream ResistorHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\resistor-H.png");
-    InputStream ResistorVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\resistor-V.png");
-    InputStream CapacitorVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\capacitor-V.png");
-    InputStream CapacitorHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\capacitor-H.png");
-    InputStream InductanceVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\inductor-V.png");
-    InputStream InductanceHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\inductor-H.png");
-    InputStream GroundI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\ground.png");
-    InputStream DCVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\dc-V.png");
-    InputStream DCHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\dc-H.png");
-    InputStream WireVI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\wire-V.png");
-    InputStream WireHI = new FileInputStream("D:\\EHSAN\\University\\OOP\\OOP_Project\\Icons\\wire-H.png");
+    FileInputStream ResistorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-H.png");
+    InputStream ResistorVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\resistor-V.png");
+    InputStream CapacitorVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\capacitor-V.png");
+    InputStream CapacitorHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\capacitor-H.png");
+    InputStream InductanceVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\inductor-V.png");
+    InputStream InductanceHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\inductor-H.png");
+    InputStream GroundI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\ground.png");
+    InputStream DCVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\dc-V.png");
+    InputStream DCHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\dc-H.png");
+    InputStream WireVI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\wire-V.png");
+    InputStream WireHI = new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\wire-H.png");
+    InputStream ACHI= new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\AC-H.png");
+    InputStream ACVI= new FileInputStream("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Icons\\AC-V.png");
     Image ResistorH = new Image(ResistorHI);
     Image ResistorV = new Image(ResistorVI);
     Image CapacitorH = new Image(CapacitorHI);
@@ -39,8 +40,12 @@ class GraphicFunctions{
     Image DCV = new Image(DCVI);
     Image WireH = new Image(WireHI);
     Image WireV = new Image(WireVI);
+    Image ACH = new Image(ACHI);
+    Image ACV = new Image(ACVI);
     public void SetNodes(){
         int counter=0;
+        Node.getAllNodes().get(counter).setX(0);
+        Node.getAllNodes().get(counter).setY(10);
         for(counter=1;counter<=6;counter++){
             if(counter<Node.getAllNodes().size()){
                 Node.getAllNodes().get(counter).setX((75*(counter-1))+10);
@@ -87,27 +92,10 @@ class GraphicFunctions{
             }
         }
     }
-    public ImageView setIconElements(Node a , Node b ) throws FileNotFoundException {
-        if(a.getNode()==b.getNode()){
-            if(Element.getElementByNode(a,b).getName().charAt(0)=='R'){
-                System.out.println("R Found!");
-                ImageView R = new ImageView(ResistorH);
-                R.setX(a.getX());
-                R.setY(a.getY()-37);
-                return R;
-            }
-        }
-        else{
-
-
-
-        }
-        return null;
-    }
     public String inputANDOutputTexts() throws IOException {
         String inputTabText = "";
         String outputTabText = "";
-        File file = new File("D:\\EHSAN\\University\\OOP\\OOP_Project\\Test.txt");
+        File file = new File("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Test.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         while ((inputTabText = br.readLine()) != null)
             outputTabText+= inputTabText + "\n";
@@ -116,13 +104,12 @@ class GraphicFunctions{
     public String JustOutputTexts() throws IOException {
         String inputTabText = "";
         String outputTabText = "";
-        File file = new File("D:\\EHSAN\\University\\OOP\\OOP_Project\\Output.txt");
+        File file = new File("E:\\Terms\\Term 2\\OOP\\OOP_Project\\Output.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         while ((inputTabText = br.readLine()) != null)
             outputTabText+= inputTabText + "\n";
         return outputTabText;
     }
-
 }
 public class Graphics extends Application {
     public static void Graphic(String args){
@@ -131,6 +118,7 @@ public class Graphics extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         GraphicFunctions a = new GraphicFunctions();
+        a.SetNodes();
         AnchorPane anchorPane0 = new AnchorPane();
         anchorPane0.setPrefHeight(715.0);
         // anchorPane0.setXmlns(http://javafx.com/javafx/11.0.1);
@@ -165,6 +153,8 @@ public class Graphics extends Application {
         titledPane3.setLayoutX(479.0);
         titledPane3.setLayoutY(66.0);
         titledPane3.setText("Graphic Circuit");
+        VBox ali = new VBox();
+        titledPane3.setContent(ali);
 // Adding child to parent
         anchorPane0.getChildren().add(titledPane3);
         Separator separator4 = new Separator();
@@ -195,28 +185,63 @@ public class Graphics extends Application {
         buttonBar6.getButtons().add(Run);
         Draw.setOnAction(E->{
             a.SetNodes();
-            VBox ali = new VBox();
-            System.out.println(Element.getAllElements().size());
+            ImageView g0 = new ImageView(a.Ground);
+            g0.setX(Node.getAllNodes().get(0).getX());
+            g0.setY(Node.getAllNodes().get(0).getY());
+            System.out.println(Node.getAllNodes().get(0).getY());
+            ali.getChildren().add(g0);
             for(int j=0 ; j<Element.getAllElements().size();j++){
-                System.out.println("ergert");
-                try {
-                    ImageView b = new ImageView(String.valueOf(a.setIconElements(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()),Node.getAllNodes().get(Element.getAllElements().get(j).getNode2()))));
+                if(Element.getAllElements().get(j).getName().charAt(0)=='R'){
+                    ImageView b = new ImageView(a.ResistorH);
+                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode2()).getX());
+                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode2()).getY());
+                    b.setVisible(true);
+                    ali.getChildren().add(b);
+                }
+                else if(Element.getAllElements().get(j).getName().charAt(0)=='C'){
+                    ImageView b = new ImageView(a.CapacitorH);
                     b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
                     b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
                     b.setVisible(true);
                     ali.getChildren().add(b);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                }
+                else if(Element.getAllElements().get(j).getName().charAt(0)=='L'){
+                    ImageView b = new ImageView(a.InductanceH);
+                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                    b.setVisible(true);
+                    ali.getChildren().add(b);
+                }
+                else if(Element.getAllElements().get(j).getName().charAt(0)=='V'){
+                    ImageView b = new ImageView(a.DCH);
+                    b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                    b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                    b.setVisible(true);
+                    ali.getChildren().add(b);
+                }
+                else if(Element.getAllElements().get(j).getName().charAt(0)=='I'){
+                    if(Math.abs(Element.getAllElements().get(j).getNode1()-Element.getAllElements().get(j).getNode2())==1){
+                        ImageView b = new ImageView(a.ACH);
+                        b.setFitWidth(50);
+                        b.setFitHeight(50);
+                        b.setVisible(true);
+                        ali.getChildren().add(b);
+                        b.setX(500);
+                        b.setY(400);
+                        b.setLayoutX(500);
+                    }
+                    else{
+                        ImageView b = new ImageView(a.ACV);
+                        b.setX(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getX());
+                        b.setY(Node.getAllNodes().get(Element.getAllElements().get(j).getNode1()).getY());
+                        b.setVisible(true);
+                        ali.getChildren().add(b);
+                    }
                 }
             }
-            for(int j=0;j<Node.getAllNodes().size();j++){
-                System.out.printf("Node %d: (%d,%d)\n",Node.getAllNodes().get(j).getNode(),Node.getAllNodes().get(j).getX(),Node.getAllNodes().get(j).getY());
-
+            for(int k=0;k<Node.getAllNodes().size();k++){
+                System.out.printf("Node %d: (%d,%d)\n",Node.getAllNodes().get(k).getNode(),Node.getAllNodes().get(k).getX(),Node.getAllNodes().get(k).getY());
             }
-            Scene s = new Scene(ali,700,700);
-            stage.setResizable(true);
-            stage.setScene(s);
-            stage.show();
         });
         Output.setOnAction(E->{
             TextArea outputCircuit = new TextArea();
@@ -261,7 +286,7 @@ public class Graphics extends Application {
         anchorPane0.getChildren().add(buttonBar6);
         Scene scene = new Scene(anchorPane0,anchorPane0.getWidth(),anchorPane0.getHeight());
         stage.setTitle("Circuit Design");
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setScene(scene);
         stage.show();
     }
